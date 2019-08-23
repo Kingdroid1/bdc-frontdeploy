@@ -10,26 +10,34 @@
         </button>
         <div class="collapse navbar-collapse" id="naijanav">
           <ul class="navbar-nav ml-auto">
-            <li class="nav-item mx-2 px-0" :class="{'active': $route.path == '/'}">
+            <li class="nav-item pt-1 mx-2 px-0" :class="{'active': $route.path == '/'}">
               <router-link to="/" class="nav-link">Home</router-link>
             </li>
-            <li class="nav-item mx-2 px-0" :class="{'active': $route.path == '/about'}">
+            <li class="nav-item pt-1 mx-2 px-0" :class="{'active': $route.path == '/about'}">
               <router-link to="/about" class="nav-link">About Us</router-link>
             </li>
-            <li class="nav-item mx-2 px-0" :class="{'active': $route.path == '/historic-rates'}">
+            <li class="nav-item pt-1 mx-2 px-0" :class="{'active': $route.path == '/historic-rates'}">
               <router-link to="/historic-rates" class="nav-link">Historic Rates</router-link>
             </li>
-            <li class="nav-item mx-2 px-0" :class="{'active': $route.path == '/news'}">
+            <li class="nav-item pt-1 mx-2 px-0" :class="{'active': $route.path == '/news'}">
               <router-link to="/news" class="nav-link">News</router-link>
             </li>
-            <li class="nav-item mx-2 px-0" :class="{'active': $route.path == '/gallery'}">
+            <li class="nav-item pt-1 mx-2 px-0" :class="{'active': $route.path == '/gallery'}">
               <router-link to="/gallery" class="nav-link">Gallery</router-link>
             </li>
-            <li class="nav-item mx-2 px-0" :class="{'active': $route.path == '/contact-us'}">
+            <li class="nav-item pt-1 mx-2 px-0" :class="{'active': $route.path == '/contact-us'}">
               <router-link to="/contact-us" class="nav-link">Contact Us</router-link>
             </li>
-            <li class="nav-item mx-2">
-              <form class="form-inline input-group px-1">
+            <li class="mx-2 px-0">
+              <form class="form-inline" >
+                <router-link to="/login" class="nav-link">
+                  <button class="btn btn-smallwhite" >Login</button>
+                </router-link>
+                
+              </form>
+              <!-- <router-link to="/login" class="nav-link">Login</router-link> -->
+
+              <!-- <form class="form-inline input-group px-1">
                 <div class="input-group-prepend px-1">
                   <img src="../../public/img/worldsvg.svg" alt />
                 </div>
@@ -37,7 +45,7 @@
                   <option value>EN</option>
                   <option value>BR</option>
                 </select>
-              </form>
+              </form> -->
             </li>
           </ul>
         </div>

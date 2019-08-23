@@ -18,7 +18,7 @@
                   <input
                     type="email"
                     name="email"
-                    v-model="email"
+                    v-model="user.email"
                     class="form-control pr-5"
                     placeholder="Email"
                     required
@@ -32,7 +32,7 @@
                   <input
                     type="password"
                     name="password"
-                    v-model="password"
+                    v-model="user.password"
                     placeholder="***********"
                     class="form-control pr-5"
                     required
@@ -50,7 +50,7 @@
           <!-- <div id="sign-in"></div> -->
         </div>
 
-        <button class="fluid ui primary button">LOG IN</button>
+        <!-- <button class="fluid ui primary button">LOG IN</button> -->
 
         <div class="ui hidden divider"></div>
         
@@ -61,12 +61,20 @@
 </template>
 
 <script>
+
+  import Vue from 'vue';
+  import VueToast from 'vue-toast-notification';
+  import 'vue-toast-notification/dist/index.css';
+  Vue.use(VueToast);
+
 export default {
   data() {
     return {
-      // user:{},
-      email: "",
-      password: ""
+      user:{
+        email: "",
+      password: "",
+      role:""
+      },     
     };
   },
   computed: {
@@ -76,15 +84,27 @@ export default {
   },
   methods: {
     login: function() {
-      let email = this.email;
-      let password = this.password;
+      let email = this.user.email;
+      let password = this.user.password;
+      let role = this.user.role
       // let user = this.user;
-      this.$store.dispatch('login', {email, password})
+      this.$store.dispatch('login', {email, password, role})
       .then((response) => {
-        console.log('respons.......', response)
-        this.$router.push('/admin', {params:{user: response.user}})
+        // this.$router.push('/admin', {params:{user: response.user}})
+        if ("admin" === response.data.role){
+          this.$router.push('/admin', {params:{user: response.user}})
+        }else{
+          this.$router.push('/operator', {params:{user: response.user}})
+        }
         })
-      .catch(err => console.log(err))
+      .catch(err => 
+                  console.log("Login failed",err),
+                  Vue.$toast.error('Something went wrong, Please try again', {
+                      // optional options Object
+                      position: 'top',
+                      duration:5000,
+                      dismissible:true
+                    }))
     },
     }
   };

@@ -50,11 +50,11 @@
     },
 
     methods: {
-      getRates() {
-        rateService.getRates()
+      getListRates() {
+        rateService.getListRates()
           .then(data => {
             this.rates = data.result;
-            console.log('ratesss',this.rates);
+           
           })
           .catch(error => {
             console.log(error)
@@ -63,7 +63,7 @@
     },
 
     mounted() {
-      this.getRates();
+      this.getListRates();
     }
 
   };

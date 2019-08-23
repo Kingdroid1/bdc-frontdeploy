@@ -14,26 +14,26 @@
         <div class="container py-5">
           
           <div class="row">
-            <div v-for="item in items" :item="item" :key="item.id" class="col-lg-4 col-xs-12 py-lg-5 py-xs-1">
+            <div v-for="post in newsPosts" :post="post" :key="post.items_id" class="col-lg-4 col-xs-12 py-lg-5 py-xs-1">
               <div class="card">
                 <figure>  
-                  <img v-bind:src="item.image" class="card-img-top" />
+                  <img v-bind:src="post.featured_image_url" class="card-img-top" />
                 </figure>
                 <div class="px-0 card-body pb-1">
                   <div class="card-title p-18">
-                    <b>{{ item.title }}</b>
+                    <b>{{ post.title }}</b>
                     <br />
-                    <small class="p-14" style="color: #979797;">{{ item.date }}</small>
+                    <!-- <small class="p-14" style="color: #979797;">{{ post.createdAt }}</small> -->
                   </div>
                   <div class="p-14">
                     <input type="checkbox" class="read-more-state" id="post-1" />
     
                     <p class="read-more-wrap">
-                      {{ item.story }}
+                      {{ post.content }}
                       <span
                         class="read-more-target"
                       >
-                        {{ item.story }}
+                        {{ post.content }}
                       </span>
                     </p>
     
@@ -130,34 +130,29 @@
   </div>
 </template>
 <script>
+import axios from "axios";
+
 export default {
   data (){
     return {
-      items: [
-        {
-          id: 1,
-          title: "Uber targets expansion in fast-growing West African markets",
-          story: "Audio player software is used to play back sound recordings in one of the many formats available for computers today. It can also play back music CDs",
-          date: "June 25th, 2019.",
-          image: "https://images.unsplash.com/photo-1560789191-20b054060a9b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
-        },
-        {
-          id: 2,
-          title: "Uber targets expansion in fast-growing East African markets",
-          story: "Audio player software is used to play back sound recordings in one of the many formats available for computers today. It can also play back music CDs",
-          date: "June 25th, 2019.",
-          image: "https://images.unsplash.com/photo-1519336367661-eba9c1dfa5e9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"
-        },
-        {
-          id: 3,
-          title: "Uber targets expansion in fast-growing North African markets",
-          story: "Audio player software is used to play back sound recordings in one of the many formats available for computers today. It can also play back music CDs",
-          date: "June 25th, 2019.",
-          image: "https://images.unsplash.com/photo-1525850799078-93b0fd68cbab?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"
-        }
-      ]
+      newsPosts: []
     }
-  }
+  },
+  methods: {
+    async getNewsData() {
+      const API_URL = "https://naija-bdc.herokuapp.com/api/news";
+
+    await axios.get(API_URL).then(post => {
+        this.newsPosts = post;
+        this.newsPosts = this.newsPosts.data.message;
+      }).catch(err => {
+        throw err
+      })
+    }
+  },
+  mounted() {
+    this.getNewsData();
+    }
 };
 </script>
 <style>

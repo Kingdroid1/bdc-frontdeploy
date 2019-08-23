@@ -8,7 +8,7 @@
               <img src="../../public/img/toplogo.png" height="32px;" alt />
             </router-link>
             <ul class="list-unstyled d-flex ml-lg-auto justify-content-between">
-              <li class="nav-item px-5 pt-3">
+              <!-- <li class="nav-item px-5 pt-3">
                 <a class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <i class="far fa-bell" style="font-size: 18px;"></i>
                   <span class="badge badge-pill badge-danger">5</span>
@@ -43,10 +43,7 @@
                   <li class="dropdown-divider"></li>
                   <li class="notify">
                     <a href="#" class="top-text-block">
-                      <!-- <div class="p-14">
-                        New asset recommendations in
-                        <b>5 themes</b>
-                      </div> -->
+                      
                       <small class="l-12">4 hours ago</small>
                     </a>
                   </li>
@@ -58,11 +55,11 @@
                     </a>
                   </li>
                 </ul>
-              </li>
-              <li class="nav-item px-2 text-right">
-                <b class="p-15">Joshua Oluwagbemiga</b>
+              </li> -->
+              <li class="nav-item px-2 text-right" v-if="!isLoggedIn">
+                <b class="p-15">{{name}} {{last}}</b>
                 <br />
-                <small class="l-12">BDC Operator</small>
+                <small class="l-12">BDC {{role}}</small>
               </li>
               <li class="nav-item">
                 <div class="dropdown">
@@ -77,8 +74,7 @@
                     <i class="fas fa-chevron-down"></i>
                   </button>
                   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item l-12" href="#">View Profile</a>
-                    <a class="dropdown-item l-12" href="#">Logout</a>
+                    <a class="dropdown-item l-12" href="#" @click="logout">Logout</a>
                   </div>
                 </div>
               </li>
@@ -134,7 +130,35 @@
   </div>
 </template>
 <script>
-export default {};
+export default {
+  data() {
+    // name;
+    // last;
+    return {
+//  user: {},
+    name:"",
+    last:"",
+    role:"",
+    isLoggedIn: false
+    }
+  },
+  methods: {
+    
+    logout: function() {
+          this.$store.dispatch("logout").then(() => {
+            this.$router.push({ name: 'login' });
+          });
+        },
+        async getUserId() {
+          this.name = localStorage.user;
+          this.last = localStorage.last;
+          this.role = localStorage.role;
+        }
+  },
+  mounted()  {
+    this.getUserId()
+  }
+};
 </script>
 <style>
 </style>

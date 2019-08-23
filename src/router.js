@@ -133,7 +133,12 @@ let router = new Router({
           component: Previousrate
         },
         {
-          path: '',
+          path: '/',
+          name: 'settings',
+          component: Settings
+        },
+        {
+          path: 'settings',
           name: 'settings',
           component: Settings
         },
@@ -146,7 +151,7 @@ let router = new Router({
       component: Operator,
       children: [     
         {
-          path: '',
+          path: '/',
           name: 'newrate',
           component: Newrate
         },

@@ -7,14 +7,18 @@ export class UserService {
   }
 
   getUsers() {
-    const url = `${API_URL}/users`;
+    const url = `${API_URL}/users/`;
     return axios.get(url).then(response => response.data);
+  }
+
+  suscribe(email) {
+    const url = `${API_URL}/suscribe/`;
+    return axios.post(url,email);
   }
 
   getUsersId() {
     this.id =localStorage.id;
-    // this.token = localStorage.token;
-    console.log('gfg',this.id);
+
     const url = `${API_URL}/user/${this.id}`;
     const token = localStorage.getItem('id_token')
 
@@ -25,10 +29,9 @@ export class UserService {
     
     }
     
-    console.log('token',localStorage.id_token);
     return axios.get(url,header).then(response => {
       response.data
-      console.log('res', response)
+ 
     });
     
   }

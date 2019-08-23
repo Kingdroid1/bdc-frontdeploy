@@ -98,12 +98,10 @@ import { AuthService } from '../services/authservice';
           authservice.signup(user)
             .then( response => {
               this.$router.push("/login");
-              console.log(response);
             })
             .catch(error => {
               console.error(error.message);
             })
-         console.log(user)
          this.$store.dispatch('CreatePassword', user).then(() => this.$router.push("/login")).catch(err => console.log(err));
         }  else {
           this.password = "";

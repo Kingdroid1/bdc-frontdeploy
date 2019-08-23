@@ -69,7 +69,6 @@
         </div>
       </div>
     </div>
-  <!-- </div> -->
 </template>
 <script>
   import { AuthService } from "../../services/authservice"
@@ -96,10 +95,8 @@
             newpassword: this.user.newpassword,
             confirmpassword: this.user.confirmpassword
           }
-          console.log("password details here ", passwordDetails);
           await authservice.createPassword(passwordDetails).then((payload) => {
             this.password = this.newPassword = this.confirmPassword = ''
-            console.log("res password details", payload);
             this.$router.push({name: 'password'})
           })
         } catch(error){

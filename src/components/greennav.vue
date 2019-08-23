@@ -135,7 +135,7 @@
                 </li>
                 <li
                   class="nav-item pl-lg-4 ml-lg-2"
-                  :class="{'active': $route.path == '/admin'}"
+                  :class="{'active': $route.path == '/admin' || $route.path == '/admin/settings'}"
                 >
                   <router-link to="/admin" class="nav-link">
                     <img src="../../public/img/settings.svg" alt class="aa" />

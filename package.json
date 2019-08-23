@@ -3,31 +3,35 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "node build/dev-server.js",
-    "start": "node server.js",
+    "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint",
-    "heroku-postbuild": "npm install --only=dev --no-shrinkwrap && npm run build"
+    "lint": "vue-cli-service lint"
   },
   "dependencies": {
     "axios": "^0.19.0",
     "bootstrap": "^4.3.1",
-    "connect-history-api-fallback": "^1.6.0",
+    "bootstrap-vue": "^2.0.0-rc.28",
     "core-js": "^2.6.5",
-    "cors": "^2.8.5",
     "element-ui": "^2.11.1",
-    "express": "^4.17.1",
     "jquery": "^3.4.1",
+    "moment": "^2.24.0",
     "particles.js": "^2.0.0",
     "popper.js": "^1.15.0",
+    "v-datatable-light": "^0.8.0",
+    "v-suggestions": "^1.1.1",
     "vee-validate": "^2.2.13",
     "vue": "^2.6.10",
     "vue-axios": "^2.1.4",
+    "vue-data-tables": "^3.4.4",
     "vue-localstorage": "^0.6.2",
+    "vue-marquee-text-component": "^1.1.1",
+    "vue-materialize-datatable": "^0.7.7",
     "vue-page-transition": "^0.2.2",
     "vue-paginate": "^3.6.0",
     "vue-router": "^3.0.3",
     "vue-select": "^3.1.0",
+    "vue-simple-suggest": "^1.9.5",
+    "vue-toast-notification": "0.0.2",
     "vuejs-paginate": "^2.1.0",
     "vuex": "^3.1.1"
   },
@@ -63,12 +67,6 @@
     "plugins": {
       "autoprefixer": {}
     }
-  },
-  "engines": {
-    "node": "10.15.1",
-    "npm": "6.4.1",
-    "express": "^4.17.1",
-    "cors": "^2.8.5"
   },
   "browserslist": [
     "> 1%",

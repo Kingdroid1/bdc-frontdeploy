@@ -25,14 +25,17 @@
               >Add Bdc Operators</a>
             </li>
             <li class="ml-auto">
-              <form>
               <div class="input-group operator">
                 <div class="input-group-prepend px-2 pt-1">
                   <i class="icon ion-ios-search"></i>
                 </div>
-                <input type="text" class="form-control" placeholder="Search Operators" />
+                <input
+                  type="text"
+                  class="form-control"
+                  v-model="searchQ"
+                  placeholder="Search Operators"
+                />
               </div>
-              </form>
             </li>
           </ul>
         </div>
@@ -49,40 +52,65 @@
                       <th>PHONE</th>
                       <th>DATE REGISTERED</th>
                       <th>ACTION</th>
+                      <th></th>
                     </thead>
                     <tbody>
-                      <tr v-for="(operator, index) in operators" v-bind:key="operator._id">
+                      <tr v-for="(operator) in displayedOperators" v-bind:key="operator._id">
                         <td>{{operator.name}}</td>
                         <td>{{operator.typeOfInstitution}}</td>
                         <td>{{operator.addressRegistered}}</td>
                         <td>{{operator.telephone}}</td>
                         <td>{{operator.dateRegistered}}</td>
-                      
+
                         <td>
-                          View &nbsp;&nbsp;
-                          <a
-                            style="color: rgba(37, 56, 88, 0.3);font-size: 18px;"
-                            class="dropdown-toggle px-3"
-                            data-toggle="dropdown"
-                            aria-haspopup="true"
-                            aria-expanded="false"
+                          <span data-toggle="modal" data-target="#exampleModal">
+                            <button
+                              class="btn btn-edit"
+                              data-toggle="tooltip"
+                              data-placement="top"
+                              title="Edit Operator"
+                              @click="getOperatorById(operator._id)"
+                            >
+                              <i class="far fa-edit"></i>
+                            </button>
+                          </span>
+                        </td>
+                        <td>
+                          <button
+                            class="btn btn-delete"
+                            @click="removeById(operator._id)"
+                            data-toggle="tooltip"
+                            data-placement="top"
+                            title="Delete Operator"
                           >
-                            <i class="icon ion-md-more"></i>
-                          </a>
-                          <div class="dropdown-menu">
-                            <a class="dropdown-item" href="#">Deactivate</a>
-                            <a class="dropdown-item" href="#">Edit</a>
-                            <a class="dropdown-item" @click="remove(index)">Delete</a>
-                          </div>
+                            <i class="far fa-trash-alt"></i>
+                          </button>
                         </td>
                       </tr>
-                      
                     </tbody>
+                    <div class="btn-group mt-5">
+                      <button
+                        type="button"
+                        v-if="page != 1"
+                        @click="page--"
+                        class="btn btn-sm btn-outline-secondary"
+                      >prev</button>
+                      <button
+                        type="button"
+                        class="btn btn-sm btn-outline-secondary"
+                        v-for="pageNumber in pages.slice(page-1, page+5)"
+                        v-bind:key="pageNumber"
+                        @click="page = pageNumber"
+                      >{{pageNumber}}</button>
+                      <button
+                        type="button"
+                        @click="page++"
+                        v-if="page < pages.length"
+                        class="btn btn-sm btn-outline-secondary"
+                      >next</button>
+                    </div>
                   </table>
                 </div>
-                <!-- <p class="text-center">
-                  <paginate name="operators" ></paginate>
-                </p> -->
               </div>
 
               <div role="tabpanel" class="tab-pane" id="addoperators">
@@ -159,7 +187,7 @@
                         class="lightform form-control"
                         placeholder="Portharcourt"
                       />
-                      <label for class="pl-14">Area</label>
+                      <label for class="pl-14">State</label>
                       <input
                         type="text"
                         name="state"
@@ -252,25 +280,82 @@
             </div>
           </div>
         </div>
+        <div class="col-12">
+          <div
+            class="modal fade"
+            id="exampleModal"
+            tabindex="-1"
+            role="dialog"
+            aria-labelledby="exampleModalLabel"
+            aria-hidden="true"
+          >
+            <div class="modal-dialog" role="document">
+              <div class="modal-content p-5">
+                <h1 class="p-20">Edit Operator</h1>
+                <hr />
+                <label for class="p-14">Full Name</label>
+                <input
+                  type="text"
+                  placeholder="Full Name"
+                  class="lightform form-control mb-4"
+                  name="name"
+                  v-model="operator.name"
+                />
+                <label for class="p-14">Type of Institution</label>
+                <select class="lightform form-control mb-4" v-model="operator.typeOfInstitution">
+                  <option value>Bank</option>
+                  <option value>Bureau De Change</option>
+                </select>
+
+                <label for class="p-14">Address</label>
+                <input
+                  type="text"
+                  placeholder="Address"
+                  class="lightform form-control mb-4"
+                  name="streetAddress"
+                  v-model="operator.streetAddress"
+                />
+                <label for class="p-14">Telephone</label>
+                <input
+                  type="tel"
+                  placeholder="Telephone"
+                  class="lightform form-control mb-4"
+                  name="telephone"
+                  v-model="operator.telephone"
+                />
+                <!-- <label for class="pl-14">Date</label>
+                <input
+                  type="date"
+                  name="dateLicensed" 
+                  v-model="operator.dateLicensed"
+                  class="lightform form-control mb-4"
+                  placeholder="mm / dd / yyyy"
+                  required
+                />-->
+                <button
+                  class="btn btn-green px-4"
+                  data-dismiss="modal"
+                  @click="updateOperator(operator._id)"
+                >Update Operator</button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import { AuthService } from '../../services/authservice';
-
-  const authservice = new AuthService();
-
-  const API_URL = `https://naija-bdc.herokuapp.com/api/`
+const API_URL = `https://naija-bdc.herokuapp.com/api/operators/`;
 
 import axios from "axios";
 
 export default {
-  
   data() {
     return {
       user: {
+        _id: "",
         name: "",
         typeOfInstitution: "",
         dateRegistered: "",
@@ -283,13 +368,16 @@ export default {
         ownershipType: "",
         dateLicensed: ""
       },
-      operators: []
-      // searchQ: ''
+      operators: [],
+      operator: {},
+      searchQ: "",
+      index: Number,
+      page: 1,
+      perPage: 100,
+      pages: []
     };
-   },
-  mounted() {
-   this.getData();
   },
+
   methods: {
     async create() {
       try {
@@ -306,75 +394,118 @@ export default {
           dateLicensed: this.user.dateLicensed
         };
 
-        await axios.post(API_URL + `addoperator`, userDet).then(res => res.data);
-        alert('Added BDC operator');
+        await axios
+          .post(API_URL + `addoperator`, userDet)
+          .then(res => res.data);
+        alert("Added BDC operator");
         window.location.reload();
       } catch (error) {
         throw error;
       }
     },
 
-    getData() {
-      const API_URL = 'https://naija-bdc.herokuapp.com/api/operators';
-      axios.get(API_URL)
-       .then(response => {
-         this.operators = response;
-         this.operators = this.operators.data.message;
-        //  this.operators = this.operators.data.message.filter((operator) => {
-        //   return operator.name.match(this.searchQ);
-        //   });
-        console.log('from server --->', this.operators); //log response from server
-      }).catch(err => {
-        console.log(err);
-      });
+   async getData() {
+      const API_URL = "https://naija-bdc.herokuapp.com/api/operators/operators";
+      await axios
+        .get(API_URL)
+        .then(response => {
+          this.operators = response;
+          this.operators = this.operators.data.message;
+        })
+        .catch(err => {
+          console.log(err);
+        });
     },
 
-    remove(operators, id) {
-      
-      axios.delete('https://naija-bdc.herokuapp.com/api/operator' + id).then(response => this.operators.splice(index, 1));
-    
-      window.location.reload();
-    
+    async getOperatorById(_id) {
+      console.log("get ops id", _id);
+      const api_url = "https://naija-bdc.herokuapp.com/api/operators/operator/";
+      await axios
+        .get(api_url + `${_id}`)
+        .then(data => {
+          console.log("resp", data);
+          this.operator = data.data.operator;
+          // console.log('ops', this.operator);
+        })
+        .catch(error => {
+          console.log(error);
+        });
     },
 
-    // edit(operators, id) {
-    //  axios.put('http://localhost:5000/api/operator' + id).then(response => this.operators);
-    
-    //   window.location.reload();
-    // }
-    // computed: {
-    //   filteredOperators: function() {
-    //     return this.operators.filter((operator) => {
-    //       return operator.name.match(this.searchQ);
-    //     });
-    //   }
-    // }
-    // nextPage(){
-    //   this.pageNumber++;
-    // },
-    // prevPage(){
-    //   this.pageNumber--;
-    // }
-    // clickCallback (pageNum){
-    //   console.log(pageNum)
-    // }
+    async updateOperator(_id) {
+      console.log("operatoe id in update", _id);
+      const api_url = "https://naija-bdc.herokuapp.com/api/operators/operator/";
+      try {
+        let opsUpdate = {
+          _id: this.operator._id,
+          name: this.operator.name,
+          typeOfInstitution: this.operator.typeOfInstitution,
+          streetAddress: this.operator.streetAddress,
+          telephone: this.operator.telephone
+        };
+
+        await axios.put(api_url + `${_id}`, opsUpdate).then(res => res.data);
+        alert("Updated BDC operator");
+        console.log("update operator", opsUpdate);
+        window.location.reload();
+      } catch (error) {
+        throw error;
+      }
+    },
+
+    async removeById(_id) {
+      console.log("operator id in remove", _id);
+      const api_url = "https://naija-bdc.herokuapp.com/api/operators/operator/";
+      try {
+        let opsDelete = {
+          id: this.operator._id
+        };
+
+        await axios.delete(api_url + `${_id}`, opsDelete).then(res => res.data);
+        // prompt('You will lose BDC operator details if deleted!');
+        alert("You will lose BDC operator details if deleted!");
+        window.location.reload();
+        //  this.operator = index;
+        //  this.$delete(this.operator);
+      } catch (error) {
+        throw error;
+      }
+    },
+
+    setPages() {
+      let numberOfPages = Math.ceil(this.operators.length / this.perPage);
+      for (let index = 1; index <= numberOfPages; index++) {
+        this.pages.push(index);
+      }
+    },
+    paginate(operators) {
+      let page = this.page;
+      let perPage = this.perPage;
+      let from = page * perPage - perPage;
+      let to = page * perPage;
+      return operators.slice(from, to);
+    }
   },
-  //  this.remove(){}
-  //  this.edit();
-  // computed: {
-  //   pageCount(){
-  //     let l = thisData.length,
-  //     s = this.size;
-  //     return Math.ceil(l/s);
-  //   },
-  //   paginatedData(){
-  //     const start = this.pageNumber * this.size, 
-  //     end = start + this.size;
-  //     return this.listData.slice(start, end);
-  //   }
-  // }
-
+  computed: {
+    displayedOperators() {
+      if (this.searchQ) {
+        return this.operators.filter(item => {
+          return item.name.startsWith(this.searchQ);
+        });
+      } else {
+        return this.paginate(this.operators);
+      }
+    }
+  },
+  watch: {
+    operators() {
+      this.setPages();
+    }
+  },
+  created() {
+    this.getData();
   }
- //}
+};
 </script>
-<style> </style>
+<style>
+</style>

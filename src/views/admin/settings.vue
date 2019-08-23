@@ -1,4 +1,4 @@
-//  eslint-disable 
+// eslint-disable
 <template>
   <div class="addmin py-5" v-if="isLoggedIn">
     <div class="container">
@@ -35,7 +35,7 @@
                 <div class="row">
                   <div class="col-12">
                     <!-- <span v-if="isLoggedIn">  <a @click="logout">Logout</a></span>
-          <span v-else> | <router-link to="/login">Login</router-link></span> -->
+                    <span v-else> | <router-link to="/login">Login</router-link></span>-->
                     <h5 class="g-17">User Management</h5>
                     <hr />
                   </div>
@@ -56,7 +56,30 @@
                             <td>{{user.role}}</td>
                             <td>Active</td>
                             <td>
-                              <a
+                              <span
+                                data-toggle="modal"
+                                data-target="#exampleModalEdit"
+                                @click="getUserId(user._id)"
+                              >
+                                <button
+                                  class="btn btn-edit mr-lg-3"
+                                  data-toggle="tooltip"
+                                  data-placement="top"
+                                  title="Edit User"
+                                >
+                                  <i class="far fa-edit"></i>
+                                </button>
+                              </span>
+                              <button
+                                class="btn btn-delete"
+                                @click="deleteUser(user._id)"
+                                data-toggle="tooltip"
+                                data-placement="top"
+                                title="Delete User"
+                              >
+                                <i class="far fa-trash-alt"></i>
+                              </button>
+                              <!-- <a
                                 style="color: rgba(37, 56, 88, 0.3);font-size: 18px;"
                                 class="dropdown-toggle px-3"
                                 data-toggle="dropdown"
@@ -66,14 +89,38 @@
                                 <i class="icon ion-md-more"></i>
                               </a>
                               <div class="dropdown-menu">
-                                <a class="dropdown-item" href="#" 
-            data-toggle="modal"
-            data-target="#exampleModalEdit" @click='editUser(user._id)'>Edit</a>
-                                <!-- <router-link :to="{name: 'itemModal', params: {id: item.id}}">See item 1</router-link> -->
-                                <a class="dropdown-item" href="#" @click='deleteUser(user._id)'>Delete</a>
-                              </div>
+                                <a
+                                  class="dropdown-item"
+                                  href="#"
+                                  data-toggle="modal"
+                                  data-target="#exampleModalEdit"
+                                  @click="getUserId(user._id)"
+                                >Edit</a>
+                                
+                                <a
+                                  class="dropdown-item"
+                                  href="#"
+                                  @click="deleteUser(user._id)"
+                                >Delete</a>
+                              </div> -->
                             </td>
                           </tr>
+                          <!-- <tr>
+                            <td>Samuel Ode</td>
+                            <td>Ode@bdc.com</td>
+                            <td>operator</td>
+                            <td>Active</td>
+                            <td>
+                              <a style="color: rgba(37, 56, 88, 0.3);font-size: 18px;" class="dropdown-toggle px-3"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="icon ion-md-more"></i>
+                              </a>
+                              <div class="dropdown-menu">
+                                <a class="dropdown-item" href="#">Edit</a>
+                                <a class="dropdown-item" href="#">Delete</a>
+                              </div>
+                            </td>
+                          </tr>-->
                         </tbody>
                       </table>
                     </div>
@@ -135,10 +182,11 @@
                           class="lightform form-control"
                           placeholder="Confirm Password"
                         />
+                        <!-- <div vif ="nomatch">{{nomatch}} </div> -->
                       </div>
                       <div class="col-lg-6 col-xs-12"></div>
                       <div class="col-lg-6 col-xs-12">
-                        <button class="btn btn-green px-5" @click="changePassword">Submit Password</button>
+                        <button class="btn btn-green px-5" @click="comparepassword">Submit Password</button>
                       </div>
                     </div>
                   </div>
@@ -191,7 +239,11 @@
           />
           <label for class="p-14">Location</label>
           <select v-model="user.location_id" class="lightform custom-select">
-            <option v-for="location in locations" v-bind:value="location._id" v-bind:key="location">{{ location.name }}</option>
+            <option
+              v-for="location in locations"
+              v-bind:value="location._id"
+              v-bind:key="location"
+            >{{ location.name }}</option>
           </select>
           <br />
 
@@ -204,7 +256,7 @@
             >{{ role }}</option>
           </select>
           <br />
-          <button class="btn btn-green px-4" data-dismiss="modal" @click="signup">Add User</button>
+          <button class="btn btn-green px-4" data-dismiss="modal" @click="adduser">Add User</button>
         </div>
       </div>
     </div>
@@ -231,7 +283,6 @@
             v-model="user.firstname"
             placeholder="First Name"
             class="lightform form-control mb-4"
-  
           />
           <label for class="p-14">Last Name</label>
           <input
@@ -254,13 +305,20 @@
           />
           <label for class="p-14">Location</label>
           <select v-model="user.location_id" class="lightform custom-select">
-            <option v-for= "(location, index) in locations" v-bind:key="index">{{ location.name }}</option>
+            <option
+              v-for="location in locations"
+              v-bind:value="location._id"
+              v-bind:key="location"
+            >{{ location.name }}</option>
           </select>
           <br />
 
           <label for="basic-dropdown" class="p-14">Role</label>
           <select name id v-model="user.role" class="lightform custom-select">
-            <option v-for= "(role, index) in roles" v-bind:key="index" class="lightform form-control mb-4"
+            <option
+              v-for="(role, index) in roles"
+              v-bind:key="index"
+              class="lightform form-control mb-4"
             >{{ role }}</option>
           </select>
           <br />
@@ -268,165 +326,257 @@
         </div>
       </div>
     </div>
-
-
-
   </div>
 </template>
 <script>
-import { AuthService } from "../../services/authservice";
-import { RateService } from "../../services/rateservice";
-import { UserService } from "../../services/userservices";
-// import axios from 'axios'
-let authservice = new AuthService();
-let rateService = new RateService();
-let userservice = new UserService();
+  import { AuthService } from "../../services/authservice";
+  import { RateService } from "../../services/rateservice";
+  import { UserService } from "../../services/userservices";
+  import axios from "axios";
+  import { DataTable } from "v-datatable-light";
+  import Vue from 'vue';
+  import VueToast from 'vue-toast-notification';
+  import 'vue-toast-notification/dist/index.css';
 
-export default {
-  // name: Settings,
-  data() {
-    return {
-      locations: [],
-      users: [],
-      roles: ["admin", "operator"],
-      user: {
-        firstname: "",
-        lastname: "",
-        email: "",
-        location_id: "",
-        password: "",
-        newpassword: "",
-        confirmpassword: "",
-        role: ""
-      }
-    };
-  },
+  let authservice = new AuthService();
+  let rateService = new RateService();
+  let userservice = new UserService();
+  Vue.use(VueToast);
 
-  computed: {
-    isLoggedIn: function() {
-      return this.$store.getters.isLoggedIn;
-    },
-    email() {
-      return this.$store.getters.user.email;
-    }
-  },
-
-  // created() {
-  //   this.$store.dispatch("fetchUser");
-  // },
-
-  methods: {
-    async getLocations() {
-      await rateService
-        .getLocations()
-        .then(data => {
-          this.locations = data;
-        })
-        .catch(error => {
-          console.log(error);
-        });
-    },
-
-    async getUsers() {
-      await userservice
-        .getUsers()
-        .then(data => {
-          this.users = data.result;
-          console.log("users from getuser", this.users)
-        })
-        .catch(error => {
-          console.log(error);
-        });
-    },
-
-    async changePassword() {
-      try {
-        let passwordDetails = {
-          password: this.user.password,
-          newpassword: this.user.newpassword,
-          confirmpassword: this.user.confirmpassword
-        };
-
-        await authservice.createPassword(passwordDetails).then(payload => {
-          this.password = this.newPassword = this.confirmPassword = "";
-          console.log("res password details", payload);
-          this.$router.push({ name: "login" });
-        });
-      } catch (error) {
-        throw error;
-      }
-    },
-
-   editUser: function(id) {
-     let user = {
-      //  id: this.user.id,
-       firstname: this.user.firstname,
-        lastname: this.user.lastname,
-        email: this.user.email,
-        role: this.user.role,
-        location_id: this.user.location_id 
-     };
-     this.$store.dispatch('updateUser', user)
-     .then((response) => {
-       console.log('response from update password', response)
-       this.$router.push('/admin')
-     })
-     .catch(err => console.log(err))
-   },
-
-
-// async editUser() {
-  
-//   try{
-//     let userDet = {
-//       firstname: this.user.firstname,
-//       lastname: this.user.lastname,
-//       email: this.user.email,
-//       location_id: this.user.location_id,
-//       role: this.user.role,
-//     };
-//     await authservice.updateUser(userDet)
-//   .then(data => {console.log("data", data);
-//   this.$router.push('/admin');
-//   })
-//   } catch(error) {
-//     throw error;
-//   }
-  
-// },
-
-
-  //  deleteUser(id) {
-  //    axios.delete(`http://localhost:5000/api/users/ ${id}`).then((result) => {
-  //      this.$router.push('/admin')
-  //    }).catch(err => {
-  //      console.log(err)
-  //    })
-  //  },
-
-    signup: function() {
-      let data = {
-        firstname: this.user.firstname,
-        lastname: this.user.lastname,
-        email: this.user.email,
-        role: this.user.role,
-        location_id: this.user.location_id
+  export default {
+    // name: Settings,
+    data() {
+      return {
+        nomatch: "",
+        locations: [],
+        users: [],
+        roles: ["admin", "operator"],
+        user: {
+          firstname: "",
+          lastname: "",
+          email: "",
+          location_id: "",
+          password: "",
+          newpassword: "",
+          confirmpassword: "",
+          role: ""
+        }
       };
-      this.$store
-        .dispatch("signup", data)
-        .then((res =>
-           this.$router.push("/admin")))
-          window.location.reload()
-        .catch(err => console.log(err));
-    }
-  },
+    },
+    components: {
+      DataTable
+    },
+    computed: {
+      // rows() {
+      //   return this.items.length;
+      // },
+      isLoggedIn: function () {
+        return this.$store.getters.isLoggedIn;
+      },
+      email() {
+        return this.$store.getters.user.email;
+      }
+    },
 
-  mounted() {
-    this.getLocations();
-    this.getUsers();
-    // this.editUser();
-  }
-};
+    methods: {
+      formatter(row, column) {
+        return row.address;
+      },
+      filterTag(value, row) {
+        return row.tag === value;
+      },
+      async getLocations() {
+        await rateService
+          .getLocations()
+          .then(data => {
+            this.locations = data;
+          })
+          .catch(error => {
+            console.log(error);
+          });
+      },
+
+      async getUsers() {
+        await userservice
+          .getUsers()
+          .then(data => {
+            this.users = data.result;
+          })
+          .catch(error => {
+            console.log(error);
+          });
+      },
+
+      async comparepassword() {
+        const password = this.user.password;
+
+        await authservice.comparePassword(password).then(res => {
+          res = res.data;
+
+          if (res.status == true) {
+               
+                const password = this.user.password;
+                const confirmpassword = this.user.confirmpassword;
+                const newpassword = this.user.newpassword;
+
+                if (newpassword == confirmpassword) {
+                
+                  authservice.updatePassword(newpassword).then(payload => {
+                    console.log('pay',payload)
+                    if (payload.data.status == true){
+                      Vue.$toast.success('Password changed successfully', {
+                      // optional options Object
+                      position: 'top',
+                      duration:5000,
+                      dismissible:true
+                    })
+                     this.$router.push({ name: "login" });    
+                    }
+                    else{
+                      Vue.$toast.error('Something went wrong, Please try again', {
+                      // optional options Object
+                      position: 'top',
+                      duration:5000,
+                      dismissible:true
+                    })
+                    }
+             
+                  });
+                } 
+                else {
+                  Vue.$toast.error('Something went wrong, passwords do not match', {
+                    // optional options Object
+                    position: 'top',
+                    duration:5000,
+                    dismissible:true
+                  })
+                }
+              
+          } else {
+            Vue.$toast.error('Incorrect existing password', {
+                // optional options Object
+                position: 'top',
+                duration:5000,
+                dismissible:true
+              })
+          }
+        });
+      },
+
+      
+
+     editUser() {
+      let userDet = {
+        _id:this.user._id,
+          firstname: this.user.firstname,
+          lastname: this.user.lastname,
+          email: this.user.email,
+          location_id: this.user.location_id,
+          role: this.user.role,
+        }
+        this.$store.dispatch("updateUser", userDet)
+        .then(resp => {
+          resp = resp.data.status;
+              if (resp == true)
+              {
+                Vue.$toast.success('User details updated ', {
+                      // optional options Object
+                      position: 'top',
+                      duration:5000,
+                      dismissible:true
+                })
+                window.location.reload();
+              }
+              else {
+                 Vue.$toast.error('Something went wrong,user not updated', {
+                  // optional options Object
+                  position: 'top',
+                  duration:3000,
+                  dismissible:true
+                })
+              }
+        }).catch(error =>  
+              Vue.$toast.error('Something went wrong', {
+                // optional options Object
+                position: 'top',
+                duration:3000,
+                dismissible:true
+              }))
+      },
+
+     deleteUser(id) {
+        axios.delete(`https://naija-bdc.herokuapp.com/api/users/${id}`)
+        .then(result => {
+          this.users.splice(this.users.indexOf(id), 1);
+          Vue.$toast.success('User deleted', {
+                // optional options Object
+                position: 'top',
+                duration:5000,
+                dismissible:true
+              })
+          this.$router.push({name:'settings'})
+    
+        }).catch(err => 
+              console.log("err", err),
+              // Vue.$toast.error('Something went wrong', {
+              //   // optional options Object
+              //   position: 'top',
+              //   duration:5000,
+              //   dismissible:true
+              // })
+            )
+      },
+
+
+      adduser: function () {
+        let data = {
+          firstname: this.user.firstname,
+          lastname: this.user.lastname,
+          email: this.user.email,
+          role: this.user.role,
+          location_id: this.user.location_id
+        };
+        this.$store
+          .dispatch("signup", data)
+          .then(res =>{
+             if(res.data.status==true){
+               Vue.$toast.success('user added successfully', {
+                // optional options Object
+                position: 'top',
+                duration:5000,
+                dismissible:true
+              })
+              window.location.reload()
+            }
+            else{
+              Vue.$toast.error('Please ensure all fields are correct', {
+                // optional options Object
+                position: 'top',
+                duration:5000,
+                dismissible:true
+              })
+              window.location.reload()
+            }
+          })
+        // window.location.reload()
+        .catch(err => console.log(err));
+      },
+
+      getUserId(_id) {
+      this.$store
+      .dispatch("getUserId", _id)
+      .then(resp => {
+        this.user = resp.user
+      }).catch(error => console.log("error from new getuserId", error))
+    },
+    },
+
+    mounted() {
+      this.getLocations();
+      this.getUsers();
+      // this.editUser();
+    }
+  };
 </script>
 <style>
 </style>

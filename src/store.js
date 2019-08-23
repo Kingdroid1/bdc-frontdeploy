@@ -47,7 +47,7 @@ export default new Vuex.Store({
 						axios.defaults.headers.common['Authorization'] = token
 						commit('auth_success', token, user)
 						resolve(response)
-						console.log(response)
+					
 					})
 					.catch(err => {
 						commit('auth_error', err)
@@ -70,7 +70,7 @@ export default new Vuex.Store({
 						// axios.defaults.headers.common['Authorization'] = token
 						// commit('auth_success', token, user)
 						resolve(response)
-						console.log(response)
+						
 					})
 					.catch(err => {
 		
@@ -79,26 +79,7 @@ export default new Vuex.Store({
 			})
 		},
 
-		getUserId({commit}, user) {
-			return new Promise((resolve, reject) => {
-				commit('auth_request')
-					const id = localStorage.id;
-				axios({ url: `${baseURL}/user/${id}`, data:user, method: 'GET'})
-				.then(response => {
-					
-					axios.defaults.headers.common['Authorization'] = token
-					commit('auth_success', user)
-					resolve(response)
-					console.log("response####",id)
-				})
-				.catch(err => {
-					commit('auth_error')
-				
-					reject(err)
-					console.log('errrrrr', err)
-				})
-			})
-		},
+		
 		login({ commit }, user) {
 			return new Promise((resolve, reject) => {
 				commit('auth_request')
@@ -109,7 +90,6 @@ export default new Vuex.Store({
 						const last = response.data.user.lastname;
 						const  id = response.data.id;
 						const role = response.data.role;
-						console.log("new usssssssssssssser", user)
 						localStorage.setItem('user', user);
 						localStorage.setItem('token', token);
 						localStorage.setItem('id', id);
@@ -119,12 +99,7 @@ export default new Vuex.Store({
 						axios.defaults.headers.common['Authorization'] = token
 						commit('auth_success', token, user)
 						resolve(response)
-						// console.log(response);
-						// console.log("local Storage", localStorage.user)
-						// console.log("local storage", localStorage.token)
-						// console.log("local storage", localStorage.id)
 						
-						getUserId();
 					})
 					.catch(err => {
 						commit('auth_error')
@@ -134,40 +109,21 @@ export default new Vuex.Store({
 			})
 		},
 
-		updateUser({ commit}, id, updatedId) {
+		updateUser({ commit }, userDet) {
 			return new Promise((resolve, reject) => {
-				commit('auth_request')
-				// const id = null;
-				// const user = {id: null}
-				// const token = localStorage.token;
-				// console.log("iddddddddddd", id)
-				// console.log("toooooooken", token)
-				// console.log("users from updateuser", user)
-				axios({url: `${baseURL}/users/ ${id}` , data:updatedId, method: 'PUT'})
-				.then(response => {
-					const id = response.updatedId;
-					// user.id = id;
-					// this.user.push(user)
-					// const token = response.data.token;
-					// const user = response.data.user;
-					console.log("Update user", id)
-					console.log('response', response)
-					// localStorage.getItem('token', token)
-					// localStorage.getItem('id', id)
-					console.log("Update user after localstorage", user)
-					console.log('token after local storage', token)
-					
+				
+				axios({ url: `${baseURL}/users/${userDet._id}`, data: userDet, method: 'put' })
+					.then((response) => {
+						
+						resolve(response)
+						
 
-					axios.defaults.headers.common['Authorization'] = token
-					commit('auth_success', token, user)
-					resolve(response)
-					console.log("response####",id)
-				})
-				.catch(err => {
-					commit('auth_error')
-					localStorage.removeItem('token')
-					reject(err)
-				})
+						
+					})
+					.catch(err => {
+						reject(err)
+						console.error('Error from UpdateUser in Store', err)
+					})
 			})
 		},
 	
@@ -177,6 +133,20 @@ export default new Vuex.Store({
 				localStorage.removeItem('token')
 				delete axios.defaults.headers.common['Authorization']
 				resolve()
+			})
+		},
+
+		getUserId({ commit }, _id) {
+			return new Promise((resolve, reject) => {
+				axios({ url: `${baseURL}/users/user/${_id}`, method: 'GET' })
+					.then(({ data }) => {
+						commit('set_user', data)
+						resolve(data)
+					})
+					.catch(err => {
+						reject(err)
+						console.error('Error From Get User Store', err)
+					})
 			})
 		},
 
