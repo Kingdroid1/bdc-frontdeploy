@@ -504,7 +504,7 @@
       },
 
      deleteUser(id) {
-        axios.delete(`http://localhost:5000/api/users/${id}`)
+        axios.delete(`https://naija-bdc.herokuapp.com/api/users/${id}`)
         .then(result => {
           this.users.splice(this.users.indexOf(id), 1);
           Vue.$toast.success('User deleted', {

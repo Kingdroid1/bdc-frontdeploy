@@ -347,7 +347,7 @@
 </template>
 
 <script>
-const API_URL = `http://localhost:5000/api/operators/`;
+const API_URL = `https://naija-bdc.herokuapp.com/api/operators/`;
 
 import axios from "axios";
 
@@ -405,7 +405,7 @@ export default {
     },
 
    async getData() {
-      const API_URL = "http://localhost:5000/api/operators/operators";
+      const API_URL = "https://naija-bdc.herokuapp.com/api/operators/operators";
       await axios
         .get(API_URL)
         .then(response => {
@@ -419,7 +419,7 @@ export default {
 
     async getOperatorById(_id) {
       console.log("get ops id", _id);
-      const api_url = "http://localhost:5000/api/operators/operator/";
+      const api_url = "https://naija-bdc.herokuapp.com/api/operators/operator/";
       await axios
         .get(api_url + `${_id}`)
         .then(data => {
@@ -434,7 +434,7 @@ export default {
 
     async updateOperator(_id) {
       console.log("operatoe id in update", _id);
-      const api_url = "http://localhost:5000/api/operators/operator/";
+      const api_url = "https://naija-bdc.herokuapp.com/api/operators/operator/";
       try {
         let opsUpdate = {
           _id: this.operator._id,
@@ -455,7 +455,7 @@ export default {
 
     async removeById(_id) {
       console.log("operator id in remove", _id);
-      const api_url = "http://localhost:5000/api/operators/operator/";
+      const api_url = "https://naija-bdc.herokuapp.com/api/operators/operator/";
       try {
         let opsDelete = {
           id: this.operator._id
