@@ -1,6 +1,5 @@
 <template>
   <div>
-    
     <div class="about" style="margin-top: +60px;">
       <div class="top-head">
         <div class="container py-5">
@@ -9,7 +8,52 @@
           <b class="p-17">/&nbsp;&nbsp;Gallery</b>
         </div>
       </div>
-    
+      <div class="container" >
+        <div class="row mt-5" id="latest">
+          <div class="col-lg-4">
+            <div class="card">
+              <figure>
+                <img src="../../public/img/nike.png" class="card-img-top" />
+              </figure>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="card">
+              <figure>
+                <img src="../../public/img/22 (3).jpg" class="card-img-top" />
+              </figure>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="card">
+              <figure>
+                <img src="../../public/img/money.png" class="card-img-top" />
+              </figure>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="card">
+              <figure>
+                <img src="../../public/img/22 (2).jpg" class="card-img-top" />
+              </figure>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="card">
+              <figure>
+                <img src="../../public/img/about1.png" class="card-img-top" />
+              </figure>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="card">
+              <figure>
+                <img src="../../public/img/22 (1).jpg" class="card-img-top" />
+              </figure>
+            </div>
+          </div>
+        </div>
+      </div>
       <section id="signup">
         <div class="container mt-5">
           <div class="row">

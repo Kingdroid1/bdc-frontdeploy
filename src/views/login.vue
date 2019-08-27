@@ -87,24 +87,30 @@ export default {
       let email = this.user.email;
       let password = this.user.password;
       let role = this.user.role
-      // let user = this.user;
+    
       this.$store.dispatch('login', {email, password, role})
       .then((response) => {
-        // this.$router.push('/admin', {params:{user: response.user}})
-        if ("admin" === response.data.role){
-          this.$router.push('/admin', {params:{user: response.user}})
-        }else{
-          this.$router.push('/operator', {params:{user: response.user}})
-        }
-        })
+       
+          if ("admin" === response.data.role){
+            this.$router.push('/admin', {params:{user: response.user}})
+          }
+          else if  ("operator" === response.data.role){
+            this.$router.push('/operator', {params:{user: response.user}})
+          }
+
+          else{
+            Vue.$toast.error('Wrong Username or Password, Please try again', {
+                        // optional options Object
+                        position: 'top',
+                        duration:5000,
+                        dismissible:true
+                      })
+          }
+
+          })
       .catch(err => 
                   console.log("Login failed",err),
-                  Vue.$toast.error('Something went wrong, Please try again', {
-                      // optional options Object
-                      position: 'top',
-                      duration:5000,
-                      dismissible:true
-                    }))
+                 )
     },
     }
   };

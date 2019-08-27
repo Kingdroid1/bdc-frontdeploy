@@ -34,6 +34,55 @@
                 </div>
               </div>
             </div>
+            
+            <div role="tabpanel" class="tab-pane" id="Kano">
+                <div class="table-responsive-md ml-5  mt-2">
+                  <table class="table red1">
+                    <thead>
+                      <th>Date</th>
+                      <th>LOCATION</th>
+                      <th>MORNING</th>
+                      <th>MIDDAY</th>
+                      <th>EVENING</th>
+                      <th>CURRENCY</th>
+                      <th></th>
+                      <th></th>
+                      <th></th>
+                    </thead>
+                    <tbody>
+                      <tr v-for="(rate) in rates" v-bind:key="rate">
+                        <td v-for="(value) in rate.rates" v-bind:key="value">{{value.date}}</td>
+                        <td>
+                          <input
+                            type="checkbox"
+                            class="checkbox-custom"
+                            name="checkbox-1"
+                            id="checkbox-1"
+                          />
+                          <label for="checkbox-1" class="checkbox-custom-label p-10"></label>
+                          {{rate._id}}
+                        </td>
+                        <td
+                          v-if="rate.rates[0].timeOfDay === 'morning'"
+                        >{{rate.rates[0].buying}}/{{rate.rates[0].selling}}</td>
+                        <td v-else></td>
+                        <td
+                          v-if="rate.rates[0].timeOfDay === 'afternoon'"
+                        >{{rate.rates[0].buying}}/{{rate.rates[0].selling}}</td>
+                        <td v-else></td>
+                        <td
+                          v-if="rate.rates[0].timeOfDay === 'evening'"
+                        >{{rate.rates[0].buying}}/{{rate.rates[0].selling}}</td>
+                        <td v-else></td>
+                        <td>
+                          <img width="13" v-bind:src="`../../../img/${rate.rates[0].currency}.svg`" />
+                          {{rate.rates[0].currency}}
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
           </div>
         </div>
       </section>
@@ -121,7 +170,36 @@
   </div>
 </template>
 <script>
-export default {};
+import { RateService } from "../services/rateservice";
+const rateService = new RateService();
+
+
+export default {
+  data() {
+    return {
+      rates: []
+    }
+  },
+
+  methods:{
+     getRates() {
+      rateService
+        .getRates()
+        .then(data => {
+          this.rates = data.result;
+          console.log(this.rates);
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    }
+  },
+
+  mounted() {
+    this.getRates();
+  }
+
+};
 </script>
 <style>
 </style>

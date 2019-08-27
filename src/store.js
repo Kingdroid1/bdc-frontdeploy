@@ -2,7 +2,7 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 import axios from 'axios';
 
-const baseURL = 'https://naija-bdc.herokuapp.com/api';
+const baseURL = 'http://localhost:5000/api';
 
 Vue.use(Vuex);
 
@@ -102,6 +102,12 @@ export default new Vuex.Store({
 						
 					})
 					.catch(err => {
+						Vue.$toast.error('Wrong Username or Password, Please try again', {
+							// optional options Object
+							position: 'top',
+							duration:5000,
+							dismissible:true
+						  })
 						commit('auth_error')
 						localStorage.removeItem('token')
 						reject(err)

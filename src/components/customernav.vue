@@ -1,7 +1,7 @@
 <template>
   <div>
     <nav class="navbar navbar-default navbar-light fixed-top navbar-expand-md">
-      <div class="container">
+      <div class="container-fluid px-5">
         <router-link to="/" class="navbar-brand">
           <img src="../../public/img/toplogo.png" height="32px;" alt />
         </router-link>

@@ -13,7 +13,7 @@
         <div class="container">
           <div class="row">
             <div class="col-lg-6 pb-0 col-xs-12 mt-2">
-              <img src="../../public/img/rectangle-copy.png" class="img-fluid" />
+              <img src="../../public/img/about1.png" class="img-fluid" />
             </div>
             <div class="col-lg-6 pb-0 col-xs-12 mt-2">
               <b class="p-20 ">ABOUT ABCON</b>
@@ -73,7 +73,7 @@
             </div>
             <div class="col-lg-6 col-xs-12">
               <p class="text-right">
-                <img src="../../public/img/rectangle-copy.png" class="img-fluid" />
+                <img src="../../public/img/about2.png" class="img-fluid" />
               </p>
             </div>
             <div class="col-lg-12">

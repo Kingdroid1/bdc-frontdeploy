@@ -3,27 +3,32 @@
     <section id="home" ref="home" :style="bgc1">
       <div id="particles-js"></div>
       <div class="htome">
-        <div class="container">
+        <div class="container-fluid">
           <div class="row">
             <div class="col-lg-8 col-xs-12">
-              <h1 class="w-48" style="margin-top: +80px;">Daily exchange rate at your fingertips</h1>
+              <h1 class="w-48" style="margin-top: +80px;">Daily exchange rate at your<br> fingertips</h1>
               <p class="w-17">Sign up for daily street market exchange rates</p>
-              <div class="form-group form-inline">
-                <input type="text" v-model="sub.email" class="form-control grey px-5 mt-2" />
-                <button
+              <div class="form-group row form-inline">
+                <div class="col-lg-6 pr-0">
+                  <input type="text" v-model="sub.email" class="form-control grey px-5 mt-2" />
+                
+                </div>
+                <div class="col-lg-4 pl-0">
+                  <button
                   v-on:click="checkemail()"
                   class="btn btn-green px-5 ml-lg-2 ml-xs-0 mt-2"
                 >Sign Up</button>
+                </div>
               </div>
             </div>
             <div class="col-lg-4 col-xs-12 mt-lg-3">
               <div
                 id="carouselExampleIndicators"
                 
-                class="hometop carousel slide mt-lg-5"
+                class="hometop carousel mt-lg-5"
                 data-ride="carousel"
               >
-                <div class="carousel-inner">
+                <div class="carousel-inner w-100">
                   <div class="carousel-item active">
                     <div class="blackBox w-100"></div>
                   </div>
@@ -63,7 +68,7 @@
     </section>
 
     <section id="about" >
-      <div class="container pt-5 pb-2">
+      <div class="container-fluid px-5 pt-5 pb-2">
         <div class="row">
           <div class="col-lg-9 col-xs-12">
             <div class="row">
@@ -347,7 +352,7 @@
     <section id="mid" class="mb-4">
       <div class="container">
         <div class="mid">
-                    <div class="row">
+          <div class="row">
             <div class="col-12 mb-4">
               <h1 class="w-24">
                 Search for approved BDC ’s operators across Nigeria
@@ -360,7 +365,7 @@
                 >Click here to see list of accredited Bureau De Change agents in Nigeria.</a>
               </small>
             </div>
-            <div class="col-lg-1" ></div>
+            <div class="col-lg-1"></div>
             <div class="col-lg-4 px-1 col-xs-12 mb-3">
               <vue-simple-suggest
                 v-model="operatorName"
@@ -371,52 +376,113 @@
                 class="search-operator"
               ></vue-simple-suggest>
             </div>
+            <div>
+              <b-modal
+                ref="modal-1"
+                id="modal-1"
+                body-class="pt-0 px-0"
+                hide-footer="true"
+                hide-header="true"
+              >
+                <button class="btn-black" @click="$bvModal.hide('modal-1')">
+                  <i class="fas fa-times"></i>
+                </button>
+                <h3 class="w-24 mohead px-3 py-3">Approved BDC Operator details</h3>
+                <div class="modalcontent">
+                  <div class="row pt-4 px-3">
+                    <div class="col-10 m-auto">
+                      <div class="table-responsive">
+                        <table class="table">
+                          <thead>
+                            <th>Name</th>
+                            <th>Address</th>
+                            <th>Location</th>
+                            <th>State</th>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>{{operator.name}}</td>
+                              <td>{{operator.address}}</td>
+                              <td>{{operator.location}}</td>
+                              <td>{{operator.state}}</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </b-modal>
+            </div>
             <div class="col-lg-4 px-1 col-xs-12 mb-3">
               <vue-simple-suggest
                 v-model="opsLocation"
                 :list="simpleSuggestionList2"
                 :filter-by-query="true"
-                v-on:select="showOperator"
+                v-on:select="showOperator2"
                 placeholder="Search operator by location"
                 class="search-operator"
               ></vue-simple-suggest>
             </div>
+            <div>
+              <b-modal
+                ref="modal-2"
+                id="modal-2"
+                body-class="pt-0 px-0"
+                hide-footer="true"
+                hide-header="true"
+              >
+                <button class="btn-black" @click="$bvModal.hide('modal-2')">
+                  <i class="fas fa-times"></i>
+                </button>
+                <h3 class="w-24 mohead px-3 py-3">BDC Operator details</h3>
+
+                <div class="modalcontent">
+                  <div class="row pt-4 px-3">
+                    <div class="col-10 m-auto">
+                      <div class="table-responsive">
+                        <table class="table">
+                          <thead>
+                            <th>Name</th>
+                            <th>Address</th>
+                            <th>Location</th>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>{{operator.name}}</td>
+                              <td>{{operator.address}}</td>
+                              <td>{{operator.location}}</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                    <!-- <div class="col-lg-3 col-xs-12">
+                      <p class="a-15">Name:</p>
+                    </div>
+                    <div class="col-lg-9 col-xs-12">
+                      <p class="a-16">{{operator.name}}</p>
+                    </div>
+                    <div class="col-lg-3 col-xs-12">
+                      <p class="a-15">Address:</p>
+                    </div>
+                    <div class="col-lg-9 col-xs-12">
+                      <p class="a-16">{{operator.address}}</p>
+                    </div>
+                    <div class="col-lg-3 col-xs-12">
+                      <p class="a-15">Location:</p>
+                    </div>
+                    <div class="col-lg-9 col-xs-12">
+                      <p class="a-16">{{operator.location}}</p>
+                    </div>-->
+                  </div>
+                </div>
+              </b-modal>
+            </div>
             <div class="col-lg-2 px-1 col-xs-12 mb-3">
               <button class="btn btn-dark-green w-100">Search Operator</button>
             </div>
-            <div class="col-lg-1" ></div>
-
-            <div>
-              <b-modal ref="modal-1" id="modal-1"  hide-footer="true" body-class="pt-0 px-0" hide-header="true">
-                <button class="btn-black" @click="$bvModal.hide('modal-1')" ><i class="fas fa-times"></i></button>
-                <h3 class="w-24 mohead px-3 py-3" >BDC Operator details  </h3>
-                
-                <div class="row pt-4 px-3" >
-                  
-                  <div class="col-lg-3 col-xs-12" >
-                    <p class="a-15" >Name:</p>
-                  </div>
-                  <div class="col-lg-9 col-xs-12" >
-                    <p class="a-16" >{{operator.name}}</p>
-                  </div>
-                  <div class="col-lg-3 col-xs-12" >
-                    <p class="a-15" >Address:</p>
-                  </div>
-                  <div class="col-lg-9 col-xs-12" >
-                    <p class="a-16" >{{operator.address}}</p>
-                  </div>
-                  <div class="col-lg-3 col-xs-12" >
-                    <p class="a-15" >Location:</p>
-                  </div>
-                  <div class="col-lg-9 col-xs-12" >
-                    <p class="a-16" >{{operator.location}}</p>
-                  </div>
-                </div>
-                <!-- <p class="my-4">name: {{operator.name}}</p> -->
-                <!-- <p class="my-4">address:{{operator.address}}</p>
-                <p class="my-4">location:{{operator.location}}</p> -->
-              </b-modal>
-            </div>
+            <div class="col-lg-1"></div>
           </div>
         </div>
       </div>
@@ -465,12 +531,17 @@
                     </div>
                     <input type="text" placeholder="Currency" class="date form-control" />
                   </div>
+                  <div>
+                    <button class="btn btn-green" ><i class="fas fa-search-location"></i></button>
+                  </div>
                 </div>
               </div>
+              
             </div>
 
-            <div id="chartdiv" style="height: 400px; min-width: 310px; width: 100%;"></div>
-            <div class="coveram" ></div>
+            <div id="chart-div" style="height: 360px; min-width: 310px; width: 100%;"></div>
+            
+            <!-- <div class="coveram" ></div> -->
           </div>
           <div class="col-lg-3 col-xs-12">
             <div id="carouselExampleSlidesOnly" class="carousel slide mb-4" data-ride="carousel">
@@ -568,7 +639,7 @@
                 <thead>
                   <th>
                     DATE
-                    <!-- <img src="../../public/img/nigeria-1@2x.png" style="height:13px;" alt /> -->
+                    <img src="../../public/img/nigeria-1@2x.png" style="height:13px;" alt />
                   </th>
                   <th>
                     USD
@@ -584,9 +655,11 @@
                   </th>
                 </thead>
                 <tbody>
-                  <tr>
-                    <!-- <td>{{cbnDate}}</td>
-                    <td v-for="item in cbnRates" v-bind:key="item.id">{{item.cbnRate}}</td> -->
+                  <tr v-for="item in cbnRates" v-bind:key="item.id">
+                    <td>{{item[0].currencyDate}}</td>
+                    <td >{{item[0].cbnRate}}</td>
+                    <td >{{item[1].cbnRate}}</td>
+                    <td >{{item[2].cbnRate}}</td>
                   </tr>
                 </tbody>
               </table>
@@ -624,7 +697,7 @@
       </div>
     </section>
     <section id="signup">
-      <div class="container">
+      <div class="container-fluid px-5">
         <div class="row">
           <div class="col-lg-4 col-xs-12 py-4">
             <p class="p-17">Sign up for daily parallel market FX rates</p>
@@ -704,12 +777,10 @@
                 class="mx-2"
                 style="height: 30px;"
               />
-              Technical Partners:
-              <img
-                src="../../public/img/sbsc.png"
-                class="mx-2"
-                style="height: 30px;"
-              />
+              Technical Partners - SBSC:
+              <a href="http://www.sbsc.com">
+                <img src="../../public/img/sbsc.png" class="mx-2" style="height: 30px;" />
+              </a>
               <!-- <img src="../../public/img/tech (2).jpg" class="mx-2" style="height: 30px;" /> -->
             </p>
           </div>
@@ -926,7 +997,7 @@ export default {
     },
 
 
-
+     
   watch: {
     advert1() {
       console.log("watch", this.advert1);
@@ -995,8 +1066,9 @@ export default {
       cbnService
         .cbnRates()
         .then(data => {
-          this.cbnRates = data.result.currencies;
-          this.cbnDate = this.cbnRates[0].currencyDate;
+          this.cbnRates = data.result;
+          console.log('cbn',this.cbnRates);
+          
         })
         .catch(error => {
           console.log(error);
@@ -1031,7 +1103,7 @@ export default {
     async checkemail(email) {
 
         email= this.sub.email;
-      const API_URL = "https://naija-bdc.herokuapp.com/api/suscribe/"+email;
+      const API_URL = "http://localhost:5000/api/suscribe/"+email;
         
       await axios
         .get(API_URL,email)
@@ -1075,7 +1147,7 @@ export default {
     },
 
     async getNews() {
-      const API_URL = "https://naija-bdc.herokuapp.com/api/news";
+      const API_URL = "http://localhost:5000/api/news";
 
       await axios
         .get(API_URL)
@@ -1098,13 +1170,21 @@ export default {
 
     },
 
-    simpleSuggestionList2() {
+ simpleSuggestionList2() {
       let arr = this.operators.map(item => {
-        
         return item.location;
-        
       });
       return arr;
+    },
+
+    showOperator2(e) {
+      let item = this.operators.find(element => element.location == e);
+
+      this.operator = item;
+      this.showModal2(e);
+    },
+    showModal2() {
+      this.$refs["modal-2"].show();
     },
 
     showOperator(e) {
@@ -1157,7 +1237,7 @@ export default {
         return false;
       });
     });
-    const API_URL = "https://naija-bdc.herokuapp.com/api/operators/operators";
+    const API_URL = "http://localhost:5000/api/operators/operators";
     axios
       .get(API_URL)
       .then(response => {
@@ -1307,428 +1387,124 @@ export default {
       retina_detect: true
     });
 
-    am4core.useTheme(am4themes_animated);
-    // Themes end
+Highcharts.chart('chart-div', {
 
-    var chart = am4core.create("chartdiv", am4charts.XYChart);
-    chart.paddingRight = 20;
+    chart: {
+        scrollablePlotArea: {
+            minWidth: 500
+        }
+    },
 
-    chart.dateFormatter.inputDateFormat = "yyyy-MM-dd";
+    data: {
+        csvURL: 'https://cdn.jsdelivr.net/gh/highcharts/highcharts@v7.0.0/samples/data/analytics.csv',
+        beforeParse: function (csv) {
+            return csv.replace(/\n\n/g, '\n');
+        }
+    },
 
-    var dateAxis = chart.xAxes.push(new am4charts.DateAxis());
-    dateAxis.renderer.grid.template.location = 0;
+    title: {
+        text: ''
+    },
 
-    var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
-    valueAxis.tooltip.disabled = true;
 
-    var series = chart.series.push(new am4charts.CandlestickSeries());
-    series.dataFields.dateX = "date";
-    series.dataFields.valueY = "close";
-    series.dataFields.openValueY = "open";
-    series.dataFields.lowValueY = "low";
-    series.dataFields.highValueY = "high";
-    series.simplifiedProcessing = true;
-    series.tooltipText =
-      "Open:${openValueY.value}\nLow:${lowValueY.value}\nHigh:${highValueY.value}\nClose:${valueY.value}";
+    xAxis: {
+        tickInterval: 7 * 24 * 3600 * 1000, // one week
+        tickWidth: 0,
+        gridLineWidth: 1,
+        labels: {
+            align: 'left',
+            x: 3,
+            y: -3
+        }
+    },
 
-    chart.cursor = new am4charts.XYCursor();
+    yAxis: [{ // left y axis
+        title: {
+            text: null
+        },
+        labels: {
+            align: 'left',
+            x: 3,
+            y: 16,
+            format: '{value:.,0f}'
+        },
+        showFirstLabel: false
+    }, { // right y axis
+        linkedTo: 0,
+        gridLineWidth: 0,
+        opposite: true,
+        title: {
+            text: null
+        },
+        labels: {
+            align: 'right',
+            x: -3,
+            y: 16,
+            format: '{value:.,0f}'
+        },
+        showFirstLabel: false
+    }],
 
-    // a separate series for scrollbar
-    var lineSeries = chart.series.push(new am4charts.LineSeries());
-    lineSeries.dataFields.dateX = "date";
-    lineSeries.dataFields.valueY = "close";
-    // need to set on default state, as initially series is "show"
-    lineSeries.defaultState.properties.visible = false;
+    legend: {
+        align: 'left',
+        verticalAlign: 'top',
+        borderWidth: 0,
+        enabled: false
+    },
+    exporting: {
+    enabled: false
+    },
+    credits: {
+    enabled: false
+    },
 
-    // hide from legend too (in case there is one)
-    lineSeries.hiddenInLegend = true;
-    lineSeries.fillOpacity = 0.5;
-    lineSeries.strokeOpacity = 0.5;
+    tooltip: {
+        shared: true,
+        crosshairs: true
+    },
 
-    var scrollbarX = new am4charts.XYChartScrollbar();
-    scrollbarX.series.push(lineSeries);
-    chart.scrollbarX = scrollbarX;
+    plotOptions: {
+        series: {
+            cursor: 'pointer',
+            point: {
+                events: {
+                    click: function (e) {
+                        hs.htmlExpand(null, {
+                            pageOrigin: {
+                                x: e.pageX || e.clientX,
+                                y: e.pageY || e.clientY
+                            },
+                            headingText: this.series.name,
+                            maincontentText: Highcharts.dateFormat('%A, %b %e, %Y', this.x) + ':<br/> ' +
+                                this.y + ' sessions',
+                            width: 200
+                        });
+                    }
+                }
+            },
+            marker: {
+                lineWidth: 1,
+                enabled: false
+            }
+        },
+        
+    },
 
-    chart.data = [
-      {
-        date: "2011-08-01",
-        open: "136.65",
-        high: "136.96",
-        low: "134.15",
-        close: "136.49"
-      },
-      {
-        date: "2011-08-02",
-        open: "135.26",
-        high: "135.95",
-        low: "131.50",
-        close: "131.85"
-      },
-      {
-        date: "2011-08-05",
-        open: "132.90",
-        high: "135.27",
-        low: "128.30",
-        close: "135.25"
-      },
-      {
-        date: "2011-08-06",
-        open: "134.94",
-        high: "137.24",
-        low: "132.63",
-        close: "135.03"
-      },
-      {
-        date: "2011-08-07",
-        open: "136.76",
-        high: "136.86",
-        low: "132.00",
-        close: "134.01"
-      },
-      {
-        date: "2011-08-08",
-        open: "131.11",
-        high: "133.00",
-        low: "125.09",
-        close: "126.39"
-      },
-      {
-        date: "2011-08-09",
-        open: "123.12",
-        high: "127.75",
-        low: "120.30",
-        close: "125.00"
-      },
-      {
-        date: "2011-08-12",
-        open: "128.32",
-        high: "129.35",
-        low: "126.50",
-        close: "127.79"
-      },
-      {
-        date: "2011-08-13",
-        open: "128.29",
-        high: "128.30",
-        low: "123.71",
-        close: "124.03"
-      },
-      {
-        date: "2011-08-14",
-        open: "122.74",
-        high: "124.86",
-        low: "119.65",
-        close: "119.90"
-      },
-      {
-        date: "2011-08-15",
-        open: "117.01",
-        high: "118.50",
-        low: "111.62",
-        close: "117.05"
-      },
-      {
-        date: "2011-08-16",
-        open: "122.01",
-        high: "123.50",
-        low: "119.82",
-        close: "122.06"
-      },
-      {
-        date: "2011-08-19",
-        open: "123.96",
-        high: "124.50",
-        low: "120.50",
-        close: "122.22"
-      },
-      {
-        date: "2011-08-20",
-        open: "122.21",
-        high: "128.96",
-        low: "121.00",
-        close: "127.57"
-      },
-      {
-        date: "2011-08-21",
-        open: "131.22",
-        high: "132.75",
-        low: "130.33",
-        close: "132.51"
-      },
-      {
-        date: "2011-08-22",
-        open: "133.09",
-        high: "133.34",
-        low: "129.76",
-        close: "131.07"
-      },
-      {
-        date: "2011-08-23",
-        open: "130.53",
-        high: "135.37",
-        low: "129.81",
-        close: "135.30"
-      },
-      {
-        date: "2011-08-26",
-        open: "133.39",
-        high: "134.66",
-        low: "132.10",
-        close: "132.25"
-      },
-      {
-        date: "2011-08-27",
-        open: "130.99",
-        high: "132.41",
-        low: "126.63",
-        close: "126.82"
-      },
-      {
-        date: "2011-08-28",
-        open: "129.88",
-        high: "134.18",
-        low: "129.54",
-        close: "134.08"
-      },
-      {
-        date: "2011-08-29",
-        open: "132.67",
-        high: "138.25",
-        low: "132.30",
-        close: "136.25"
-      },
-      {
-        date: "2011-08-30",
-        open: "139.49",
-        high: "139.65",
-        low: "137.41",
-        close: "138.48"
-      },
-      {
-        date: "2011-09-03",
-        open: "139.94",
-        high: "145.73",
-        low: "139.84",
-        close: "144.16"
-      },
-      {
-        date: "2011-09-04",
-        open: "144.97",
-        high: "145.84",
-        low: "136.10",
-        close: "136.76"
-      },
-      {
-        date: "2011-09-05",
-        open: "135.56",
-        high: "137.57",
-        low: "132.71",
-        close: "135.01"
-      },
-      {
-        date: "2011-09-06",
-        open: "132.01",
-        high: "132.30",
-        low: "130.00",
-        close: "131.77"
-      },
-      {
-        date: "2011-09-09",
-        open: "136.99",
-        high: "138.04",
-        low: "133.95",
-        close: "136.71"
-      },
-      {
-        date: "2011-09-10",
-        open: "137.90",
-        high: "138.30",
-        low: "133.75",
-        close: "135.49"
-      },
-      {
-        date: "2011-09-11",
-        open: "135.99",
-        high: "139.40",
-        low: "135.75",
-        close: "136.85"
-      },
-      {
-        date: "2011-09-12",
-        open: "138.83",
-        high: "139.00",
-        low: "136.65",
-        close: "137.20"
-      },
-      {
-        date: "2011-09-13",
-        open: "136.57",
-        high: "138.98",
-        low: "136.20",
-        close: "138.81"
-      },
-      {
-        date: "2011-09-16",
-        open: "138.99",
-        high: "140.59",
-        low: "137.60",
-        close: "138.41"
-      },
-      {
-        date: "2011-09-17",
-        open: "139.06",
-        high: "142.85",
-        low: "137.83",
-        close: "140.92"
-      },
-      {
-        date: "2011-09-18",
-        open: "143.02",
-        high: "143.16",
-        low: "139.40",
-        close: "140.77"
-      },
-      {
-        date: "2011-09-19",
-        open: "140.15",
-        high: "141.79",
-        low: "139.32",
-        close: "140.31"
-      },
-      {
-        date: "2011-09-20",
-        open: "141.14",
-        high: "144.65",
-        low: "140.31",
-        close: "144.15"
-      },
-      {
-        date: "2011-09-23",
-        open: "146.73",
-        high: "149.85",
-        low: "146.65",
-        close: "148.28"
-      },
-      {
-        date: "2011-09-24",
-        open: "146.84",
-        high: "153.22",
-        low: "146.82",
-        close: "153.18"
-      },
-      {
-        date: "2011-09-25",
-        open: "154.47",
-        high: "155.00",
-        low: "151.25",
-        close: "152.77"
-      },
-      {
-        date: "2011-09-26",
-        open: "153.77",
-        high: "154.52",
-        low: "152.32",
-        close: "154.50"
-      },
-      {
-        date: "2011-09-27",
-        open: "153.44",
-        high: "154.60",
-        low: "152.75",
-        close: "153.47"
-      },
-      {
-        date: "2011-09-30",
-        open: "154.63",
-        high: "157.41",
-        low: "152.93",
-        close: "156.34"
-      },
-      {
-        date: "2011-10-01",
-        open: "156.55",
-        high: "158.59",
-        low: "155.89",
-        close: "158.45"
-      },
-      {
-        date: "2011-10-02",
-        open: "157.78",
-        high: "159.18",
-        low: "157.01",
-        close: "157.92"
-      },
-      {
-        date: "2011-10-03",
-        open: "158.00",
-        high: "158.08",
-        low: "153.50",
-        close: "156.24"
-      },
-      {
-        date: "2011-10-04",
-        open: "158.37",
-        high: "161.58",
-        low: "157.70",
-        close: "161.45"
-      },
-      {
-        date: "2011-10-07",
-        open: "163.49",
-        high: "167.91",
-        low: "162.97",
-        close: "167.91"
-      },
-      {
-        date: "2011-10-08",
-        open: "170.20",
-        high: "171.11",
-        low: "166.68",
-        close: "167.86"
-      },
-      {
-        date: "2011-10-09",
-        open: "167.55",
-        high: "167.88",
-        low: "165.60",
-        close: "166.79"
-      },
-      {
-        date: "2011-10-10",
-        open: "169.49",
-        high: "171.88",
-        low: "153.21",
-        close: "162.23"
-      },
-      {
-        date: "2011-10-11",
-        open: "163.01",
-        high: "167.28",
-        low: "161.80",
-        close: "167.25"
-      },
-      {
-        date: "2011-10-14",
-        open: "167.98",
-        high: "169.57",
-        low: "163.50",
-        close: "166.98"
-      },
-      {
-        date: "2011-10-15",
-        open: "165.54",
-        high: "170.18",
-        low: "165.15",
-        close: "169.58"
-      },
-      {
-        date: "2011-10-16",
-        open: "172.69",
-        high: "173.04",
-        low: "169.18",
-        close: "172.75"
-      }
-    ];
+    series: [{
+        name: 'Buying',
+        lineWidth: 1,
+        color: '#008752',
+        marker: {
+            radius: 2
+        }
+    }, {
+        name: 'Selling',
+        color: '#f9b100',
+    },
+    ],
+    
+});
+
 
     this.getRates();
     this.getWesternRates();

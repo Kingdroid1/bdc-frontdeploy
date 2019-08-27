@@ -322,7 +322,7 @@
             >{{ role }}</option>
           </select>
           <br />
-          <button class="btn btn-green px-4" data-dismiss="modal" @click="editUser">Update User</button>
+          <button class="btn btn-green px-4" data-dismiss="modal" @click="editUser(user._id)">Update User</button>
         </div>
       </div>
     </div>
@@ -463,9 +463,8 @@
         });
       },
 
-      
-
-     editUser() {
+    editUser(_id) {
+      console.log("id from settings", _id)
       let userDet = {
         _id:this.user._id,
           firstname: this.user.firstname,
@@ -505,7 +504,7 @@
       },
 
      deleteUser(id) {
-        axios.delete(`https://naija-bdc.herokuapp.com/api/users/${id}`)
+        axios.delete(`http://localhost:5000/api/users/${id}`)
         .then(result => {
           this.users.splice(this.users.indexOf(id), 1);
           Vue.$toast.success('User deleted', {

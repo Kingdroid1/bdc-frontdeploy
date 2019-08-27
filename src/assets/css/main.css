@@ -394,6 +394,15 @@ border: 4px solid #008752  !important;
   max-height: 700px !important;
 }
 }
+@media (min-width: 1440px){
+  .htome{
+    position: absolute;
+    top: 70px;
+    left: 5%;  right: 5%;
+    min-height: 100% !important; 
+    padding-top: 100px;
+    }
+}
 @media (max-width: 768px){
 .ad_rectangle{
   padding: 20px 25px;

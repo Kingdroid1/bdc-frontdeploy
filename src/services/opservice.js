@@ -1,5 +1,5 @@
 import axios from 'axios';
-const API_URL = 'https://naija-bdc.herokuapp.com/api/operators';
+const API_URL = 'http://localhost:5000/api/operators';
 
 export class OpService {
 
