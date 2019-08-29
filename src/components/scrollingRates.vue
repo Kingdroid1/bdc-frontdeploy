@@ -2,7 +2,7 @@
   <div>
     <nav class="fixed-bottom">
       <marquee-text :repeat="10" class="marquee bottom">
-         <span v-for="(rate, index) in rates" v-bind:key="rate" v-bind:value="index">{{rate._id}}  -- {{rate.rates[0].buying}}/{{rate.rates[0].selling}} {{rate.rates[0].currency}}</span>
+         <span v-for="(rate, index) in rates" v-bind:key="rate" v-bind:value="index">{{rate.location}}  -- {{rate.morning.buying}}/{{rate.morning.selling}} {{rate.morning.currency}}</span>
       </marquee-text>
       
       <div class="marquee bottom">
@@ -33,7 +33,7 @@
     methods: {
       getRates() {
         rateService
-          .getRates()
+          .getScrollRates()
           .then(data => {
             this.rates = data.result;
             console.log('scrollrate',this.rates);

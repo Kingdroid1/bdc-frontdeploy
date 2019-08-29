@@ -13,6 +13,11 @@
   position: relative;
   margin-top: -220px;
 }
+.modalcontent{
+  max-height: 400px;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
 select.light{
   height: 48px;
   border: 1px solid #d8d8d8;

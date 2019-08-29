@@ -1,6 +1,9 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import axios from 'axios';
+import { RateService } from "./services/rateservice";
+
+const rateService = new RateService();
 
 const baseURL = 'https://naija-bdc.herokuapp.com/api';
 
@@ -11,7 +14,9 @@ export default new Vuex.Store({
 		token: localStorage.getItem('token'),
 		id: "",
 		firstname: "",
-		user: {}
+		user: {},
+		rates: [],
+		historicalRates: []
 	},
 	mutations: {
 		auth_request(state) {
@@ -24,6 +29,14 @@ export default new Vuex.Store({
 		},
 		auth_error(state) {
 			state.status = 'error'
+		},
+		updateRates(state, rates) {
+			Vue.set(state, 'rates', rates);
+			//state.rates = rates;
+			console.log("updating", state.rates);
+		},
+		updateHistoryRates(state, rates) {
+			Vue.set(state, 'historicalRates', rates);
 		},
 		// authUser(state, userData) {
 		// 	state.token = userData.token;
@@ -47,7 +60,7 @@ export default new Vuex.Store({
 						axios.defaults.headers.common['Authorization'] = token
 						commit('auth_success', token, user)
 						resolve(response)
-					
+
 					})
 					.catch(err => {
 						commit('auth_error', err)
@@ -70,16 +83,16 @@ export default new Vuex.Store({
 						// axios.defaults.headers.common['Authorization'] = token
 						// commit('auth_success', token, user)
 						resolve(response)
-						
+
 					})
 					.catch(err => {
-		
+
 						reject(err)
 					})
 			})
 		},
 
-		
+
 		login({ commit }, user) {
 			return new Promise((resolve, reject) => {
 				commit('auth_request')
@@ -88,26 +101,26 @@ export default new Vuex.Store({
 						const token = response.data.token;
 						const user = response.data.user.firstname;
 						const last = response.data.user.lastname;
-						const  id = response.data.id;
+						const id = response.data.id;
 						const role = response.data.role;
 						localStorage.setItem('user', user);
 						localStorage.setItem('token', token);
 						localStorage.setItem('id', id);
 						localStorage.setItem('last', last);
 						localStorage.setItem('role', role);
-						
+
 						axios.defaults.headers.common['Authorization'] = token
 						commit('auth_success', token, user)
 						resolve(response)
-						
+
 					})
 					.catch(err => {
 						Vue.$toast.error('Wrong Username or Password, Please try again', {
 							// optional options Object
 							position: 'top',
-							duration:5000,
-							dismissible:true
-						  })
+							duration: 5000,
+							dismissible: true
+						})
 						commit('auth_error')
 						localStorage.removeItem('token')
 						reject(err)
@@ -117,14 +130,14 @@ export default new Vuex.Store({
 
 		updateUser({ commit }, userDet) {
 			return new Promise((resolve, reject) => {
-				
+
 				axios({ url: `${baseURL}/users/${userDet._id}`, data: userDet, method: 'put' })
 					.then((response) => {
-						
-						resolve(response)
-						
 
-						
+						resolve(response)
+
+
+
 					})
 					.catch(err => {
 						reject(err)
@@ -132,7 +145,7 @@ export default new Vuex.Store({
 					})
 			})
 		},
-	
+
 		logout({ commit }) {
 			return new Promise((resolve, reject) => {
 				commit('logout')
@@ -156,9 +169,39 @@ export default new Vuex.Store({
 			})
 		},
 
+		async fetchRatesApi({ commit }) {
+			try {
+
+				rateService.getRates().then(data => {
+					let rates = data;
+					commit('updateRates', rates.result);
+				})
+			} catch (e) {
+				console.error(e);
+
+				commit('updateRates', []);
+			}
+		},
+
+		async fetchHistoricalRatesApi({ commit }) {
+			try {
+
+				rateService.getHistoricalRates().then(data => {
+					let rates = data;
+					commit('updateHistoryRates', rates.result);
+				})
+			} catch (e) {
+				console.error(e);
+
+				commit('updateHistoryRates', []);
+			}
+		},
+
 	},
 	getters: {
 		isLoggedIn: (state) => !!state.token,
 		authStatus: state => state.status,
+		rates: state => state.status,
+		historicalRates: state => state.status
 	}
 });

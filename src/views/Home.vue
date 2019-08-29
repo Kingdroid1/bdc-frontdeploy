@@ -103,234 +103,11 @@
               </div>
             </div>
 
-            <ul class="nav nav-tabs ad_tabs" role="tablist">
-              <li class="nav-item pr-3">
-                <a
-                  class="nav-link active pb-3"
-                  href="#Abuja"
-                  role="tab"
-                  data-toggle="tab"
-                >Abuja</a>
-              </li>
-              <li class="nav-item pr-3">
-                <a
-                  class="nav-link pb-3"
-                  href="#Kano"
-                  role="tab"
-                  data-toggle="tab"
-                >Kano</a>
-              </li>
-              <li class="nav-item pr-3">
-                <a
-                  class="nav-link pb-3"
-                  href="#Lagos"
-                  role="tab"
-                  data-toggle="tab"
-                >Lagos</a>
-              </li>
-              <li class="nav-item pr-3">
-                <a
-                  class="nav-link pb-3"
-                  href="#Portharcourt"
-                  role="tab"
-                  data-toggle="tab"
-                >Portharcourt</a>
-              </li>
-            </ul>
-            <div class="tab-content">
-              <div role="tabpanel" class="tab-pane active" id="Abuja">
-                <div class="table-responsive-md">
-                  <table class="table red1">
-                    <thead>
-                      <th>Date</th>
-                      <th>LOCATION</th>
-                      <th>MORNING</th>
-                      <th>MIDDAY</th>
-                      <th>EVENING</th>
-                      <th>CURRENCY</th>
-                      <th></th>
-                      <th></th>
-                      <th></th>
-                    </thead>
-                    <tbody>
-                      <tr v-for="(rate) in rates" v-bind:key="rate">
-                        <td v-for="(value) in rate.rates" v-bind:key="value">{{value.date}}</td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            class="checkbox-custom"
-                            name="checkbox-1"
-                            id="checkbox-1"
-                          />
-                          <label for="checkbox-1" class="checkbox-custom-label p-10"></label>
-                          {{rate._id}}
-                        </td>
-                        <td
-                          v-if="rate.rates[0].timeOfDay === 'morning'"
-                        >{{rate.rates[0].buying}}/{{rate.rates[0].selling}}</td>
-                        <td v-else></td>
-                        <td
-                          v-if="rate.rates[0].timeOfDay === 'afternoon'"
-                        >{{rate.rates[0].buying}}/{{rate.rates[0].selling}}</td>
-                        <td v-else></td>
-                        <td
-                          v-if="rate.rates[0].timeOfDay === 'evening'"
-                        >{{rate.rates[0].buying}}/{{rate.rates[0].selling}}</td>
-                        <td v-else></td>
-                        <td>
-                          <img width="13" v-bind:src="`../../../img/${rate.rates[0].currency}.svg`" />
-                          {{rate.rates[0].currency}}
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-              <div role="tabpanel" class="tab-pane" id="Kano">
-                <div class="table-responsive-md">
-                  <table class="table red1">
-                    <thead>
-                      <th>Date</th>
-                      <th>LOCATION</th>
-                      <th>MORNING</th>
-                      <th>MIDDAY</th>
-                      <th>EVENING</th>
-                      <th>CURRENCY</th>
-                      <th></th>
-                      <th></th>
-                      <th></th>
-                    </thead>
-                    <tbody>
-                      <tr v-for="(rate) in rates" v-bind:key="rate">
-                        <td v-for="(value) in rate.rates" v-bind:key="value">{{value.date}}</td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            class="checkbox-custom"
-                            name="checkbox-1"
-                            id="checkbox-1"
-                          />
-                          <label for="checkbox-1" class="checkbox-custom-label p-10"></label>
-                          {{rate._id}}
-                        </td>
-                        <td
-                          v-if="rate.rates[0].timeOfDay === 'morning'"
-                        >{{rate.rates[0].buying}}/{{rate.rates[0].selling}}</td>
-                        <td v-else></td>
-                        <td
-                          v-if="rate.rates[0].timeOfDay === 'afternoon'"
-                        >{{rate.rates[0].buying}}/{{rate.rates[0].selling}}</td>
-                        <td v-else></td>
-                        <td
-                          v-if="rate.rates[0].timeOfDay === 'evening'"
-                        >{{rate.rates[0].buying}}/{{rate.rates[0].selling}}</td>
-                        <td v-else></td>
-                        <td>
-                          <img width="13" v-bind:src="`../../../img/${rate.rates[0].currency}.svg`" />
-                          {{rate.rates[0].currency}}
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-              <div role="tabpanel" class="tab-pane" id="Lagos">
-                <div class="table-responsive-md">
-                  <table class="table red1">
-                    <thead>
-                      <th>Date</th>
-                      <th>LOCATION</th>
-                      <th>MORNING</th>
-                      <th>MIDDAY</th>
-                      <th>EVENING</th>
-                      <th>CURRENCY</th>
-                      <th></th>
-                      <th></th>
-                      <th></th>
-                    </thead>
-                    <tbody>
-                      <tr v-for="(rate) in rates" v-bind:key="rate">
-                        <td v-for="(value) in rate.rates" v-bind:key="value">{{value.date}}</td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            class="checkbox-custom"
-                            name="checkbox-1"
-                            id="checkbox-1"
-                          />
-                          <label for="checkbox-1" class="checkbox-custom-label p-10"></label>
-                          {{rate._id}}
-                        </td>
-                        <td
-                          v-if="rate.rates[0].timeOfDay === 'morning'"
-                        >{{rate.rates[0].buying}}/{{rate.rates[0].selling}}</td>
-                        <td v-else></td>
-                        <td
-                          v-if="rate.rates[0].timeOfDay === 'afternoon'"
-                        >{{rate.rates[0].buying}}/{{rate.rates[0].selling}}</td>
-                        <td v-else></td>
-                        <td
-                          v-if="rate.rates[0].timeOfDay === 'evening'"
-                        >{{rate.rates[0].buying}}/{{rate.rates[0].selling}}</td>
-                        <td v-else></td>
-                        <td>
-                          <img width="13" v-bind:src="`../../../img/${rate.rates[0].currency}.svg`" />
-                          {{rate.rates[0].currency}}
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-              <div role="tabpanel" class="tab-pane" id="Portharcourt">
-                <div class="table-responsive-md">
-                  <table class="table red1">
-                    <thead>
-                      <th>Date</th>
-                      <th>LOCATION</th>
-                      <th>MORNING</th>
-                      <th>MIDDAY</th>
-                      <th>EVENING</th>
-                      <th>CURRENCY</th>
-                      <th></th>
-                      <th></th>
-                      <th></th>
-                    </thead>
-                    <tbody>
-                      <tr v-for="(rate) in rates" v-bind:key="rate">
-                        <td v-for="(value) in rate.rates" v-bind:key="value">{{value.date}}</td>
-                        <td>
-                          <input
-                            type="checkbox"
-                            class="checkbox-custom"
-                            name="checkbox-1"
-                            id="checkbox-1"
-                          />
-                          <label for="checkbox-1" class="checkbox-custom-label p-10"></label>
-                          {{rate._id}}
-                        </td>
-                        <td
-                          v-if="rate.rates[0].timeOfDay === 'morning'"
-                        >{{rate.rates[0].buying}}/{{rate.rates[0].selling}}</td>
-                        <td v-else></td>
-                        <td
-                          v-if="rate.rates[0].timeOfDay === 'afternoon'"
-                        >{{rate.rates[0].buying}}/{{rate.rates[0].selling}}</td>
-                        <td v-else></td>
-                        <td
-                          v-if="rate.rates[0].timeOfDay === 'evening'"
-                        >{{rate.rates[0].buying}}/{{rate.rates[0].selling}}</td>
-                        <td v-else></td>
-                        <td>
-                          <img width="13" v-bind:src="`../../../img/${rate.rates[0].currency}.svg`" />
-                          {{rate.rates[0].currency}}
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
+              <tabs>
+                  <tab v-for="(rate, index) in rates" :key="rate.id" v-bind:name="rate.location"  :rate="rate" :selected="index===0">
+                  </tab>           
+              </tabs>
+
             
           </div>
           <div class="col-lg-3 col-xs-12">
@@ -457,24 +234,6 @@
                         </table>
                       </div>
                     </div>
-                    <!-- <div class="col-lg-3 col-xs-12">
-                      <p class="a-15">Name:</p>
-                    </div>
-                    <div class="col-lg-9 col-xs-12">
-                      <p class="a-16">{{operator.name}}</p>
-                    </div>
-                    <div class="col-lg-3 col-xs-12">
-                      <p class="a-15">Address:</p>
-                    </div>
-                    <div class="col-lg-9 col-xs-12">
-                      <p class="a-16">{{operator.address}}</p>
-                    </div>
-                    <div class="col-lg-3 col-xs-12">
-                      <p class="a-15">Location:</p>
-                    </div>
-                    <div class="col-lg-9 col-xs-12">
-                      <p class="a-16">{{operator.location}}</p>
-                    </div>-->
                   </div>
                 </div>
               </b-modal>
@@ -539,9 +298,7 @@
               
             </div>
 
-            <div id="chart-div" style="height: 360px; min-width: 310px; width: 100%;"></div>
-            
-            <!-- <div class="coveram" ></div> -->
+            <div id="chart-div" style="height: 360px; min-width: 310px; width: 100%;"></div>            
           </div>
           <div class="col-lg-3 col-xs-12">
             <div id="carouselExampleSlidesOnly" class="carousel slide mb-4" data-ride="carousel">
@@ -612,8 +369,7 @@
               <table class="table table-striped exchange yel">
                 <thead>
                   <th>
-                    DATE
-                    
+                    DATE                    
                   </th>
                   <th>Currency</th>
                   <th>Buy/Sell</th>
@@ -626,7 +382,6 @@
                       {{western.baseCurrency}}
                     </td>
                     <td>{{western.buyingRate}}/{{western.sellingRate}}</td>
-                    <!-- <td>{{western.CAD}}</td> -->
                   </tr>
                 </tbody>
               </table>
@@ -913,7 +668,8 @@
 <script>
 import axios from "axios";
 import particles from "particles.js";
-import HelloWorld from "@/components/HelloWorld.vue";
+import tab from "@/components/tab.vue";
+import tabs from "@/components/tabs.vue";
 import { RateService } from "../services/rateservice";
 import { UserService } from "../services/userservices";
 import { CBNService } from "../services/cbnrates";
@@ -922,6 +678,11 @@ import moment from "moment";
 import Vue from "vue";
 import VueSimpleSuggest from "vue-simple-suggest";
 import { AdvertService } from "../services/advertservice";
+import { mapState } from 'vuex';
+import VueToast from 'vue-toast-notification';
+import 'vue-toast-notification/dist/index.css';
+Vue.use(VueToast);
+
 
 const rateService = new RateService();
 const cbnService = new CBNService();
@@ -939,7 +700,7 @@ export default {
   name: "home",
 
   components: {
-    HelloWorld,
+    tab,tabs,
     VueSimpleSuggest
   },
 
@@ -958,7 +719,7 @@ export default {
         operatorName: "",
         operator: "",
         opsLocation: "",
-        rates: [],
+        newrates: [],
         cbnRates: [],
         cbnDate: String,
         westerns: [],
@@ -1026,9 +787,14 @@ export default {
     },
     advert6() {
       console.log("watch", this.advert6);
-      //this.getAdvertOne();
       this.bgc6.backgroundImage = 'url("' + this.advert6 + '")';
+    }  
+  },
+  computed: {
+    rates(){
+      return this.$store.state.rates;
     }
+
   },
   methods: {
     fromClicked: function(currency) {
@@ -1050,25 +816,11 @@ export default {
       this.convertCurr(this.curr.amount, this.fromCurrency, this.toCurrency);
     },
 
-    getRates() {
-      rateService
-        .getRates()
-        .then(data => {
-          this.rates = data.result;
-          console.log(this.rates);
-        })
-        .catch(error => {
-          console.log(error);
-        });
-    },
-
     getCBNRate() {
       cbnService
         .cbnRates()
         .then(data => {
-          this.cbnRates = data.result;
-          console.log('cbn',this.cbnRates);
-          
+          this.cbnRates = data.result;          
         })
         .catch(error => {
           console.log(error);
@@ -1110,7 +862,12 @@ export default {
         .then(res => {
               this.data = res.data.status;
               if (this.data == true){
-                  alert('User already signed up')
+                   Vue.$toast.error('User already suscribed', {
+                  // optional options Object
+                  position: 'top',
+                  duration:3000,
+                  dismissible:true
+                })
               }
               else{
                 let sub = {
@@ -1118,7 +875,12 @@ export default {
                 };
                 userService.suscribe(sub)
                   .then(res =>{
-                    alert('Suscription successful')
+                    Vue.$toast.success('Subscription successful', {
+                    // optional options Object
+                    position: 'top',
+                    duration:3000,
+                    dismissible:true
+                  })
                   })
               }
           
@@ -1170,12 +932,12 @@ export default {
 
     },
 
- simpleSuggestionList2() {
-      let arr = this.operators.map(item => {
-        return item.location;
-      });
-      return arr;
-    },
+    simpleSuggestionList2() {
+          let arr = this.operators.map(item => {
+            return item.location;
+          });
+          return arr;
+        },
 
     showOperator2(e) {
       let item = this.operators.find(element => element.location == e);
@@ -1213,12 +975,6 @@ export default {
             that.advert4 = that.adverts[3].advertImage;
             that.advert5 = that.adverts[4].advertImage;
             that.advert6 = that.adverts[5].advertImage;
-            console.log("advert1", that.advert1);
-            console.log("advert2", that.advert2);
-            console.log("advert3", that.advert3);
-            console.log("advert4", that.advert4);
-            console.log("advert5", that.advert5);
-            console.log("advert6", that.advert6);
           }, 1000000000);
         })
         .catch(err => console.log("Error in getAllAdverts in Home.vue", err));
@@ -1506,14 +1262,14 @@ Highcharts.chart('chart-div', {
 });
 
 
-    this.getRates();
+
     this.getWesternRates();
     this.getBankRates();
     this.convertCurr();
     this.getCBNRate();
     this.getNews();
     this.getAdverts();
-    
+    this.$store.dispatch('fetchRatesApi'); 
   }
 };
 </script>

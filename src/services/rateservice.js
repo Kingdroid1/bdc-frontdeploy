@@ -49,6 +49,22 @@ export class RateService {
 
   getRates() {
     const url = `${API_URL}/rates`;
+    // return new Promise(resolve => setTimeout(resolve, 1000));
+    return axios.get(url).then(response => {
+      return response.data
+    });
+  }
+
+  getHistoricalRates(){
+    const url = `${API_URL}/rates/history`;
+    return axios.get(url).then(res =>{
+      console.log(res , 'res');
+      return res.data;
+    })
+  }
+
+  getScrollRates() {
+    const url = `${API_URL}/rates/scroll`;
     return axios.get(url).then(response => response.data);
   }
 

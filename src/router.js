@@ -1,11 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import store from './store'
-// import Home from './views/Home.vue'
-// import History from './views/historicRates.vue'
-// import Gallery from './views/gallery.vue'
-// import Contact from './views/contact.vue'
-// import News from './views/news.vue'
 import Admin from './views/admin/admin'
 import Operator from './views/operator/operator'
 import Operators from './views/admin/operator'
@@ -14,8 +9,6 @@ import Advert from './views/admin/advert'
 import Previousrate from './views/admin/previousrate'
 import Settings from './views/admin/settings'
 import OperatorSettings from './views/operator/settings'
-// import Scrolling from './components/scrollingRates'
-// import Home from './views/Home.vue'
 
 Vue.use(Router)
 
@@ -36,9 +29,7 @@ let router = new Router({
     {
       path: '/about',
       name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
+      
       components:{
         default:() => import('./views/About.vue'),
         customernav:() => import('./components/customernav'),
