@@ -15,27 +15,8 @@
             <div class="col-lg-6 col-xs-12">
               <p class="p-19">Market Historical FX Rates Graph</p>
             </div>
-            <div class="col-lg-6 col-xs-12 mb-3">
-              <div class="d-flex">
-                <div class="date input-group">
-                  <div class="input-group-prepend px-2">
-                    <img src="../../public/img/calendar.svg" alt />
-                  </div>
-                  <input type="text" placeholder="Location" class="date form-control" />
-                </div>
-                <div class="pt-3 px-2">
-                  <div class="border" style="width: 40px;"></div>
-                </div>
-                <div class="date input-group">
-                  <div class="input-group-prepend px-2">
-                    <img src="../../public/img/calendar.svg" alt />
-                  </div>
-                  <input type="text" placeholder="Currency" class="date form-control" />
-                </div>
-              </div>
-            </div>
             
-             <tabs>
+             <tabs class="col-lg-12">
                   <historytab v-for="(rate, index) in historyrates" :key="rate.id" v-bind:name="rate.location"  :rate="rate" :selected="index===0">
                   </historytab>           
               </tabs>

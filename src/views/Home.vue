@@ -81,26 +81,7 @@
                   </small>
                 </p>
               </div>
-              <div class="col-lg-6 col-xs-12 mb-3">
-                <div class="d-flex">
-                  <div class="date input-group">
-                    <div class="input-group-prepend px-2">
-                      <img src="../../public/img/calendar.svg" />
-                    </div>
-                    <input type="date" class="date form-control" />
-                  </div>
-                  
-                  <div class="date input-group">
-                    <div class="input-group-prepend px-2">
-                      <img src="../../public/img/calendar.svg" />
-                    </div>
-                    <input type="date" class="date form-control" />
-                  </div>
-                  <div>
-                    <button class="btn btn-green" ><i class="fas fa-search-location"></i></button>
-                  </div>
-                </div>
-              </div>
+              
             </div>
 
               <tabs>
@@ -270,10 +251,10 @@
           </div>
           <div class="col-lg-6 col-xs-12">
             <div class="row">
-              <div class="col-lg-6 col-xs-12">
+              <div class="col-lg-4 col-xs-12">
                 <p class="p-19">Rates Trend Data</p>
               </div>
-              <div class="col-lg-6 col-xs-12 mb-3">
+              <div class="col-lg-8 col-xs-12 mb-3">
                 <div class="d-flex">
                   <div class="date input-group">
                     <div class="input-group-prepend px-2">

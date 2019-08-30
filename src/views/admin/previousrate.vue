@@ -20,12 +20,12 @@
                 </thead>
                 <tbody>
                   <tr v-for="rate in rates" v-bind:key="rate">
-                    <td>{{rate.createdAt}}</td>
+                    <td>{{rate.createdAt | formatDate}}</td>
                     <td>{{rate.time}}</td>
                     <td>{{rate.buyingRate}}</td>
                     <td>{{rate.sellingRate}}</td>
                     <td><img width="13" v-bind:src="`../../../img/${rate.baseCurrency}.svg`" /> {{rate.baseCurrency}}</td>
-                    <td>{{rate.createdAt}}</td>
+                    <td>{{rate.createdAt | formatTime}}</td>
                   </tr>
                 </tbody>
               </table>
@@ -38,8 +38,24 @@
 </template>
 <script>
   import { RateService } from '../../services/rateservice';
+  import moment from "moment";
+  import Vue from "vue";
 
   const rateService = new RateService();
+
+  //Convert date format
+  Vue.filter("formatDate", function(value) {
+    if (value) {
+      return moment(String(value)).format("MM/DD/YYYY");
+    }
+  });
+
+  //Convert date format
+  Vue.filter("formatTime", function(value) {
+    if (value) {
+      return moment(String(value)).format("hh:mm:ss");
+    }
+  });
 
   export default {
 
