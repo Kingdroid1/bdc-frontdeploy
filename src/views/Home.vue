@@ -230,12 +230,8 @@
     <section id="graph">
       <div class="container-fluid py-5 px-lg-5">
         <div class="row">
-          <div class="col-lg-3 col-xs-12" >
-            <div
-              id="carouselExampleSlidesOnly"
-              class="carousel slide mb-4"
-              data-ride="carousel"
-            >
+          <div class="col-lg-3 col-xs-12">
+            <div id="carouselExampleSlidesOnly" class="carousel slide mb-4" data-ride="carousel">
               <div class="carousel-inner">
                 <div class="carousel-item active">
                   <div class="w-100 blackBox1s"></div>
@@ -251,35 +247,48 @@
           </div>
           <div class="col-lg-6 col-xs-12">
             <div class="row">
-              <div class="col-lg-4 col-xs-12">
+              <div class="col-lg-6 col-xs-12">
                 <p class="p-19">Rates Trend Data</p>
               </div>
-              <div class="col-lg-8 col-xs-12 mb-3">
+              <div class="col-lg-6 col-xs-12 mb-3">
                 <div class="d-flex">
-                  <div class="date input-group">
-                    <div class="input-group-prepend px-2">
-                      <img src="../../public/img/calendar.svg" alt />
-                    </div>
-                    <input type="text" placeholder="Location" class="date form-control" />
+                  <div class="input-group">
+                    <select
+                      v-model="selectedLocation"
+                      @change="queryLocationCSV($event)"
+                      class="lightform custom-select"
+                    >
+                      <option
+                        v-for="location in locations"
+                        v-bind:key="location.name"
+                      >{{ location.name }}</option>
+                    </select>
                   </div>
                   <div class="pt-3 px-2">
                     <div class="border" style="width: 40px;"></div>
                   </div>
-                  <div class="date input-group">
-                    <div class="input-group-prepend px-2">
-                      <img src="../../public/img/calendar.svg" alt />
-                    </div>
-                    <input type="text" placeholder="Currency" class="date form-control" />
+                  <div class="input-group">
+                    <select
+                      v-model="baseCurrency"
+                      @change="queryCurrencyCSV($event)"
+                      class="lightform custom-select"
+                    >
+                      <option
+                        v-for="currency in currencies"
+                        v-bind:key="currency.name"
+                      >{{ currency.name }}</option>
+                    </select>
                   </div>
                   <div>
-                    <button class="btn btn-green" ><i class="fas fa-search-location"></i></button>
+                    <button class="btn btn-green">
+                      <i class="fas fa-search-location"></i>
+                    </button>
                   </div>
                 </div>
               </div>
-              
             </div>
 
-            <div id="chart-div" style="height: 360px; min-width: 310px; width: 100%;"></div>            
+            <div id="chart-div" style="height: 360px; min-width: 310px; width: 100%;"></div>
           </div>
           <div class="col-lg-3 col-xs-12">
             <div id="carouselExampleSlidesOnly" class="carousel slide mb-4" data-ride="carousel">
@@ -295,7 +304,6 @@
                 </div>
               </div>
             </div>
-            
           </div>
         </div>
       </div>
@@ -695,6 +703,10 @@ export default {
       advert4: "/advertImages/1566297003625-buysell.jpg",
       advert5: "/advertImages/1566297023517-calculate.jpg",
       advert6: "/advertImages/1566297042807-exchange.jpg",
+      currencies: [],
+      locations: [],
+      baseCurrency: "USD",
+      selectedLocation: "Lagos",
         newsPosts: [],
         operators: [],
         operatorName: "",
@@ -820,6 +832,39 @@ export default {
         });
     },
 
+    queryLocationCSV(event) {
+      this.selectedLocation = event.target.value;
+      this.plotGraph();
+    },
+
+    queryCurrencyCSV(event) {
+      this.baseCurrency = event.target.value;
+      this.plotGraph();
+    },
+
+     getLocations() {
+      rateService
+        .getLocations()
+        .then(data => {
+          this.locations = data;
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    },
+
+    getCurrencies() {
+      rateService
+        .getCurrencies()
+        .then(data => {
+          this.currencies = data.result;
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    },
+
+
     getBankRates() {
       rateService
         .getBankRate()
@@ -830,6 +875,132 @@ export default {
         .catch(error => {
           console.log(error);
         });
+    },
+
+    plotGraph() {
+      Highcharts.chart("chart-div", {
+        chart: {
+          scrollablePlotArea: {
+            minWidth: 500
+          }
+        },
+
+        data: {
+          csvURL: `http://localhost:5000/api/rates/csv?location=${this.selectedLocation}&currency=${this.baseCurrency}`,
+          beforeParse: function(csv) {
+            return csv.replace(/\n\n/g, "\n");
+          }
+        },
+
+        title: {
+          text: ""
+        },
+
+        xAxis: {
+          tickInterval: 7 * 24 * 3600 * 1000, // one week
+          tickWidth: 0,
+          gridLineWidth: 1,
+          labels: {
+            align: "left",
+            x: 3,
+            y: -3
+          }
+        },
+
+        yAxis: [
+          {
+            // left y axis
+            title: {
+              text: null
+            },
+            labels: {
+              align: "left",
+              x: 3,
+              y: 16,
+              format: "{value:.,0f}"
+            },
+            showFirstLabel: false
+          },
+          {
+            // right y axis
+            linkedTo: 0,
+            gridLineWidth: 0,
+            opposite: true,
+            title: {
+              text: null
+            },
+            labels: {
+              align: "right",
+              x: -3,
+              y: 16,
+              format: "{value:.,0f}"
+            },
+            showFirstLabel: false
+          }
+        ],
+
+        legend: {
+          align: "left",
+          verticalAlign: "top",
+          borderWidth: 0,
+          enabled: false
+        },
+        exporting: {
+          enabled: false
+        },
+        credits: {
+          enabled: false
+        },
+
+        tooltip: {
+          shared: true,
+          crosshairs: true
+        },
+
+        plotOptions: {
+          series: {
+            cursor: "pointer",
+            point: {
+              events: {
+                click: function(e) {
+                  hs.htmlExpand(null, {
+                    pageOrigin: {
+                      x: e.pageX || e.clientX,
+                      y: e.pageY || e.clientY
+                    },
+                    headingText: this.series.name,
+                    maincontentText:
+                      Highcharts.dateFormat("%A, %b %e, %Y", this.x) +
+                      ":<br/> " +
+                      this.y +
+                      " sessions",
+                    width: 200
+                  });
+                }
+              }
+            },
+            marker: {
+              lineWidth: 1,
+              enabled: false
+            }
+          }
+        },
+
+        series: [
+          {
+            name: "Buying",
+            lineWidth: 1,
+            color: "#008752",
+            marker: {
+              radius: 2
+            }
+          },
+          {
+            name: "Selling",
+            color: "#f9b100"
+          }
+        ]
+      });
     },
 
 
@@ -1124,125 +1295,6 @@ export default {
       retina_detect: true
     });
 
-Highcharts.chart('chart-div', {
-
-    chart: {
-        scrollablePlotArea: {
-            minWidth: 500
-        }
-    },
-
-    data: {
-        csvURL: 'https://cdn.jsdelivr.net/gh/highcharts/highcharts@v7.0.0/samples/data/analytics.csv',
-        beforeParse: function (csv) {
-            return csv.replace(/\n\n/g, '\n');
-        }
-    },
-
-    title: {
-        text: ''
-    },
-
-
-    xAxis: {
-        tickInterval: 7 * 24 * 3600 * 1000, // one week
-        tickWidth: 0,
-        gridLineWidth: 1,
-        labels: {
-            align: 'left',
-            x: 3,
-            y: -3
-        }
-    },
-
-    yAxis: [{ // left y axis
-        title: {
-            text: null
-        },
-        labels: {
-            align: 'left',
-            x: 3,
-            y: 16,
-            format: '{value:.,0f}'
-        },
-        showFirstLabel: false
-    }, { // right y axis
-        linkedTo: 0,
-        gridLineWidth: 0,
-        opposite: true,
-        title: {
-            text: null
-        },
-        labels: {
-            align: 'right',
-            x: -3,
-            y: 16,
-            format: '{value:.,0f}'
-        },
-        showFirstLabel: false
-    }],
-
-    legend: {
-        align: 'left',
-        verticalAlign: 'top',
-        borderWidth: 0,
-        enabled: false
-    },
-    exporting: {
-    enabled: false
-    },
-    credits: {
-    enabled: false
-    },
-
-    tooltip: {
-        shared: true,
-        crosshairs: true
-    },
-
-    plotOptions: {
-        series: {
-            cursor: 'pointer',
-            point: {
-                events: {
-                    click: function (e) {
-                        hs.htmlExpand(null, {
-                            pageOrigin: {
-                                x: e.pageX || e.clientX,
-                                y: e.pageY || e.clientY
-                            },
-                            headingText: this.series.name,
-                            maincontentText: Highcharts.dateFormat('%A, %b %e, %Y', this.x) + ':<br/> ' +
-                                this.y + ' sessions',
-                            width: 200
-                        });
-                    }
-                }
-            },
-            marker: {
-                lineWidth: 1,
-                enabled: false
-            }
-        },
-        
-    },
-
-    series: [{
-        name: 'Buying',
-        lineWidth: 1,
-        color: '#008752',
-        marker: {
-            radius: 2
-        }
-    }, {
-        name: 'Selling',
-        color: '#f9b100',
-    },
-    ],
-    
-});
-
-
 
     this.getWesternRates();
     this.getBankRates();
@@ -1250,6 +1302,9 @@ Highcharts.chart('chart-div', {
     this.getCBNRate();
     this.getNews();
     this.getAdverts();
+    this.plotGraph();
+    this.getCurrencies();
+    this.getLocations();
     this.$store.dispatch('fetchRatesApi'); 
   }
 };
