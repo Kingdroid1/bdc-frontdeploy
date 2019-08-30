@@ -886,7 +886,7 @@ export default {
         },
 
         data: {
-          csvURL: `http://localhost:5000/api/rates/csv?location=${this.selectedLocation}&currency=${this.baseCurrency}`,
+          csvURL: `https://naija-bdc.herokuapp.com/api/rates/csv?location=${this.selectedLocation}&currency=${this.baseCurrency}`,
           beforeParse: function(csv) {
             return csv.replace(/\n\n/g, "\n");
           }
