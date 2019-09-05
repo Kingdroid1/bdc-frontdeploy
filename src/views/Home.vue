@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <section id="home" ref="home" :style="bgc1">
+    <section id="home" ref="home" >
       <div id="particles-js"></div>
       <div class="htome">
         <div class="container-fluid">
@@ -10,12 +10,12 @@
               <p class="w-17">Sign up for daily street market exchange rates</p>
               <div class="form-group row form-inline">
                 <div class="col-lg-6 pr-0">
-                  <input type="text" v-model="sub.email" class="form-control grey px-5 mt-2" />
+                  <input type="text" v-model="sub.email" name="email" class="form-control grey px-5 mt-2" />
                 
                 </div>
                 <div class="col-lg-4 pl-0">
                   <button
-                  v-on:click="checkemail()"
+                  v-on:click="checkForm()"
                   class="btn btn-green px-5 ml-lg-2 ml-xs-0 mt-2"
                 >Sign Up</button>
                 </div>
@@ -30,13 +30,13 @@
               >
                 <div class="carousel-inner w-100">
                   <div class="carousel-item active">
-                    <div class="blackBox w-100"></div>
+                    <div class="blackBox w-100" :style="bgc1"></div>
                   </div>
                   <div class="carousel-item">
-                    <div class="blackBox1 w-100"></div>
+                    <div class="blackBox1 w-100" :style="bgc2"></div>
                   </div>
                   <div class="carousel-item">
-                    <div class="blackBox2 w-100"></div>
+                    <div class="blackBox2 w-100" :style="bgc3"></div>
                   </div>
                 </div>
                 <a
@@ -219,9 +219,7 @@
                 </div>
               </b-modal>
             </div>
-            <div class="col-lg-2 px-1 col-xs-12 mb-3">
-              <button class="btn btn-dark-green w-100">Search Operator</button>
-            </div>
+           
             <div class="col-lg-1"></div>
           </div>
         </div>
@@ -234,13 +232,13 @@
             <div id="carouselExampleSlidesOnly" class="carousel slide mb-4" data-ride="carousel">
               <div class="carousel-inner">
                 <div class="carousel-item active">
-                  <div class="w-100 blackBox1s"></div>
+                  <div class="w-100 blackBox1s" :style="bgc4"></div>
                 </div>
                 <div class="carousel-item">
-                  <div class="w-100 blackBox2s"></div>
+                  <div class="w-100 blackBox2s" :style="bgc5"></div>
                 </div>
                 <div class="carousel-item">
-                  <div class="w-100 blackBoxs"></div>
+                  <div class="w-100 blackBoxs" :style="bgc6"></div>
                 </div>
               </div>
             </div>
@@ -279,11 +277,7 @@
                       >{{ currency.name }}</option>
                     </select>
                   </div>
-                  <div>
-                    <button class="btn btn-green">
-                      <i class="fas fa-search-location"></i>
-                    </button>
-                  </div>
+                 
                 </div>
               </div>
             </div>
@@ -294,13 +288,13 @@
             <div id="carouselExampleSlidesOnly" class="carousel slide mb-4" data-ride="carousel">
               <div class="carousel-inner">
                 <div class="carousel-item active">
-                  <div class="w-100 blackBoxs"></div>
+                  <div class="w-100 blackBoxs" :style="bgc7"></div>
                 </div>
                 <div class="carousel-item">
-                  <div class="w-100 blackBox1s"></div>
+                  <div class="w-100 blackBox1s" :style="bgc8"></div>
                 </div>
                 <div class="carousel-item">
-                  <div class="w-100 blackBox2s"></div>
+                  <div class="w-100 blackBox2s" :style="bgc9"></div>
                 </div>
               </div>
             </div>
@@ -313,13 +307,13 @@
               
               <div class="carousel-inner">
                 <div class="carousel-item active">
-                  <div class="slide1"></div>
+                  <div class="slide1" :style="bgc10"></div>
                 </div>
                 <div class="carousel-item">
-                  <div class="slide2"></div>
+                  <div class="slide2" :style="bgc11"></div>
                 </div>
                 <div class="carousel-item">
-                  <div class="slide3"></div>
+                  <div class="slide3" :style="bgc12"></div>
                 </div>
               </div>
               <div class="maintextt">
@@ -487,10 +481,10 @@
           <div class="col-lg-4 col-xs-12 py-4">
             <p class="p-17">Follow Us On</p>
             <div class="d-flex row px-2">
-              <a href="#" class="p-2">
+              <a href="https://www.facebook.com/Naijabdc" class="p-2">
                 <i class="fab fa-facebook-f" style="color: #fff;"></i>
               </a>
-              <a href="#" class="p-2">
+              <a href="https://twitter.com/naijabdc" class="p-2">
                 <i class="fab fa-twitter" style="color: #fff;"></i>
               </a>
               <a href="#" class="p-2">
@@ -696,13 +690,27 @@ export default {
   data() {
     return {
       advertImage: "",
+      // advert: [],
+      // advert1: "/advertImages/1566296937264-graph.jpg",
+      // advert2: "/advertImages/1566296959796-analytics.jpg",
+      // advert3: "/advertImages/1566296975561-chart.jpg",
+      // advert4: "/advertImages/1566297003625-buysell.jpg",
+      // advert5: "/advertImages/1566297023517-calculate.jpg",
+      // advert6: "/advertImages/1566297042807-exchange.jpg",
       advert: [],
       advert1: "/advertImages/1566296937264-graph.jpg",
-      advert2: "/advertImages/1566296959796-analytics.jpg",
-      advert3: "/advertImages/1566296975561-chart.jpg",
-      advert4: "/advertImages/1566297003625-buysell.jpg",
-      advert5: "/advertImages/1566297023517-calculate.jpg",
-      advert6: "/advertImages/1566297042807-exchange.jpg",
+      advert2: "/advertImages/1567174349607-22 (1).jpg",
+      advert3: "/advertImages/1567174356806-dribble-post.png",
+      advert4: "/advertImagesLeft/1566297003625-buysell.jpg",
+      advert5: "/advertImagesLeft/1566297023517-calculate.jpg",
+      advert6: "/advertImagesLeft/1566297042807-exchange.jpg",
+      advert7: "/advertImagesRight/nikee.jpg",
+      advert8: "/advertImagesRight/1567680517268-off-white.jpg",
+      advert9: "/advertImagesRight/1566306795882-1566297003625-buysell.jpg",
+      advert10: "/advertImagesBase/1566297042807-exchange.jpg",
+      advert11: "/advertImagesBase/1566297042807-exchange.jpg",
+      advert12: "/advertImagesBase/1566297042807-exchange.jpg",
+
       currencies: [],
       locations: [],
       baseCurrency: "USD",
@@ -730,22 +738,40 @@ export default {
           amount: ""
         },
         bgc1: {
-          backgroundImage: 'url(/advertImages/home.png)'
+          backgroundImage: 'url(/advertImages/1567618881220-1567176116063-22 (1).jpg)'
         },
         bgc2: {
-          backgroundImage: 'url(/advertImages/1566306758829-1566296959796-analytics.jpg)'
+          backgroundImage: 'url(/advertImages/1567621167211-1567618647072-1567176178249-off-white.jpg)'
         },
         bgc3: {
-          backgroundImage: 'url(/advertImages/1566306771733-1566296975561-chart.jpg)'
+          backgroundImage: 'url(/advertImages/1567621189240-1567616614450-0_f3Ypmy-26_j_bU33_.jpg)'
         },
         bgc4: {
-          backgroundImage: 'url(/advertImages/1566306795882-1566297003625-buysell.jpg)'
+          backgroundImage: 'url(/advertImages/1567680517268-off-white.jpg)'
         },
         bgc5: {
-          backgroundImage: 'url(/advertImages/1566306805313-1566297023517-calculate.jpg)'
+          backgroundImage: 'url(/advertImages/1567680162760-nike.png)'
         },
         bgc6: {
-          backgroundImage: 'url(advertImages/1566297042807-exchange.jpg)'
+          backgroundImage: 'url(advertImages/1567680517268-off-white.jpg)'
+        },
+         bgc7: {
+          backgroundImage: 'url(/advertImagesRight/nikee.jpg)'
+        },
+        bgc8: {
+          backgroundImage: 'url(/advertImagesRight/1566306795882-1566297003625-buysell.jpg)'
+        },
+        bgc9: {
+          backgroundImage: 'url(/advertImagesRight/1567680517268-off-white.jpg)'
+        },
+        bgc10: {
+          backgroundImage: 'url(/advertImagesBase/1567680808107-nikee.jpg)'
+        },
+        bgc11: {
+          backgroundImage: 'url(/advertImagesBase/1567682088170-Nike-Earnings.jpg)'
+        },
+        bgc12: {
+          backgroundImage: 'url(/advertImagesBase/1567682146161-off-white.jpg)'
         }
       };
     },
@@ -781,7 +807,31 @@ export default {
     advert6() {
       console.log("watch", this.advert6);
       this.bgc6.backgroundImage = 'url("' + this.advert6 + '")';
-    }  
+    },
+    advert7() {
+      console.log("watch", this.advert7);
+      this.bgc7.backgroundImage = 'url("' + this.advert7 + '")';
+    },
+    advert8() {
+      console.log("watch", this.advert8);
+      this.bgc8.backgroundImage = 'url("' + this.advert8 + '")';
+    },
+    advert9() {
+      console.log("watch", this.advert9);
+      this.bgc9.backgroundImage = 'url("' + this.advert9 + '")';
+    },
+    advert10() {
+      console.log("watch", this.advert10);
+      this.bgc10.backgroundImage = 'url("' + this.advert10 + '")';
+    },
+    advert11() {
+      console.log("watch", this.advert11);
+      this.bgc11.backgroundImage = 'url("' + this.advert11 + '")';
+    },
+    advert12() {
+      console.log("watch", this.advert12);
+      this.bgc12.backgroundImage = 'url("' + this.advert12 + '")';
+    },
   },
   computed: {
     rates(){
@@ -799,7 +849,6 @@ export default {
       if (this.curr.amount) {
         this.convertCurr(this.curr.amount, this.fromCurrency, this.toCurrency);
       }
-      //let query = `${this.fromCurrency}_${$this.toCurrency}`;
     },
     toClicked: function(currency) {
       // `this` inside methods points to the Vue instance
@@ -875,6 +924,72 @@ export default {
         .catch(error => {
           console.log(error);
         });
+    },
+
+     getAllAdverts() {
+      console.log('hello world');
+      advertService
+      .getAdverts()
+      .then(response => {
+        console.log("response", response)
+        this.adverts = response.data.advert
+        console.log("data from home vue", this.adverts);
+        
+         this.bgc1.backgroundImage="url(/advertImages/"+this.adverts[0].advertImage+")";
+         this.bgc2.backgroundImage="url(/advertImages/"+this.adverts[1].advertImage+")";
+         this.bgc3.backgroundImage="url(/advertImages/"+this.adverts[2].advertImage+")";
+
+      })
+      .catch(err => console.log("Error in getAllAdverts in Home.vue", err))
+    },
+
+     getAllAdvertsLeft() {
+      console.log('hello world');
+      advertService
+      .getAdvertsLeft()
+      .then(response => {
+        this.adverts = response.data.advert
+        console.log("left side adverts", this.adverts);
+        
+         this.bgc4.backgroundImage="url(/advertImagesLeft/"+this.adverts[0].advertImage+")";
+         this.bgc5.backgroundImage="url(/advertImagesLeft/"+this.adverts[1].advertImage+")";
+         this.bgc6.backgroundImage="url(/advertImagesLeft/"+this.adverts[2].advertImage+")";
+        
+      })
+      .catch(err => console.log("Error in getAllAdvertsLeft in Home.vue", err))
+    },
+
+    getAllAdvertsRight() {
+      console.log('hello world');
+      advertService
+      .getAdvertsRight()
+      .then(response => {
+        console.log("response", response)
+        this.adverts = response.data.advert
+        console.log("data from home vue", this.adverts);
+      
+         this.bgc7.backgroundImage="url(/advertImagesRight/"+this.adverts[0].advertImage+")";
+         this.bgc8.backgroundImage="url(/advertImagesRight/"+this.adverts[1].advertImage+")";
+         this.bgc9.backgroundImage="url(/advertImagesRight/"+this.adverts[2].advertImage+")";
+
+      })
+      .catch(err => console.log("Error in getAllAdvertsRight in Home.vue", err))
+    },
+
+    getAllAdvertsBase() {
+      console.log('hello world');
+      advertService
+      .getAdvertsBase()
+      .then(response => {
+        console.log("response", response)
+        this.adverts = response.data.advert
+        console.log("data from home vue", this.adverts);
+        
+         this.bgc10.backgroundImage="url(/advertImagesBase/"+this.adverts[0].advertImage+")";
+         this.bgc11.backgroundImage="url(/advertImagesBase/"+this.adverts[1].advertImage+")";
+         this.bgc12.backgroundImage="url(/advertImagesBase/"+this.adverts[2].advertImage+")";
+      })
+      .catch(err => console.log("Error in getAllAdvertsBase in Home.vue", err))
     },
 
     plotGraph() {
@@ -1003,10 +1118,37 @@ export default {
       });
     },
 
+//check if email is valid
+    checkForm:function(email) {
+        email = this.sub.email;
+    
+       if(!this.validEmail(this.sub.email)) {
+             Vue.$toast.error(' Valid Email required', {
+                  // optional options Object
+                  position: 'top',
+                  duration:3000,
+                  dismissible:true
+              })    
+      }
 
+      else{
+        this.checkemail();
+      }
+      
+    },
+
+// check with regex if email field is valid
+    validEmail:function(email) {
+      email = this.sub.email;
+      var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{3,}))$/;
+    return re.test(email);
+    },
+
+// subscription function
     async checkemail(email) {
-
+      
         email= this.sub.email;
+        
       const API_URL = "https://naija-bdc.herokuapp.com/api/suscribe/"+email;
         
       await axios
@@ -1043,7 +1185,7 @@ export default {
     },
 
    
-
+//Currency converter api integration
     convertCurr(amount = 1, fromCurrency = "USD", toCurrency = "NGN") {
       //const amount=10, fromCurrency='USD', toCurrency='PHP';
 
@@ -1060,6 +1202,7 @@ export default {
       });
     },
 
+//fetch news to display
     async getNews() {
       const API_URL = "https://naija-bdc.herokuapp.com/api/news";
 
@@ -1075,6 +1218,7 @@ export default {
         });
     },
 
+// search bdc operator by name 
     simpleSuggestionList() {
       let arr = this.operators.map(item => {
         return item.name;
@@ -1084,6 +1228,7 @@ export default {
 
     },
 
+// search bdc operator by location 
     simpleSuggestionList2() {
           let arr = this.operators.map(item => {
             return item.location;
@@ -1111,6 +1256,8 @@ export default {
     showModal() {
       this.$refs["modal-1"].show();
     },
+
+// DISPLAY adverts
 
     getAdverts() {
       advertService
@@ -1305,6 +1452,10 @@ export default {
     this.plotGraph();
     this.getCurrencies();
     this.getLocations();
+    this.getAllAdverts();
+    this.getAllAdvertsLeft();
+    this.getAllAdvertsRight();
+    this.getAllAdvertsBase();
     this.$store.dispatch('fetchRatesApi'); 
   }
 };

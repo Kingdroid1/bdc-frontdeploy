@@ -28,6 +28,27 @@
                     <td>{{rate.createdAt | formatTime}}</td>
                   </tr>
                 </tbody>
+                <div class="btn-group mt-5">
+                      <button
+                        type="button"
+                        v-if="page != 1"
+                        @click="page--"
+                        class="btn btn-sm btn-outline-secondary"
+                      >prev</button>
+                      <button
+                        type="button"
+                        class="btn btn-sm btn-outline-secondary"
+                        v-for="pageNumber in pages.slice(page-1, page+5)"
+                        v-bind:key="pageNumber"
+                        @click="page = pageNumber"
+                      >{{pageNumber}}</button>
+                      <button
+                        type="button"
+                        @click="page++"
+                        v-if="page < pages.length"
+                        class="btn btn-sm btn-outline-secondary"
+                      >next</button>
+                    </div>
               </table>
             </div>
           </div>
@@ -61,7 +82,10 @@
 
     data() {
       return {
-        rates: []
+        rates: [],
+        page: 1,
+        perPage: 5,
+        pages: []
       };
     },
 
@@ -76,6 +100,33 @@
             console.log(error)
           });
       },
+    },
+
+    setPages() {
+      let numberOfPages = Math.ceil(this.operators.length / this.perPage);
+      for (let index = 1; index <= numberOfPages; index++) {
+        this.pages.push(index);
+      }
+    },
+    paginate(operators) {
+      let page = this.page;
+      let perPage = this.perPage;
+      let from = page * perPage - perPage;
+      let to = page * perPage;
+      return operators.slice(from, to);
+    },
+
+    watch: {
+    operators() {
+      this.setPages();
+    }
+   },
+
+    computed: {
+      disoperators(){
+       return this.paginate(this.operators)
+       
+      }
     },
 
     mounted() {

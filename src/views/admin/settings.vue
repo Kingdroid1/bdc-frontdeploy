@@ -79,48 +79,10 @@
                               >
                                 <i class="far fa-trash-alt"></i>
                               </button>
-                              <!-- <a
-                                style="color: rgba(37, 56, 88, 0.3);font-size: 18px;"
-                                class="dropdown-toggle px-3"
-                                data-toggle="dropdown"
-                                aria-haspopup="true"
-                                aria-expanded="false"
-                              >
-                                <i class="icon ion-md-more"></i>
-                              </a>
-                              <div class="dropdown-menu">
-                                <a
-                                  class="dropdown-item"
-                                  href="#"
-                                  data-toggle="modal"
-                                  data-target="#exampleModalEdit"
-                                  @click="getUserId(user._id)"
-                                >Edit</a>
-                                
-                                <a
-                                  class="dropdown-item"
-                                  href="#"
-                                  @click="deleteUser(user._id)"
-                                >Delete</a>
-                              </div> -->
+                              
                             </td>
                           </tr>
-                          <!-- <tr>
-                            <td>Samuel Ode</td>
-                            <td>Ode@bdc.com</td>
-                            <td>operator</td>
-                            <td>Active</td>
-                            <td>
-                              <a style="color: rgba(37, 56, 88, 0.3);font-size: 18px;" class="dropdown-toggle px-3"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="icon ion-md-more"></i>
-                              </a>
-                              <div class="dropdown-menu">
-                                <a class="dropdown-item" href="#">Edit</a>
-                                <a class="dropdown-item" href="#">Delete</a>
-                              </div>
-                            </td>
-                          </tr>-->
+                         
                         </tbody>
                       </table>
                     </div>
@@ -412,6 +374,7 @@
 
         await authservice.comparePassword(password).then(res => {
           res = res.data;
+          console.log('dd',res);
 
           if (res.status == true) {
                
@@ -419,7 +382,7 @@
                 const confirmpassword = this.user.confirmpassword;
                 const newpassword = this.user.newpassword;
 
-                if (newpassword == confirmpassword) {
+                if ( newpassword !="" && confirmpassword !="" &&  (newpassword == confirmpassword)) {
                 
                   authservice.updatePassword(newpassword).then(payload => {
                     console.log('pay',payload)

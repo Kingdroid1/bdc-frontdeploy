@@ -42,8 +42,10 @@ export class AuthService {
   
     let obj ={password:password}
     this.id = localStorage.id;
+    console.log('gbn',this.id);
   
     const url = `${baseURL}/users/comparepassword/${this.id}`;
+    
     
     return axios.post(url, obj);
 

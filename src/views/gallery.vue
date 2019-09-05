@@ -87,23 +87,23 @@
             </div>
             <div class="col-lg-4 col-xs-12 py-4">
               <p class="p-17">Follow Us On</p>
-              <div class="d-flex row px-2">
-                <a href="#" class="p-2">
-                  <i class="fab fa-facebook-f" style="color: #fff;"></i>
-                </a>
-                <a href="#" class="p-2">
-                  <i class="fab fa-twitter" style="color: #fff;"></i>
-                </a>
-                <a href="#" class="p-2">
-                  <i class="fab fa-google-plus-g" style="color: #fff;"></i>
-                </a>
-                <a href="#" class="p-2">
-                  <i class="fab fa-instagram" style="color: #fff;"></i>
-                </a>
-                <a href="#" class="p-2 w-14">
-                  <img src="../../public/img/youtube.svg" alt />
-                </a>
-              </div>
+               <div class="d-flex row px-2">
+              <a href="https://www.facebook.com/Naijabdc" class="p-2">
+                <i class="fab fa-facebook-f" style="color: #fff;"></i>
+              </a>
+              <a href="https://twitter.com/naijabdc" class="p-2">
+                <i class="fab fa-twitter" style="color: #fff;"></i>
+              </a>
+              <a href="#" class="p-2">
+                <i class="fab fa-google-plus-g" style="color: #fff;"></i>
+              </a>
+              <a href="#" class="p-2">
+                <i class="fab fa-instagram" style="color: #fff;"></i>
+              </a>
+              <a href="#" class="p-2 w-14">
+                <img src="../../public/img/youtube.svg" alt />
+              </a>
+            </div>
             </div>
           </div>
         </div>

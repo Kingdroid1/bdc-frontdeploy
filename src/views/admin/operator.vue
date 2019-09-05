@@ -350,6 +350,10 @@
 const API_URL = `https://naija-bdc.herokuapp.com/api/operators/`;
 
 import axios from "axios";
+import Vue from "vue";
+import VueToast from 'vue-toast-notification';
+import 'vue-toast-notification/dist/index.css';
+Vue.use(VueToast);
 
 export default {
   data() {
@@ -394,11 +398,30 @@ export default {
           dateLicensed: this.user.dateLicensed
         };
 
-        await axios
+        if(userDet.name !="" && userDet.typeOfInstitution !="" && userDet.streetAddress !="" && userDet.area !="" && userDet.state !=""  && userDet.telephone!="" && userDet.email !="" && userDet.country !="" && userDet.ownershipType !="" && userDet.dateLicensed !=""  ){
+          console.log(userDet)
+          await axios
           .post(API_URL + `addoperator`, userDet)
           .then(res => res.data);
-        alert("Added BDC operator");
-        window.location.reload();
+            Vue.$toast.success(' Bdc Operator Successfully Saved', {
+                  // optional options Object
+                  position: 'top',
+                  duration:3000,
+                  dismissible:true
+              })    
+          window.location.reload();
+        }
+
+        else{
+          Vue.$toast.error(' Please fill in all fields', {
+                  // optional options Object
+                  position: 'top',
+                  duration:3000,
+                  dismissible:true
+              })    
+        }
+
+        
       } catch (error) {
         throw error;
       }

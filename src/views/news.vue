@@ -23,22 +23,23 @@
                   <div class="card-title p-18">
                     <b>{{ post.title }}</b>
                     <br />
-                    <!-- <small class="p-14" style="color: #979797;">{{ post.createdAt }}</small> -->
                   </div>
-                  <div class="p-14">
-                    <input type="checkbox" class="read-more-state" id="post-1" />
-    
-                    <p class="read-more-wrap">
-                      {{ post.content }}
-                      <span
-                        class="read-more-target"
-                      >
+
+                  <a href="https://nairametrics.com">  
+                    <div class="p-14">
+ 
+                      <label for="post-1" class="read-more-state"></label>
+                        <!-- <input type="checkbox" class="read-more-state" id="post-1" /> -->
+                      <!-- </a> -->
+      
+                      <p class="read-more-wrap">
                         {{ post.content }}
-                      </span>
-                    </p>
-    
-                    <label for="post-1" class="read-more-trigger"></label>
-                  </div>
+                      
+                      </p>
+      
+                      <label for="post-1" class="read-more-trigger"></label>
+                    </div>
+                  </a>
                 </div>
               </div>
             </div>
@@ -80,22 +81,22 @@
             <div class="col-lg-4 col-xs-12 py-4">
               <p class="p-17">Follow Us On</p>
               <div class="d-flex row px-2">
-                <a href="#" class="p-2">
-                  <i class="fab fa-facebook-f" style="color: #fff;"></i>
-                </a>
-                <a href="#" class="p-2">
-                  <i class="fab fa-twitter" style="color: #fff;"></i>
-                </a>
-                <a href="#" class="p-2">
-                  <i class="fab fa-google-plus-g" style="color: #fff;"></i>
-                </a>
-                <a href="#" class="p-2">
-                  <i class="fab fa-instagram" style="color: #fff;"></i>
-                </a>
-                <a href="#" class="p-2 w-14">
-                  <img src="../../public/img/youtube.svg" alt />
-                </a>
-              </div>
+              <a href="https://www.facebook.com/Naijabdc" class="p-2">
+                <i class="fab fa-facebook-f" style="color: #fff;"></i>
+              </a>
+              <a href="https://twitter.com/naijabdc" class="p-2">
+                <i class="fab fa-twitter" style="color: #fff;"></i>
+              </a>
+              <a href="#" class="p-2">
+                <i class="fab fa-google-plus-g" style="color: #fff;"></i>
+              </a>
+              <a href="#" class="p-2">
+                <i class="fab fa-instagram" style="color: #fff;"></i>
+              </a>
+              <a href="#" class="p-2 w-14">
+                <img src="../../public/img/youtube.svg" alt />
+              </a>
+            </div>
             </div>
           </div>
         </div>

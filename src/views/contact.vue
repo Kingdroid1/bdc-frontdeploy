@@ -91,30 +91,32 @@
               </div>
               <div class="col-lg-6 col-xs-12 ">
                 <div class="rectangle-1">
-                  <p class="p-20 mb-4">GET IN TOUCH WITH US.</p>
+                  <form action="" @submit.prevent="sendMessage">
+                    <p class="p-20 mb-4">GET IN TOUCH WITH US.</p>
                   <label for class="p-15">
                     <b>First Name</b>
                   </label>
-                  <input type="text" class="light form-control mb-3" placeholder="John" />
+                  <input type="text" name="firstname" v-model="contact.firstname" class="light form-control mb-3" placeholder="Your First Name" required />
                   <label for class="p-15">
                     <b>Last Name</b>
                   </label>
-                  <input type="text" class="light form-control mb-3" placeholder="Doe" />
+                  <input type="text" name="lastname" v-model="contact.lastname" class="light form-control mb-3" placeholder="Your Last Name" />
                   <label for class="p-15">
                     <b>Email</b>
                   </label>
-                  <input type="email" class="light form-control mb-3" placeholder="youremail@abc.com" />
+                  <input type="email" name="email" v-model="contact.email" class="light form-control mb-3" placeholder="youremail@abc.com" required />
                   <label for class="p-15">
                     <b>Subject</b>
                   </label>
-                  <input type="text" class="light form-control mb-3" placeholder="John" />
+                  <input type="text" name="subject" v-model="contact.subject" class="light form-control mb-3" placeholder="John" />
                   <label for class="p-15">
                     <b>Message</b>
                   </label>
-                  <textarea name id cols="10" rows="5" class="light form-control mb-4"></textarea>
+                  <textarea name="message" v-model="contact.message" id cols="10" rows="5" class="light form-control mb-4"></textarea>
                   <p class="text-right">
-                    <button class="btn btn-green px-4">SEND MESSAGE</button>
-                  </p>
+                    <button class="btn btn-green px-4" >SEND MESSAGE</button>
+                  </p></form>
+                  
                 </div>
               </div>
             </div>
@@ -205,7 +207,76 @@
   </div>
 </template>
 <script>
-export default {};
+// import { UserService } from '../services/userservices';
+
+// const userService = new UserService();
+const API_URL = `http://localhost:5000/api/`;
+
+import Vue from 'vue';
+import VueToast from 'vue-toast-notification';
+import 'vue-toast-notification/dist/index.css';
+Vue.use(VueToast);
+
+import axios from "axios";
+
+
+export default {
+  data() {
+    return {
+      contact: {
+        firstname:"",
+        lastname:"",
+        email:"",
+        subject:"",
+        message:""
+      }
+    }
+  },
+  methods: {
+   async sendMessage() {
+      let contacts = {
+        firstname: this.contact.firstname,
+        lastname: this.contact.lastname,
+        email: this.contact.email,
+        subject: this.contact.subject,
+        message: this.contact.message
+      }
+
+      if(contacts.firstname !="" && contacts.lastname !="" && contacts.email !="" && contacts.subject !="" && contacts.message !="" ){
+        await axios.post(API_URL + `contacts`, contacts)
+        .then(contacts => {
+          console.log("Posted contacts", contacts)
+            if (contacts.data.status === true) {
+              Vue.$toast.success('Message sent successfully', {
+                position: 'top',
+                duration:5000,
+                dismissible: true
+              })
+              this.$router.push({name: "contact"});
+            }
+            else {
+              Vue.$toast.error('Something went wrong,Please try again', {
+                        // optional options Object
+                        position: 'top',
+                        duration:5000,
+                        dismissible:true
+                      })
+            } 
+          })
+      }
+      else {
+            Vue.$toast.error('Please fill all fields', {
+                      // optional options Object
+                      position: 'top',
+                      duration:5000,
+                      dismissible:true
+                    })
+          } 
+     
+    
+    }
+  },
+};
 </script>
 <style>
 </style>
