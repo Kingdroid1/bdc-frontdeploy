@@ -210,7 +210,7 @@
 // import { UserService } from '../services/userservices';
 
 // const userService = new UserService();
-const API_URL = `http://localhost:5000/api/`;
+const API_URL = `https://naija-bdc.herokuapp.com/api/`;
 
 import Vue from 'vue';
 import VueToast from 'vue-toast-notification';
