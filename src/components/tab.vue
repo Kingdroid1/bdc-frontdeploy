@@ -32,7 +32,7 @@
               {{ value.evening.buyingRate}} /{{ value.evening.sellingRate}}
           </td>
           <td v-else>&nbsp;</td> 
-          <td><img width="13" v-bind="`../../img/${value.morning? value.morning.baseCurrency : value.afternoon.baseCurrency}.svg`"/>
+          <td><img width="13" v-bind="`../../img/${value.morning? value.morning.baseCurrency : value.afternoon? value.afternoon.baseCurrency : value.evening.baseCurrency}.svg`"/>
             {{value.morning? value.morning.baseCurrency : value.afternoon? value.afternoon.baseCurrency : value.evening.baseCurrency}}
           </td>
         </tr>
