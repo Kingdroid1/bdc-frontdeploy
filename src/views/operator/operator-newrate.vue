@@ -15,22 +15,7 @@
                 data-toggle="tab"
               >Normal Input Rate</a>
             </li>
-            <li class="nav-item pr-3">
-              <a
-                class="nav-link pb-3"
-                href="#unioninputrate"
-                role="tab"
-                data-toggle="tab"
-              >Western Union Input Rate</a>
-            </li>
-            <li class="nav-item pr-3">
-              <a
-                class="nav-link pb-3"
-                href="#atminputrate"
-                role="tab"
-                data-toggle="tab"
-              >Bank Atm Input Rate</a>
-            </li>
+            
           </ul>
         </div>
       </div>
@@ -148,9 +133,22 @@
                             >{{ currency.name }}</option>
                           </select>
                         </div>
-                        
                         <div class="col-lg-6 col-xs-12 mb-4">
-                          <b class="p-15">Enter Rate Price</b>
+                          <b class="p-15">Enter Buy Rate</b>
+                          <br />
+                          <small class="l-12">Enter a price you want to purchase your currencies for</small>
+                        </div>
+                        <div class="col-lg-6 col-xs-12 mb-4">
+                          <label for class="pl-14">Buy Rate</label>
+                          <input
+                            v-model.number="buyingRate"
+                            type="text"
+                            class="lightform form-control"
+                          />
+                        </div>
+
+                        <div class="col-lg-6 col-xs-12 mb-4">
+                          <b class="p-15">Enter Sell Rate</b>
                           <br />
                           <small class="l-12">Enter a price you want to sell your currencies for</small>
                         </div>
@@ -261,7 +259,7 @@
   Vue.use(VueToast);
 
   export default {
-
+    //   name: operatorNewrate,
     data() {
       return {
         currencies: [],
@@ -307,7 +305,7 @@
           buyingRate: this.buyingRate,
           sellingRate: this.sellingRate,
           time: d.getHours(),
-          user_id: '5d384433850f0a49d8bd4af1'
+          user_id: localStorage.id
         }
 
         rateService.createRate(rate)

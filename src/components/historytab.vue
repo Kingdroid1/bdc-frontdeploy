@@ -12,12 +12,8 @@
         </thead>
         <tbody>
           <tr v-for="(value, index) in getValues()" :key="value" :value="index">
-            <!-- <td v-for="item in rateCurrency.value" :key="item">
-            <input type="checkbox" class="checkbox-custom" name="checkbox-1" id="checkbox-1" />
-            <label for="checkbox-1" class="checkbox-custom-label p-10"></label>
-            {{item}}
-            </td>-->
-            <td>{{value.date}}</td>
+            
+            <td>{{value.date | formatDate}}</td>
             <td style="color: rgb(0, 122, 255); font-weight:bolder"
               v-if="value.value.morning"
             >{{ value.value.morning.buyingRate}} /{{value.value.morning.sellingRate}}</td>
@@ -41,6 +37,15 @@
   </div>
 </template>
 <script>
+import Vue from "vue";
+import moment from "moment";
+
+//Convert date format
+Vue.filter("formatDate", function(value) {
+  if (value) {
+    return moment(String(value)).format("MM/DD/YYYY");
+  }
+});
 export default {
   name: "tab",
 
@@ -53,7 +58,7 @@ export default {
   data() {
     return {
       vv: {},
-      isActive: false
+      isActive: false,
     };
   },
 
@@ -104,7 +109,7 @@ export default {
   mounted() {
     this.isActive = this.selected;
     this.getCurrencies();
-    console.log("rate========>", rate);
+   
   }
 };
 </script>

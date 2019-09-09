@@ -355,7 +355,7 @@
                     DATE                    
                   </th>
                   <th>Currency</th>
-                  <th>Buy/Sell</th>
+                  <th>Rate</th>
                 </thead>
                 <tbody v-for="western in westernrate" v-bind:key="western">
                   <tr>
@@ -364,7 +364,7 @@
                       <img width="20" v-bind:src="`../../../img/${western.baseCurrency}.svg`" />
                       {{western.baseCurrency}}
                     </td>
-                    <td>{{western.buyingRate}}/{{western.sellingRate}}</td>
+                    <td>{{western.sellingRate}}</td>
                   </tr>
                 </tbody>
               </table>
@@ -690,13 +690,7 @@ export default {
   data() {
     return {
       advertImage: "",
-      // advert: [],
-      // advert1: "/advertImages/1566296937264-graph.jpg",
-      // advert2: "/advertImages/1566296959796-analytics.jpg",
-      // advert3: "/advertImages/1566296975561-chart.jpg",
-      // advert4: "/advertImages/1566297003625-buysell.jpg",
-      // advert5: "/advertImages/1566297023517-calculate.jpg",
-      // advert6: "/advertImages/1566297042807-exchange.jpg",
+      
       advert: [],
       advert1: "/advertImages/1566296937264-graph.jpg",
       advert2: "/advertImages/1567174349607-22 (1).jpg",

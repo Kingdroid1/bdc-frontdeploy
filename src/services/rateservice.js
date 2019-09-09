@@ -17,6 +17,13 @@ export class RateService {
     return axios.get(url).then(response => response.data);
   }
 
+  getRateByUser() {
+    let userId = localStorage.id;
+    console.log("first user id in rate service", userId)
+    const url = `${API_URL}/rates/${userId}`;
+    return axios.get(url)
+  }
+
   createRate(rate) {
     const url = `${API_URL}/rates/`;
     return axios.post(url, rate);
@@ -47,18 +54,19 @@ export class RateService {
     return axios.get(url, rate);
   }
 
-  getRates() {
+  async getRates() {
     const url = `${API_URL}/rates`;
     // return new Promise(resolve => setTimeout(resolve, 1000));
     return axios.get(url).then(response => {
       return response.data
     });
+
   }
 
-  getHistoricalRates(){
+  getHistoricalRates() {
     const url = `${API_URL}/rates/history`;
-    return axios.get(url).then(res =>{
-      console.log(res , 'res');
+    return axios.get(url).then(res => {
+      console.log(res, 'res');
       return res.data;
     })
   }
@@ -80,7 +88,7 @@ export class RateService {
     toCurrency = encodeURIComponent(toCurrency);
     var query = fromCurrency + '_' + toCurrency;
 
-   
+
 
     var url = `${C_URL}/convert?q=${query}&compact=ultra&apiKey=` + apiKey;
 
@@ -88,26 +96,26 @@ export class RateService {
       .then((res) => {
         var body = '';
 
-       
+
         let { data } = res;
         try {
-            var val = data[query];
-            if (val) {
-              var total = val * amount;
-              
-              cb(null, Math.round(total * 100) / 100);
-            } else {
-              let err = new Error("Value not found for " + query);
-             
-              cb(err);
-            }
-          } catch (e) {
-            
-            cb(e);
+          var val = data[query];
+          if (val) {
+            var total = val * amount;
+
+            cb(null, Math.round(total * 100) / 100);
+          } else {
+            let err = new Error("Value not found for " + query);
+
+            cb(err);
           }
+        } catch (e) {
+
+          cb(e);
+        }
       })
       .catch('error', function (e) {
-        
+
         cb(e);
       });
   }

@@ -9,6 +9,9 @@ import Advert from './views/admin/advert'
 import Previousrate from './views/admin/previousrate'
 import Settings from './views/admin/settings'
 import OperatorSettings from './views/operator/settings'
+import OperatorNewrate from './views/operator/operator-newrate'
+import OperatorPreviousrate from './views/operator/operator-previousrate'
+
 
 Vue.use(Router)
 
@@ -143,13 +146,13 @@ let router = new Router({
       children: [     
         {
           path: '/',
-          name: 'newrate',
-          component: Newrate
+          name: 'operatorNewrate',
+          component: OperatorNewrate
         },
         {
           path: 'previousrate',
-          name: 'previousrate',
-          component: Previousrate
+          name: 'OperatorPreviousrate',
+          component: OperatorPreviousrate
         },
         {
           path: 'settings',

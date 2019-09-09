@@ -19,7 +19,7 @@
             <label for="checkbox-1" class="checkbox-custom-label p-10"></label>
             {{item}}
           </td> -->
-          <td>{{value.morning? value.morning.date : value.afternoon? value.afternoon.date : value.evening.date}}</td>
+          <td>{{value.morning? value.morning.createdAt  : value.afternoon? value.afternoon.createdAt : value.evening.createdAt | formatDate}}</td>
           <td  style="color: rgb(0, 122, 255); font-weight:bolder" v-if="value.morning">
               {{ value.morning.buyingRate}} /{{ value.morning.sellingRate}}
           </td>
@@ -42,6 +42,14 @@
   </div>
 </template>
 <script>
+import Vue from "vue";
+
+//Convert date format
+Vue.filter("formatDate", function(value) {
+  if (value) {
+    return moment(String(value)).format("MM/DD/YYYY");
+  }
+});
   export default {
     name: "tab",
 

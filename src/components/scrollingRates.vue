@@ -3,7 +3,7 @@
     <nav class="fixed-bottom">
       <marquee-text :repeat="10" class="marquee bottom">
          <span v-for="(rate, index) in rates" v-bind:key="rate" v-bind:value="index">
-           {{rate.location}}  -- {{rate.morning.buying}}/{{rate.morning.selling}}  <img width="20" v-bind:src="`../../../img/${rate.morning.currency}.svg`" /> {{rate.morning.currency}} &nbsp; &nbsp; 
+           {{rate.location.location}}  -- {{rate.morning.buying}}/{{rate.morning.selling}}  <img width="20" v-bind:src="`../../../img/${rate.morning.currency}.svg`" /> {{rate.morning.currency}} &nbsp; &nbsp; 
          </span>
       </marquee-text>
       
@@ -38,7 +38,7 @@
           .getScrollRates()
           .then(data => {
             this.rates = data.result;
-            console.log('scrollrate',this.rates);
+            console.log('scrollrate',this.rates.morning.buying);
           })
           .catch(error => {
             console.log('scrool',error);
@@ -87,7 +87,7 @@
 
   span {
     float: left;
-    width: 50%;
+    width: 100%;
   }
 
   @keyframes marquee {

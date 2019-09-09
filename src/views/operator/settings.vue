@@ -58,7 +58,7 @@
                       </div>
                       <div class="col-lg-6 col-xs-12"></div>
                       <div class="col-lg-6 col-xs-12">
-                        <button class="btn btn-green px-5" @click="changePassword">Submit Password</button>
+                        <button class="btn btn-green px-5" @click="comparepassword">Submit Password</button>
                       </div>
                     </div>
                   </div>
@@ -72,9 +72,13 @@
 </template>
 <script>
   import { AuthService } from "../../services/authservice"
+  import Vue from 'vue';
+  import VueToast from 'vue-toast-notification';
+  import 'vue-toast-notification/dist/index.css';
 
   let authservice = new AuthService()
-  
+  Vue.use(VueToast);
+
   export default {
     data() {
       return {
@@ -102,7 +106,120 @@
         } catch(error){
           throw error;
         }
-      }
+      },
+
+      async comparepassword() {
+        const password = this.user.password;
+
+        await authservice.comparePassword(password).then(res => {
+          res = res.data;
+          console.log('dd',res);
+
+          if (res.status == true) {
+               
+                const password = this.user.password;
+                const confirmpassword = this.user.confirmpassword;
+                const newpassword = this.user.newpassword;
+
+                if ( newpassword !="" && confirmpassword !="" &&  (newpassword == confirmpassword)) {
+                
+                  authservice.updatePassword(newpassword).then(payload => {
+                    console.log('pay',payload)
+                    if (payload.data.status == true){
+                      Vue.$toast.success('Password changed successfully', {
+                      // optional options Object
+                      position: 'top',
+                      duration:5000,
+                      dismissible:true
+                    })
+                     this.$router.push({ name: "login" });    
+                    }
+                    else{
+                      Vue.$toast.error('Something went wrong, Please try again', {
+                      // optional options Object
+                      position: 'top',
+                      duration:5000,
+                      dismissible:true
+                    })
+                    }
+             
+                  });
+                } 
+                else {
+                  Vue.$toast.error('Something went wrong, passwords do not match', {
+                    // optional options Object
+                    position: 'top',
+                    duration:5000,
+                    dismissible:true
+                  })
+                }
+              
+          } else {
+            Vue.$toast.error('Incorrect existing password', {
+                // optional options Object
+                position: 'top',
+                duration:5000,
+                dismissible:true
+              })
+          }
+        });
+      },
+
+      // async comparepassword() {
+      //   const password = this.user.password;
+
+      //   await authservice.comparePassword(password).then(res => {
+      //     res = res.data;
+
+      //     if (res.status == true) {
+               
+      //           const password = this.user.password;
+      //           const confirmpassword = this.user.confirmpassword;
+      //           const newpassword = this.user.newpassword;
+
+      //           if (newpassword == confirmpassword) {
+                
+      //             authservice.updatePassword(newpassword).then(payload => {
+      //               console.log('pay',payload)
+      //               if (payload.data.status == true){
+      //                 Vue.$toast.success('Password changed successfully', {
+      //                 // optional options Object
+      //                 position: 'top',
+      //                 duration:5000,
+      //                 dismissible:true
+      //               })
+      //                this.$router.push({ name: "login" });    
+      //               }
+      //               else{
+      //                 Vue.$toast.error('Something went wrong, Please try again', {
+      //                 // optional options Object
+      //                 position: 'top',
+      //                 duration:5000,
+      //                 dismissible:true
+      //               })
+      //               }
+             
+      //             });
+      //           } 
+      //           else {
+      //             Vue.$toast.error('Something went wrong, passwords do not match', {
+      //               // optional options Object
+      //               position: 'top',
+      //               duration:5000,
+      //               dismissible:true
+      //             })
+      //           }
+              
+      //     } else {
+      //       Vue.$toast.error('Incorrect existing password', {
+      //           // optional options Object
+      //           position: 'top',
+      //           duration:5000,
+      //           dismissible:true
+      //         })
+      //     }
+      //   });
+      // },
     }
   }
 </script>

@@ -1,0 +1,104 @@
+<template>
+  <div class="addmin py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 col-xs-12">
+          <h1 class="p-24">Previous Rate</h1>
+        </div>
+        <div class="col-lg-6 col-xs-12"></div>
+        <div class="col-12 mt-4">
+          <div class="ad_shadowrec">
+            <div class="table-responsive-md">
+              <table class="table table-striped ad_table">
+                <thead>
+                  <th>DATE</th>
+                  <th>SESSION</th>
+                  <th>BUY</th>
+                  <th>SELL</th>
+                  <th>CURRENCY</th>
+                  <th>TIME POSTED</th>
+                </thead>
+                <tbody>
+                  <tr v-for="rate in userRate" v-bind:key="rate">
+                    <td>{{rate.baseCurrency}}</td>
+                    <td>{{rate.time}}</td>
+                    <td>{{rate.buyingRate}}</td>
+                    <td>{{rate.sellingRate}}</td>
+                    <td><img width="13" v-bind:src="`../../../img/${rate.baseCurrency}.svg`" /> {{rate.baseCurrency}}</td>
+                    <td>{{rate.createdAt | formatDate}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+<script>
+  import { RateService } from '../../services/rateservice';
+  import moment from "moment";
+  import Vue from "vue";
+
+  const rateService = new RateService();
+
+  //Convert date format
+  Vue.filter("formatDate", function(value) {
+    if (value) {
+      return moment(String(value)).format("hh:mm:ss");
+    }
+  });
+ 
+
+  export default {
+
+    data() {
+      return {
+        userRate: [],
+        // user:{userId: ""}
+        
+      };
+    },
+
+    methods: {
+      // getListRates() {
+      //   rateService.getListRates()
+      //     .then(data => {
+      //       this.rates = data.result;
+      //      console.log("this.rate", this.rates)
+      //     })
+      //     .catch(error => {
+      //       console.log(error)
+      //     });
+      // },
+
+      getRateByUser() {
+        let userId = localStorage.id;
+        console.log("Local storage", localStorage)
+        console.log("Local storage", localStorage.id)
+
+        
+        console.log("userID", userId)
+        rateService.getRateByUser()
+        .then(data => {
+            this.userRate = data.data.userId;
+            console.log("data", data)
+            console.log("this.userrate", this.userRate)
+        })
+        .catch(error => {
+            console.log("frontend error", error)
+          });
+      },
+    },
+
+    mounted() {
+    //   this.getListRates();
+      this.getRateByUser();
+      
+    }
+
+  };
+</script>
+<style>
+</style>
