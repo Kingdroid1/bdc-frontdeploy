@@ -5,7 +5,7 @@ import { RateService } from "./services/rateservice";
 
 const rateService = new RateService();
 
-const baseURL = 'https://naija-bdc.herokuapp.com/api';
+const baseURL = 'http://localhost:5000/api';
 
 Vue.use(Vuex);
 

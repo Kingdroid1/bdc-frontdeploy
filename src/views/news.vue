@@ -141,7 +141,7 @@ export default {
   },
   methods: {
     async getNewsData() {
-      const API_URL = "https://naija-bdc.herokuapp.com/api/news";
+      const API_URL = "http://localhost:5000/api/news";
 
     await axios.get(API_URL).then(post => {
         this.newsPosts = post;

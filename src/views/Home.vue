@@ -23,22 +23,18 @@
             </div>
             <div class="col-lg-4 col-xs-12 mt-lg-3">
               <div
-                id="carouselExampleIndicators"
-                
+                id="carouselExampleIndicators"  
                 class="hometop carousel mt-lg-5"
                 data-ride="carousel"
               >
                 <div class="carousel-inner w-100">
-                  <div class="carousel-item active">
-                    <div class="blackBox w-100" :style="bgc1"></div>
-                  </div>
-                  <div class="carousel-item">
-                    <div class="blackBox1 w-100" :style="bgc2"></div>
-                  </div>
-                  <div class="carousel-item">
-                    <div class="blackBox2 w-100" :style="bgc3"></div>
-                  </div>
+                  <template v-for="(image, index) in advertImages.landing">
+                    <div :class="{'carousel-item': true, 'active': index == 0}" :key="index">
+                      <div class="blackBox w-100" :style="`background-image: url(${image})`"></div>
+                    </div>
+                  </template>
                 </div>
+
                 <a
                   class="carousel-control-prev"
                   href="#carouselExampleIndicators"
@@ -113,15 +109,15 @@
           <div class="row">
             <div class="col-12 mb-4">
               <h1 class="w-24">
-                Search for approved BDC ’s operators across Nigeria
+                Search for CBN licensed Bureau De Change Operators across Nigeria
                 <br />
               </h1>
-              <small class="w-14">
+              <!-- <small class="w-14">
                 <a
                   href="#"
                   class="w-14"
                 >Click here to see list of accredited Bureau De Change agents in Nigeria.</a>
-              </small>
+              </small> -->
             </div>
             <div class="col-lg-1"></div>
             <div class="col-lg-4 px-1 col-xs-12 mb-3">
@@ -231,15 +227,11 @@
           <div class="col-lg-3 col-xs-12">
             <div id="carouselExampleSlidesOnly" class="carousel slide mb-4" data-ride="carousel">
               <div class="carousel-inner">
-                <div class="carousel-item active">
-                  <div class="w-100 blackBox1s" :style="bgc4"></div>
-                </div>
-                <div class="carousel-item">
-                  <div class="w-100 blackBox2s" :style="bgc5"></div>
-                </div>
-                <div class="carousel-item">
-                  <div class="w-100 blackBoxs" :style="bgc6"></div>
-                </div>
+                <template v-for="(image, index) in advertImages.left">
+                    <div :class="{'carousel-item': true, 'active': index == 0}" :key="index">
+                      <div class="blackBox w-100" :style="`background-image: url(${image})`"></div>
+                    </div>
+                  </template>
               </div>
             </div>
           </div>
@@ -287,15 +279,11 @@
           <div class="col-lg-3 col-xs-12">
             <div id="carouselExampleSlidesOnly" class="carousel slide mb-4" data-ride="carousel">
               <div class="carousel-inner">
-                <div class="carousel-item active">
-                  <div class="w-100 blackBoxs" :style="bgc7"></div>
-                </div>
-                <div class="carousel-item">
-                  <div class="w-100 blackBox1s" :style="bgc8"></div>
-                </div>
-                <div class="carousel-item">
-                  <div class="w-100 blackBox2s" :style="bgc9"></div>
-                </div>
+                <template v-for="(image, index) in advertImages.right">
+                    <div :class="{'carousel-item': true, 'active': index == 0}" :key="index">
+                      <div class="blackBox w-100" :style="`background-image: url(${image})`"></div>
+                    </div>
+                  </template>
               </div>
             </div>
           </div>
@@ -306,15 +294,11 @@
       <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
               
               <div class="carousel-inner">
-                <div class="carousel-item active">
-                  <div class="slide1" :style="bgc10"></div>
-                </div>
-                <div class="carousel-item">
-                  <div class="slide2" :style="bgc11"></div>
-                </div>
-                <div class="carousel-item">
-                  <div class="slide3" :style="bgc12"></div>
-                </div>
+                <template v-for="(image, index) in advertImages.base">
+                    <div :class="{'carousel-item': true, 'active': index == 0}" :key="index">
+                      <div class="blackBox w-100" :style="`background-image: url(${image})`"></div>
+                    </div>
+                  </template>
               </div>
               <div class="maintextt">
         <div class="container-fluid">
@@ -330,7 +314,7 @@
               </p>
             </div>
             <div class="col-lg-8 col-md-8 px-0 col-xs-12 px-5 py-5 google">
-              <p class="a-17 mt-lg-3">Get the Naija bdc app</p>
+              <p class="a-17 mt-lg-3">Get the Naija BDC app</p>
                 <p class="g-24">No deal Brexit chills sends pounds to a five month low vs euro</p>
                 <a href="#">
                   <img src="../../public/img/googleplay.png" height="50px;" alt />
@@ -481,19 +465,19 @@
           <div class="col-lg-4 col-xs-12 py-4">
             <p class="p-17">Follow Us On</p>
             <div class="d-flex row px-2">
-              <a href="#" class="p-2">
+              <a href="https://web.facebook.com/Association-of-Bureaux-De-Change-Operators-of-Nigeria-ABCON-598654580172724/" target="_blank" class="p-2">
                 <i class="fab fa-facebook-f" style="color: #fff;"></i>
               </a>
-              <a href="#" class="p-2">
+              <a href="https://twitter.com/NationalAbcon" target="_blank" class="p-2">
                 <i class="fab fa-twitter" style="color: #fff;"></i>
               </a>
-              <a href="#" class="p-2">
+              <a href="#" target="_blank" class="p-2">
                 <i class="fab fa-google-plus-g" style="color: #fff;"></i>
               </a>
-              <a href="#" class="p-2">
+              <a href="https://www.instagram.com/abcon4real/" target="_blank" class="p-2">
                 <i class="fab fa-instagram" style="color: #fff;"></i>
               </a>
-              <a href="#" class="p-2 w-14">
+              <a href="#" target="_blank" class="p-2 w-14">
                 <img src="../../public/img/youtube.svg" alt />
               </a>
             </div>
@@ -690,20 +674,31 @@ export default {
   data() {
     return {
       advertImage: "",
-      
-      advert: [],
-      advert1: "/advertImages/1566296937264-graph.jpg",
-      advert2: "/advertImages/1567174349607-22 (1).jpg",
-      advert3: "/advertImages/1567174356806-dribble-post.png",
-      advert4: "/advertImagesLeft/1566297003625-buysell.jpg",
-      advert5: "/advertImagesLeft/1566297023517-calculate.jpg",
-      advert6: "/advertImagesLeft/1566297042807-exchange.jpg",
-      advert7: "/advertImagesRight/nikee.jpg",
-      advert8: "/advertImagesRight/1567680517268-off-white.jpg",
-      advert9: "/advertImagesRight/1566306795882-1566297003625-buysell.jpg",
-      advert10: "/advertImagesBase/1566297042807-exchange.jpg",
-      advert11: "/advertImagesBase/1566297042807-exchange.jpg",
-      advert12: "/advertImagesBase/1566297042807-exchange.jpg",
+
+      advertImages: {
+        left: [
+          "/advertImagesLeft/1566297003625-buysell.jpg",
+          "/advertImagesLeft/1566297023517-calculate.jpg",
+          "/advertImagesLeft/1566297042807-exchange.jpg",
+        ],
+        base: [
+          "/advertImagesBase/1566297042807-exchange.jpg",
+          "/advertImagesBase/1566297042807-exchange.jpg",
+          "/advertImagesBase/1566297042807-exchange.jpg",
+        ],
+        right: [
+          "/advertImagesRight/nikee.jpg",
+          "/advertImagesRight/1567680517268-off-white.jpg",
+          "/advertImagesRight/1566306795882-1566297003625-buysell.jpg",
+        ],
+        landing: [
+          "advertImages/1567680517268-off-white.jpg",
+          // "/advertImages/1566296937264-graph.jpg",
+          "advertImages/1567174349607-22 (1).jpg",
+          "advertImages/1567174356806-dribble-post.png"
+
+        ],
+      },
 
       currencies: [],
       locations: [],
@@ -722,6 +717,7 @@ export default {
         bankrate: [],
         bankrates: [],
         bankdate: [],
+        rates: [],
         sub: {
           email:""
         },
@@ -731,47 +727,61 @@ export default {
         curr: {
           amount: ""
         },
-        bgc1: {
-          backgroundImage: 'url(/advertImages/1567618881220-1567176116063-22 (1).jpg)'
-        },
-        bgc2: {
-          backgroundImage: 'url(/advertImages/1567621167211-1567618647072-1567176178249-off-white.jpg)'
-        },
-        bgc3: {
-          backgroundImage: 'url(/advertImages/1567621189240-1567616614450-0_f3Ypmy-26_j_bU33_.jpg)'
-        },
-        bgc4: {
-          backgroundImage: 'url(/advertImages/1567680517268-off-white.jpg)'
-        },
-        bgc5: {
-          backgroundImage: 'url(/advertImages/1567680162760-nike.png)'
-        },
-        bgc6: {
-          backgroundImage: 'url(advertImages/1567680517268-off-white.jpg)'
-        },
-         bgc7: {
-          backgroundImage: 'url(/advertImagesRight/nikee.jpg)'
-        },
-        bgc8: {
-          backgroundImage: 'url(/advertImagesRight/1566306795882-1566297003625-buysell.jpg)'
-        },
-        bgc9: {
-          backgroundImage: 'url(/advertImagesRight/1567680517268-off-white.jpg)'
-        },
-        bgc10: {
-          backgroundImage: 'url(/advertImagesBase/1567680808107-nikee.jpg)'
-        },
-        bgc11: {
-          backgroundImage: 'url(/advertImagesBase/1567682088170-Nike-Earnings.jpg)'
-        },
-        bgc12: {
-          backgroundImage: 'url(/advertImagesBase/1567682146161-off-white.jpg)'
-        }
-      };
-    },
+      advertImage: "",
+      
+      advert: [],
+      advert1: "/advertImages/1566908941999-ab627000ef8745410e0e8c513e33dcbf.jpg",
+      advert2: "/advertImages/1566908966668-download.jpg",
+      advert3: "/advertImages/1566909052667-Rose-Koech_kenya.jpg",
+      advert4: "/advertImagesLeft/1567079965476-forex1.png",
+      advert5: "/advertImagesLeft/1567080002107-taking stock.jpg",
+      advert6: "/advertImagesLeft/1567080033880-PIX1.jpg",
+      advert7: "/advertImagesRight/1567083729245-pound-dollar.jpg",
+      advert8: "/advertImagesRight/1567089892903-exchange-rate.jpg",
+      advert9: "/advertImagesRight/1567083729245-pound-dollar.jpg",
+      advert10: "/advertImagesBase/1567163043719-analytics.jpg",
+      advert11: "/advertImagesBase/1567163098509-exchange-rate.jpg",
+      advert12: "/advertImagesBase/1567163173099-file.jpg",
 
-
-     
+      bgc1: {
+        backgroundImage: 'url(/advertImages/1567618881220-1567176116063-22 (1).jpg)'
+      },
+      bgc2: {
+        backgroundImage: 'url(/advertImages/1567621167211-1567618647072-1567176178249-off-white.jpg)'
+      },
+      bgc3: {
+        backgroundImage: 'url(/advertImages/1567621189240-1567616614450-0_f3Ypmy-26_j_bU33_.jpg)'
+      },
+      bgc4: {
+        backgroundImage: 'url(/advertImages/1567680517268-off-white.jpg)'
+      },
+      bgc5: {
+        backgroundImage: 'url(/advertImages/1567680162760-nike.png)'
+      },
+      bgc6: {
+        backgroundImage: 'url(advertImages/1567680517268-off-white.jpg)'
+      },
+        bgc7: {
+        backgroundImage: 'url(/advertImagesRight/nikee.jpg)'
+      },
+      bgc8: {
+        backgroundImage: 'url(/advertImagesRight/1566306795882-1566297003625-buysell.jpg)'
+      },
+      bgc9: {
+        backgroundImage: 'url(/advertImagesRight/1567680517268-off-white.jpg)'
+      },
+      bgc10: {
+        backgroundImage: 'url(/advertImagesBase/1567680808107-nikee.jpg)'
+      },
+      bgc11: {
+        backgroundImage: 'url(/advertImagesBase/1567682088170-Nike-Earnings.jpg)'
+      },
+      bgc12: {
+        backgroundImage: 'url(/advertImagesBase/1567682146161-off-white.jpg)'
+      }
+    };
+  },
+  
   watch: {
     advert1() {
       console.log("watch", this.advert1);
@@ -816,24 +826,29 @@ export default {
     },
     advert10() {
       console.log("watch", this.advert10);
-      this.bgc10.backgroundImage = 'url("' + this.advert10 + '")';
-    },
-    advert11() {
-      console.log("watch", this.advert11);
       this.bgc11.backgroundImage = 'url("' + this.advert11 + '")';
     },
     advert12() {
       console.log("watch", this.advert12);
+      //this.getAdvertOne();
       this.bgc12.backgroundImage = 'url("' + this.advert12 + '")';
-    },
-  },
-  computed: {
-    rates(){
-      return this.$store.state.rates;
     }
 
   },
+
   methods: {
+
+    async getAdverts(type) {
+      const { data } = await advertService.getAdverts(type);
+      
+      const images = data.adverts.map(advert => advert.advertImage);
+
+      // console.log(images);
+
+      this.advertImages[type] = images;
+
+    },
+
     fromClicked: function(currency) {
       // `this` inside methods points to the Vue instance
       console.log(currency);
@@ -885,7 +900,7 @@ export default {
       this.plotGraph();
     },
 
-     getLocations() {
+    getLocations() {
       rateService
         .getLocations()
         .then(data => {
@@ -920,7 +935,7 @@ export default {
         });
     },
 
-     getAllAdverts() {
+    getAllAdverts() {
       console.log('hello world');
       advertService
       .getAdverts()
@@ -937,7 +952,7 @@ export default {
       .catch(err => console.log("Error in getAllAdverts in Home.vue", err))
     },
 
-     getAllAdvertsLeft() {
+    getAllAdvertsLeft() {
       console.log('hello world');
       advertService
       .getAdvertsLeft()
@@ -995,7 +1010,7 @@ export default {
         },
 
         data: {
-          csvURL: `https://naija-bdc.herokuapp.com/api/rates/csv?location=${this.selectedLocation}&currency=${this.baseCurrency}`,
+          csvURL: `http://localhost:5000/api/rates/csv?location=${this.selectedLocation}&currency=${this.baseCurrency}`,
           beforeParse: function(csv) {
             return csv.replace(/\n\n/g, "\n");
           }
@@ -1112,7 +1127,7 @@ export default {
       });
     },
 
-//check if email is valid
+    //check if email is valid
     checkForm:function(email) {
         email = this.sub.email;
     
@@ -1131,19 +1146,19 @@ export default {
       
     },
 
-// check with regex if email field is valid
+    // check with regex if email field is valid
     validEmail:function(email) {
       email = this.sub.email;
       var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{3,}))$/;
-    return re.test(email);
+      return re.test(email);
     },
 
-// subscription function
+    // subscription function
     async checkemail(email) {
       
-        email= this.sub.email;
+      email= this.sub.email;
         
-      const API_URL = "https://naija-bdc.herokuapp.com/api/suscribe/"+email;
+      const API_URL = "http://localhost:5000/api/suscribe/"+email;
         
       await axios
         .get(API_URL,email)
@@ -1179,7 +1194,7 @@ export default {
     },
 
    
-//Currency converter api integration
+    //Currency converter api integration
     convertCurr(amount = 1, fromCurrency = "USD", toCurrency = "NGN") {
       //const amount=10, fromCurrency='USD', toCurrency='PHP';
 
@@ -1196,9 +1211,9 @@ export default {
       });
     },
 
-//fetch news to display
+    //fetch news to display
     async getNews() {
-      const API_URL = "https://naija-bdc.herokuapp.com/api/news";
+      const API_URL = "http://localhost:5000/api/news";
 
       await axios
         .get(API_URL)
@@ -1212,7 +1227,7 @@ export default {
         });
     },
 
-// search bdc operator by name 
+    // search bdc operator by name 
     simpleSuggestionList() {
       let arr = this.operators.map(item => {
         return item.name;
@@ -1222,13 +1237,13 @@ export default {
 
     },
 
-// search bdc operator by location 
+    // search bdc operator by location 
     simpleSuggestionList2() {
-          let arr = this.operators.map(item => {
-            return item.location;
-          });
-          return arr;
-        },
+      let arr = this.operators.map(item => {
+        return item.location;
+      });
+      return arr;
+    },
 
     showOperator2(e) {
       let item = this.operators.find(element => element.location == e);
@@ -1236,6 +1251,7 @@ export default {
       this.operator = item;
       this.showModal2(e);
     },
+
     showModal2() {
       this.$refs["modal-2"].show();
     },
@@ -1251,30 +1267,90 @@ export default {
       this.$refs["modal-1"].show();
     },
 
-// DISPLAY adverts
-
-    getAdverts() {
+    getAllAdverts() {
+      console.log('hello world');
       advertService
-        .getAdverts()
-        .then(response => {
-          console.log("response", response);
-          this.adverts = response.data.advert;
-          console.log("data from home vue", this.adverts);
-          let that = this;
-          setTimeout(function() {
-            that.advert1 = that.adverts[0].advertImage;
-            that.advert2 = that.adverts[1].advertImage;
-            that.advert3 = that.adverts[2].advertImage;
-            that.advert4 = that.adverts[3].advertImage;
-            that.advert5 = that.adverts[4].advertImage;
-            that.advert6 = that.adverts[5].advertImage;
-          }, 1000000000);
-        })
-        .catch(err => console.log("Error in getAllAdverts in Home.vue", err));
-    }
+      .getAdverts()
+      .then(response => {
+        console.log("response", response)
+        this.adverts = response.data.advert
+        console.log("data from home vue", this.adverts);
+        
+         this.bgc1.backgroundImage="url(/advertImages/"+this.adverts[0].advertImage+")";
+         this.bgc2.backgroundImage= "url(/advertImages/"+this.adverts[1].advertImage+")";
+         this.bgc3.backgroundImage="url(/advertImages/"+this.adverts[2].advertImage+")";
+       
+      })
+      .catch(err => console.log("Error in getAllAdverts in Home.vue", err))
+    },
+
+    getAllAdvertsLeft() {
+      console.log('hello world');
+      advertService
+      .getAdvertsLeft()
+      .then(response => {
+        console.log("response", response)
+        this.adverts = response.data.advert
+        console.log("left side adverts", this.adverts);
+        
+        
+         this.bgc4.backgroundImage="url(/advertImagesLeft/"+this.adverts[0].advertImage+")";
+         this.bgc5.backgroundImage="url(/advertImagesLeft/"+this.adverts[1].advertImage+")";
+         this.bgc6.backgroundImage="url(/advertImagesLeft/"+this.adverts[2].advertImage+")";
+        
+      })
+      .catch(err => console.log("Error in getAllAdvertsLeft in Home.vue", err))
+    },
+
+    getAllAdvertsRight() {
+      console.log('hello world');
+      advertService
+      .getAdvertsRight()
+      .then(response => {
+        console.log("response", response)
+        this.adverts = response.data.advert
+        console.log("data from home vue", this.adverts);
+        
+       
+         this.bgc7.backgroundImage="url(/advertImagesRight/"+this.adverts[0].advertImage+")";
+         this.bgc8.backgroundImage="url(/advertImagesRight/"+this.adverts[1].advertImage+")";
+         this.bgc9.backgroundImage="url(/advertImagesRight/"+this.adverts[2].advertImage+")";
+       
+      })
+      .catch(err => console.log("Error in getAllAdvertsRight in Home.vue", err))
+    },
+
+    getAllAdvertsBase() {
+      console.log('hello world');
+      advertService
+      .getAdvertsBase()
+      .then(response => {
+        console.log("response", response)
+        this.adverts = response.data.advert
+        console.log("data from home vue", this.adverts);
+        
+        
+         this.bgc10.backgroundImage="url(/advertImagesBase/"+this.adverts[0].advertImage+")";
+         this.bgc11.backgroundImage="url(/advertImagesBase/"+this.adverts[1].advertImage+")";
+         this.bgc12.backgroundImage="url(/advertImagesBase/"+this.adverts[2].advertImage+")";
+      })
+      .catch(err => console.log("Error in getAllAdvertsBase in Home.vue", err))
+    },
   },
 
   mounted() {
+    this.getAdverts('landing');
+    this.getAdverts('left');
+    this.getAdverts('right');
+    this.getAdverts('base');
+
+
+
+
+    // this.getAllAdverts();
+    // this.getAllAdvertsLeft();
+    // this.getAllAdvertsRight();
+    // this.getAllAdvertsBase();
     $(function() {
       $(".c_h").click(function(e) {
         if ($(".chat_container").is(":visible")) {
@@ -1286,7 +1362,7 @@ export default {
         return false;
       });
     });
-    const API_URL = "https://naija-bdc.herokuapp.com/api/operators/operators";
+    const API_URL = "http://localhost:5000/api/operators/operators";
     axios
       .get(API_URL)
       .then(response => {

@@ -160,7 +160,7 @@ canvas+.particles-js-canvas-el{
     box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
 }
 .blackBox{
-    background: url('../../../public/img/nike.png');
+    /* background: url('../../../public/img/nike.png'); */
     background-size: cover;
     border-radius: 4px;
     box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
@@ -169,7 +169,7 @@ canvas+.particles-js-canvas-el{
     /* background: #222; */
 }
 .blackBox1{
-    background: url('../../../public/img/Nike-Earnings.jpg');
+    /* background: url('../../../public/img/Nike-Earnings.jpg'); */
     background-size: cover;
     box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
     border-radius: 4px;
@@ -177,7 +177,7 @@ canvas+.particles-js-canvas-el{
     width: 100%;
 }
 .blackBox2{
-    background: url('../../../public/img/22 (1).jpg');
+    /* background: url('../../../public/img/22 (1).jpg'); */
     background-size: cover;
     box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
     border-radius: 4px;
@@ -185,7 +185,7 @@ canvas+.particles-js-canvas-el{
     width: 100%;
 }
 .blackBoxs{
-    background: url('../../../public/img/nike.png');
+    /* background: url('../../../public/img/nike.png'); */
     background-size: cover;
     border-radius: 4px;
     box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
@@ -193,31 +193,31 @@ canvas+.particles-js-canvas-el{
     /* background: #222; */
 }
 .blackBox1s{
-    background: url('../../../public/img/Nike-Earnings.jpg');
+    /* background: url('../../../public/img/Nike-Earnings.jpg'); */
     background-size: cover;
     box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
     border-radius: 4px;
     height: 400px;
 }
 .blackBox2s{
-    background: url('../../../public/img/22 (1).jpg');
+    /* background: url('../../../public/img/22 (1).jpg'); */
     background-size: cover;
     box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
     border-radius: 4px;
     height: 400px;
 }
 .slide1{
-    background: url('../../../public/img/22 (4).jpg');
+    /* background: url('../../../public/img/22 (4).jpg'); */
     background-size: cover;
     height: 300px;
 }
 .slide2{
-    background: url('../../../public/img/nikee.jpg');
+    /* background: url('../../../public/img/nikee.jpg'); */
     background-size: cover;
     height: 300px;
 }
 .slide3{
-    background: url('../../../public/img/off-white.jpg');
+    /* background: url('../../../public/img/off-white.jpg'); */
     background-size: cover;
     height: 300px;
 }

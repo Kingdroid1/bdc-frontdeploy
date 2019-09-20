@@ -94,12 +94,19 @@
         rateService.getListRates()
           .then(data => {
             this.rates = data.result;
-           
+           console.log("this.rate", this.rates)
+          //  console.log("result", result)
+           console.log("data", data)
+          
           })
           .catch(error => {
             console.log(error)
           });
       },
+
+      getRateByUser() {
+        
+      }
     },
 
     setPages() {

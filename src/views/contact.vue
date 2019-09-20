@@ -63,7 +63,7 @@
                   <div class="col-2 pr-0 mb-3"></div>
                   <div class="col-10 pl-0 mb-3">
                     <b>
-                      <u class="p-14">ABCON NATIONAL SECRETARIAT</u>
+                      <u class="p-14">ABCON NATIONAL SECRETARIAT (ANNEX OFFICE)</u>
                     </b>
                   </div>
                   <div class="col-2 pr-0">
@@ -77,14 +77,19 @@
                     </p>
                   </div>
                   <div class="col-2 pr-0 mb-5">
-                    <i class="fas fa-phone-alt" style="color: #008752;font-size: 18px;"></i>
+                    <p>
+                     <i class="fas fa-phone-alt" style="color: #008752;font-size: 18px;"></i> 
+                    </p>
+                    <p>
+                      <i class="fas fa-envelope" style="color: #008752;font-size: 18px;"></i>
+                    </p>
                   </div>
                   <div class="col-10 pl-0 mb-5">
                     <p class="p-14">
                       08030745636, 08038454484
                     </p>
                     <p class="p-14">
-                      email info@abcon.org.ng
+                      info@abconng.org
                     </p>
                   </div>
                 </div>
@@ -210,7 +215,7 @@
 // import { UserService } from '../services/userservices';
 
 // const userService = new UserService();
-const API_URL = `https://naija-bdc.herokuapp.com/api/`;
+const API_URL = `http://localhost:5000/api/`;
 
 import Vue from 'vue';
 import VueToast from 'vue-toast-notification';

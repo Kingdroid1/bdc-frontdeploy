@@ -1,5 +1,5 @@
 import axios from 'axios';
-const API_URL = 'https://naija-bdc.herokuapp.com/api';
+const API_URL = 'http://localhost:5000/api';
 const C_URL = 'https://free.currconv.com/api/v7';
 
 export class RateService {
@@ -8,7 +8,7 @@ export class RateService {
   }
 
   getLocations() {
-    const url = `${API_URL}/locations/locations`;
+    const url = `${API_URL}/locations/`;
     return axios.get(url).then(response => response.data);
   }
 
@@ -73,13 +73,23 @@ export class RateService {
 
   getScrollRates() {
     const url = `${API_URL}/rates/scroll`;
-    return axios.get(url).then(response => response.data);
+    return axios.get(url).then(response =>{
+      console.log('Am scrollrates', response);
+    }); 
+     
   }
 
   getListRates() {
     const url = `${API_URL}/rates/listrates`;
     return axios.get(url).then(response => response.data);
   }
+
+  // getRateByUser() {
+  //   let userId = localStorage.id;
+  //   console.log("first user id in rate service", userId)
+  //   const url = `${API_URL}/rates/${userId}`;
+  //   return axios.get(url)
+  // }
 
   convertCurrency(amount, fromCurrency, toCurrency, cb) {
     var apiKey = '2c2ec6613d9d0a088c2c';

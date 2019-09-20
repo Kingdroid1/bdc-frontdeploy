@@ -1,6 +1,6 @@
 import axios from 'axios';
-// const API_URL = 'https://naija-bdc.herokuapp.com/api';
-const API_URL = 'https://naija-bdc.herokuapp.com/api';
+// const API_URL = 'http://localhost:5000/api';
+const API_URL = 'http://localhost:5000/api';
 
 
 export class AdvertService {
@@ -8,15 +8,16 @@ export class AdvertService {
 
     }
 
+
     getAdvert(_id) {
         const url = `${API_URL}/adverts/${_id}`;
         return axios.get(url)
         .then(response => response.data);
     }
 
-    getAdverts () {
-        const url = `${API_URL}/adverts`;
-        return axios.get(url)
+    async getAdverts (type = null) {
+        const url = `${API_URL}/adverts${ !!type ? '?type=' + type : '' }`;
+        return await axios.get(url)
         
     }
 
@@ -39,7 +40,7 @@ export class AdvertService {
     }
     
     addAdvert(fd) {
-        console.log("fd", fd)
+        console.log("fd in advertservice", fd)
         const url = `${API_URL}/adverts`;
         return axios.post(url, fd)
     }

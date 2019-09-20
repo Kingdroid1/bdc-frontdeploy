@@ -3,7 +3,7 @@
     <nav class="fixed-bottom">
       <marquee-text :repeat="10" class="marquee bottom">
          <span v-for="(rate, index) in rates" v-bind:key="rate" v-bind:value="index">
-           {{rate.location.location}}  -- {{rate.morning.buying}}/{{rate.morning.selling}}  <img width="20" v-bind:src="`../../../img/${rate.morning.currency}.svg`" /> {{rate.morning.currency}} &nbsp; &nbsp; 
+           {{rate.location}} - {{rate.buyingRate}}/{{rate.sellingRate}}  <img width="20" v-bind:src="`../../../img/CAD.svg`" /> {{rate.currency}} &nbsp; &nbsp; 
          </span>
       </marquee-text>
       
@@ -20,8 +20,9 @@
 
 <script>
   import MarqueeText from 'vue-marquee-text-component';
-  import { RateService } from "../services/rateservice";
-  const rateService = new RateService();
+  import axios from 'axios';
+  // import { RateService } from "../services/rateservice";
+ // const rateService = new RateService();
 
   export default {
     components: {
@@ -33,12 +34,23 @@
       }
     },
     methods: {
-      getRates() {
-        rateService
-          .getScrollRates()
-          .then(data => {
-            this.rates = data.result;
-            console.log('scrollrate',this.rates.morning.buying);
+     async getRates() {
+       const API_URL = "http://localhost:5000/api/rates/scroll";
+        await axios
+          .get(API_URL)
+          .then(response => {
+            this.rates = response;
+            this.rates = this.rates.data.result;
+            // console.log('scrollrate', JSON.stringify(this.rates));
+            let bR = this.rates.map(item => {
+              return item.buyingRate;
+            })
+            return bR;
+
+            let sR = this.rates.map(item => {
+              return item.sellingRate;
+            })
+            return sR;
           })
           .catch(error => {
             console.log('scrool',error);

@@ -307,7 +307,8 @@
           buyingRate: this.buyingRate,
           sellingRate: this.sellingRate,
           time: d.getHours(),
-          user_id: '5d384433850f0a49d8bd4af1'
+          // user_id: '5d384433850f0a49d8bd4af1'
+          user_id: localStorage.id
         }
 
         rateService.createRate(rate)
