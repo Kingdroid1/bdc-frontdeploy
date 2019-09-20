@@ -35,7 +35,7 @@
     },
     methods: {
      async getRates() {
-       const API_URL = "http://localhost:5000/api/rates/scroll";
+       const API_URL = "https://naija-bdc.herokuapp.com/api/rates/scroll";
         await axios
           .get(API_URL)
           .then(response => {

@@ -68,7 +68,7 @@ export default {
             form.append('type', this.type);
             try {
                 const response = await axios.post(
-                    'http://localhost:5000/api/adverts/upload', 
+                    'https://naija-bdc.herokuapp.com/api/adverts/upload', 
                     form,
                     { headers: { 'Content-Type': 'multipart/form-data'} }
                 );

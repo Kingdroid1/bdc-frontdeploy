@@ -1010,7 +1010,7 @@ export default {
         },
 
         data: {
-          csvURL: `http://localhost:5000/api/rates/csv?location=${this.selectedLocation}&currency=${this.baseCurrency}`,
+          csvURL: `https://naija-bdc.herokuapp.com/api/rates/csv?location=${this.selectedLocation}&currency=${this.baseCurrency}`,
           beforeParse: function(csv) {
             return csv.replace(/\n\n/g, "\n");
           }
@@ -1158,7 +1158,7 @@ export default {
       
       email= this.sub.email;
         
-      const API_URL = "http://localhost:5000/api/suscribe/"+email;
+      const API_URL = "https://naija-bdc.herokuapp.com/api/suscribe/"+email;
         
       await axios
         .get(API_URL,email)
@@ -1213,7 +1213,7 @@ export default {
 
     //fetch news to display
     async getNews() {
-      const API_URL = "http://localhost:5000/api/news";
+      const API_URL = "https://naija-bdc.herokuapp.com/api/news";
 
       await axios
         .get(API_URL)
@@ -1362,7 +1362,7 @@ export default {
         return false;
       });
     });
-    const API_URL = "http://localhost:5000/api/operators/operators";
+    const API_URL = "https://naija-bdc.herokuapp.com/api/operators/operators";
     axios
       .get(API_URL)
       .then(response => {

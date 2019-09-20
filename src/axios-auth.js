@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const instance = axios.create({
-  baseURL: 'http://localhost:5000/api'
+  baseURL: 'https://naija-bdc.herokuapp.com/api'
 })
 
 // instance.defaults.headers.common['SOMETHING'] = 'something'

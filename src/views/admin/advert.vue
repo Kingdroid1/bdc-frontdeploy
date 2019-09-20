@@ -117,7 +117,7 @@ export default {
       // // console.log(this.image)f
       form.append('advertImage', this.file);
 
-      axios.post('http://localhost:5000/api/adverts/upload', 
+      axios.post('https://naija-bdc.herokuapp.com/api/adverts/upload', 
           form,
           { headers: { 'Content-Type': 'multipart/form-data'}}
           )
