@@ -2,7 +2,7 @@
   <div>
     <nav class="fixed-bottom">
       <marquee-text :repeat="10" class="marquee bottom">
-         <span v-for="(rate, index) in rates" v-bind:key="rate" v-bind:value="index">
+         <span v-for="(rate) in rates" v-bind:key="rate">
            {{rate.location}} - {{rate.buyingRate}}/{{rate.sellingRate}}  <img width="20" v-bind:src="`../../../img/CAD.svg`" /> {{rate.currency}} &nbsp; &nbsp; 
          </span>
       </marquee-text>

@@ -22,9 +22,9 @@
             <li class="nav-item pt-1 mx-2 px-0" :class="{'active': $route.path == '/news'}">
               <router-link to="/news" class="nav-link">News</router-link>
             </li>
-            <li class="nav-item pt-1 mx-2 px-0" :class="{'active': $route.path == '/gallery'}">
+            <!-- <li class="nav-item pt-1 mx-2 px-0" :class="{'active': $route.path == '/gallery'}">
               <router-link to="/gallery" class="nav-link">Gallery</router-link>
-            </li>
+            </li> -->
             <li class="nav-item pt-1 mx-2 px-0" :class="{'active': $route.path == '/contact-us'}">
               <router-link to="/contact-us" class="nav-link">Contact Us</router-link>
             </li>
