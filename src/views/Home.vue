@@ -81,7 +81,7 @@
             </div>
 
               <tabs>
-                  <tab v-for="(rate, index) in rates" :key="rate.id" v-bind:name="rate.location"  :rate="rate" :selected="index===0">
+                  <tab v-for="(rate, index) in rates" :key="rate.id" v-bind:name="rate.location" :rate="rate" :selected="index===0">
                   </tab>           
               </tabs>
 
@@ -717,7 +717,7 @@ export default {
         bankrate: [],
         bankrates: [],
         bankdate: [],
-        rates: [],
+        // rates: [],
         sub: {
           email:""
         },
@@ -832,6 +832,13 @@ export default {
       console.log("watch", this.advert12);
       //this.getAdvertOne();
       this.bgc12.backgroundImage = 'url("' + this.advert12 + '")';
+    }
+
+  },
+
+  computed: {
+    rates(){
+      return this.$store.state.rates;
     }
 
   },
@@ -1010,7 +1017,7 @@ export default {
         },
 
         data: {
-          csvURL: `https://naija-bdc.herokuapp.com/api/rates/csv?location=${this.selectedLocation}&currency=${this.baseCurrency}`,
+          csvURL: `http://localhost:5000/api/rates/csv?location=${this.selectedLocation}&currency=${this.baseCurrency}`,
           beforeParse: function(csv) {
             return csv.replace(/\n\n/g, "\n");
           }
@@ -1158,7 +1165,7 @@ export default {
       
       email= this.sub.email;
         
-      const API_URL = "https://naija-bdc.herokuapp.com/api/suscribe/"+email;
+      const API_URL = "http://localhost:5000/api/suscribe/"+email;
         
       await axios
         .get(API_URL,email)
@@ -1213,7 +1220,7 @@ export default {
 
     //fetch news to display
     async getNews() {
-      const API_URL = "https://naija-bdc.herokuapp.com/api/news";
+      const API_URL = "http://localhost:5000/api/news";
 
       await axios
         .get(API_URL)
@@ -1362,7 +1369,7 @@ export default {
         return false;
       });
     });
-    const API_URL = "https://naija-bdc.herokuapp.com/api/operators/operators";
+    const API_URL = "http://localhost:5000/api/operators/operators";
     axios
       .get(API_URL)
       .then(response => {
