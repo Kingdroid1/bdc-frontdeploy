@@ -21,14 +21,13 @@
                 <i>The acronym ABCON depicts Association of Bureaux De Change Operators of Nigeria.</i>
               </p>
               <p class="p-16">
-                The historical background of ABCON dates back to 4th of February, 1997 when its 
-                registration was approved by the Corporate Affairs Commission (C.A.C).  It came 
-                into being from a vision of some bureaux de change operators numbering more 
-                than 50(fifty) in an attempt to create an environment of sanctity in the business of 
-                foreign exchange. Hither-to, the country-Nigeria was experiencing an economic 
-                recession which emanated from the restrictions placed on foreign exchange by a 
-                government policy named "Structural Adjustment Program" (SAP) prevalent in the 
-                '80s. 
+                Naijabdcs.com is a live exchange rate platform created in May 2018 by the Association of Bureaux De Change Operators of Nigeria (ABCON) 
+                to promote transparency and price discovery in the foreign exchange (forex) market.
+                The platform is approved by the Central Bank of Nigeria (CBN) and supported by the over 4000 licensed Bureax De Change (BDC) operators across the country.
+                Among other things naijabdcs was created to fulfil the desires of forex end users for reliable and trusted exchange rate information in the retail segment of the forex market.  
+                The platform was also designed to support and facilitate the attainment of the CBN’s monetary policy objective of stable exchange rate.
+                Among other things naijabdcs was created to fulfil the desires of forex end users for reliable and trusted exchange rate information in the retail segment of the forex market. 
+                The platform was also designed to support and facilitate the attainment of the CBN’s monetary policy objective of stable exchange rate.  
               </p>
             </div>
     
@@ -39,10 +38,17 @@
       <section id="newss">
         <div class="container pb-5">
          <p class="p-16 pt-5">
-           The government of the day in an attempt to ration the scarce foreign exchange in circulation introduced measures to restrict access to it through an outright ban on some 
-           transactions in the official foreign exchange market and brought in rigorous documentation.
-    
-           
+          Naijabdcs.com   provides authentic and live foreign exchange (buying and selling) rates across the country based on market realities.
+          The forex rates published by naijabdcs.com are sourced real-time through 
+          ABCON’s network of over 4000 CBN licensed BDCs operating in various locations across the six geopolitical zones of the country. 
+          Association of Bureaux De Change Operators of Nigeria (ABCON) is the umbrella body of all BDCs licensed by the CBN. 
+          The historical background of ABCON dates back to 4th of February, 1997 when its registration was approved by the Corporate Affairs Commission (C.A.C). It came into being from a vision of some bureaux de change operators numbering more than 
+          50(fifty) in an attempt to create an environment of sanctity in the business of foreign exchange. 
+          Hither-to, the country-Nigeria was experiencing an economic recession which emanated from the restrictions placed on foreign exchange by a government policy named "Structural Adjustment Program" (SAP) prevalent in the '80s.
+
+          The government of the day in an attempt to ration the scarce foreign exchange in circulation introduced measures to restrict access to it through an outright 
+          ban on some transactions in the official foreign exchange market and brought in rigorous documentation.
+ 
          </p>
          <p class="p-16 pb-5">
            This created a huge demand for foreign exchange outside government approved sources. It also marked the beginning of the black market or the parallel market. 
@@ -84,13 +90,13 @@
                 meet the public’s yearning for a legitimate business in foreign exchange.
               </p>
     
-              <p class="p-16 mt-5" style="color: #008752;">
+              <!-- <p class="p-16 mt-5" style="color: #008752;">
                 + <u>
                     <a href="#" style="color: #008752;">
                       Click here to see list of accredited Bureau De Change agents in Nigeria. 
                     </a>
                   </u>
-              </p>
+              </p> -->
             </div>
           </div>
         </div>

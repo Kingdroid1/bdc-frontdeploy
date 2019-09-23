@@ -119,7 +119,7 @@
                 >Click here to see list of accredited Bureau De Change agents in Nigeria.</a>
               </small> -->
             </div>
-            <div class="col-lg-1"></div>
+            <div class="col-lg-2"></div>
             <div class="col-lg-4 px-1 col-xs-12 mb-3">
               <vue-simple-suggest
                 v-model="operatorName"
