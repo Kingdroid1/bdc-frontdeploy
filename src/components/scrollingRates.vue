@@ -48,6 +48,7 @@
           .get(API_URL)
           .then(response => {
             let newRate =  response.data.result;
+            console.log('api response---', newRate);
               for (let index = 0; index < newRate.length; index++) {
                 const element = newRate[index];
                 this.rates.push(element);
