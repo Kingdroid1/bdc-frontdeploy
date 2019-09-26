@@ -1,10 +1,18 @@
 <template>
   <div>
     <nav class="fixed-bottom">
-      <marquee-text :repeat="10" class="marquee bottom">
-         <span v-for="(rate) in rates" v-bind:key="rate">
-           {{rate.location}} - {{rate.buyingRate}}/{{rate.sellingRate}}  <img width="20" v-bind:src="`../../../img/CAD.svg`" /> {{rate.currency}} &nbsp; &nbsp; 
-         </span>
+      <marquee-text :repeat="10" class="marquee bottom" style="display: flex">
+        <div v-for="rate in rates" :key="rate" class="rateDisplay">
+          {{rate.location}}   
+          <div v-for="currency in rate.currencies" :key="currency" style="display: flex;">
+          <img :src="`../../../img/${currency.currency}.svg`" :alt="currency.currency" width="20" height="10"> <p style="margin-right: 4px">{{currency.currency}} &nbsp; &nbsp; </p>
+            <span> 
+            {{currency.value.morning.buyingRate}}/{{currency.value.morning.sellingRate}}
+          </span>
+          </div>  
+
+        </div>
+         
       </marquee-text>
       
       <div class="marquee bottom">
@@ -35,22 +43,15 @@
     },
     methods: {
      async getRates() {
-       const API_URL = "https://naija-bdc.herokuapp.com/api/rates/scroll";
+       const API_URL = "http://localhost:5000/api/rates/scroll";
         await axios
           .get(API_URL)
           .then(response => {
-            this.rates = response;
-            this.rates = this.rates.data.result;
-            // console.log('scrollrate', JSON.stringify(this.rates));
-            let bR = this.rates.map(item => {
-              return item.buyingRate;
-            })
-            return bR;
-
-            let sR = this.rates.map(item => {
-              return item.sellingRate;
-            })
-            return sR;
+            let newRate =  response.data.result;
+              for (let index = 0; index < newRate.length; index++) {
+                const element = newRate[index];
+                this.rates.push(element);
+              }
           })
           .catch(error => {
             console.log('scrool',error);
@@ -59,7 +60,7 @@
     },
     mounted() {
       this.getRates();
-    }
+    } 
   };
 </script>
 
@@ -82,6 +83,11 @@
   .bottom {
     margin-bottom: -0.28rem;
   }
+  .marquee-text-text{
+    display:flex;
+    /* width: 1200px;  */
+    width: 1320px;
+  }
 
   .marquee--inner {
     display: block;
@@ -96,7 +102,16 @@
   .marquee--inner:hover {
     animation-play-state: paused;
   }
-
+.rateDisplay{
+  display: flex; 
+  width: 600px; 
+  justify-content: center;
+}
+img{
+  /* margin-top: 8px;
+  margin-right: 3px; */
+margin: 8px 5px 0px;
+}
   span {
     float: left;
     width: 100%;
